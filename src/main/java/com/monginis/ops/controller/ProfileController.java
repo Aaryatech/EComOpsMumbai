@@ -132,28 +132,7 @@ public class ProfileController {
 			Franchisee franchise = new Franchisee();
 
 			franchise.setFrId(frId);
-			String frImage = request.getParameter("prevImage");
-			
-			System.out.println("------------->"+file+"*****"+frImage);
-//			if (!file.get(0).getOriginalFilename().equalsIgnoreCase("")) {
-//
-//				VpsImageUpload upload = new VpsImageUpload();
-//				try {
-//					frImage=file.get(0).getOriginalFilename();
-//					upload.saveUploadedFiles(file, Constant.FR_IMAGE_TYPE,file.get(0).getOriginalFilename());
-//					System.out.println("upload method called " + file.toString());
-//					frDetails.setFrImage(frImage);
-//					ses.setAttribute("frDetails",frDetails);
-//					ses.setAttribute("frImage",frImage);
-//
-//				} catch (IOException e) {
-//					
-//					System.out.println("Exce in File Upload In Fr Update Process " + e.getMessage());
-//					e.printStackTrace();
-//				}
-//			}else {
-//				System.out.println("No Img Found");
-//			}
+			profileImage = request.getParameter("prevImage");			
 			
 			if (!file.get(0).getOriginalFilename().equalsIgnoreCase("")) {
 
