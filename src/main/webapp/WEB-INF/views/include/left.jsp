@@ -471,6 +471,16 @@
 
 						
 					</c:if> 
+					
+					<li><a
+							href="${pageContext.request.contextPath}/showOrderList"><div
+									class="img">
+									<!-- <i class="fa fa-file-pdf-o" aria-hidden="true"></i> -->
+									<i class="fa fa-list-alt" aria-hidden="true"></i>
+								</div>
+								<div class="title">
+									Order <span>List</span>
+								</div></a></li>
 					<li><a
 							href="${pageContext.request.contextPath}/showeditprofile"><div
 									class="img">

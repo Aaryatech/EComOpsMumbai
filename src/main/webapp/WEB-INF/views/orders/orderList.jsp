@@ -14,6 +14,10 @@
 table, th, td {
 	border: 1px solid #9da88d;
 }
+
+.select2-selection--multiple .select2-selection__rendered {
+	border-bottom: 1px solid #ddd;
+}
 </style>
 
 
@@ -32,27 +36,12 @@ table, th, td {
 	src="${pageContext.request.contextPath}/resources/js/jquery-ui.js"></script>
 <script>
 	$(function() {
-		$("#datepicker").datepicker({
+		$("#todatepicker").datepicker({
 			dateFormat : 'dd-mm-yy'
 		});
 	});
 	$(function() {
-		$("#datepicker2").datepicker({
-			dateFormat : 'dd-mm-yy'
-		});
-	});
-	$(function() {
-		$("#datepicker3").datepicker({
-			dateFormat : 'dd-mm-yy'
-		});
-	});
-	$(function() {
-		$("#datepicker4").datepicker({
-			dateFormat : 'dd-mm-yy'
-		});
-	});
-	$(function() {
-		$("#datepicker5").datepicker({
+		$("#fromdatepicker").datepicker({
 			dateFormat : 'dd-mm-yy'
 		});
 	});
@@ -62,12 +51,9 @@ table, th, td {
 
 
 
-	<c:url var="getOrderDetailListByOrderId"
-		value="/getOrderDetailListByOrderId"></c:url>
-
-	<c:url var="getOrdersByFrAndDelDateAjax"
-		value="/getOrdersByFrAndDelDateAjax"></c:url>
-
+	<c:url var="getOrderListByStatus" value="/getOrderListByStatusAjax"></c:url>
+	<c:url var="getStatusList" value="/getStatusList"></c:url>
+	<c:url var="getOrderDashDetailByFrId" value="/getOrderDashDetailByFrId"></c:url>
 
 
 	<!--topLeft-nav-->
@@ -96,139 +82,94 @@ table, th, td {
 				<!--rightSidebar-->
 				<br>
 				<div class="sidebarright">
-					<div class="order-left" style="width: 100%">
+					<div class="row">
 						<br>
-
-						<div class="row">
-
-							<div class="col-md-2">
-								<h2 class="pageTitle">Orders</h2>
-							</div>
-							<div class="col-md-6"></div>
-
-							<div class="col-md-4" style="text-align: right;">
-
-								<input id="datepicker" class="texboxitemcode texboxcal"
-									autocomplete="off" placeholder="Delivery Date"
-									style="width: 50%" name="datepicker" type="text"
-									value="${todaysDate}" onchange="getOrders()"> <input
-									name="" class="buttonsaveorder" value="Search" type="button">
-
-							</div>
-
-
+						<div class="col-md-12">
+							<h2 class="pageTitle">Order List</h2>
 						</div>
+						<br>
+					</div>
+					<br>
+
+					<div class="row">
+
+						<div class="col-md-2" style="float: none;">
+							<h4 class="pull-left">From Date:-</h4>
+						</div>
+						<div class="col-md-4">
+							<input id="fromdatepicker" class="texboxitemcode texboxcal"
+								autocomplete="off" placeholder="DD-MM-YYYY" name="fromDate"
+								type="text" value="${todaysDate}">
+						</div>
+						<div class="col-md-2">
+							<h4 class="pull-left">To Date:-</h4>
+						</div>
+						<div class="col-md-4">
+							<input id="todatepicker" class="texboxitemcode texboxcal"
+								autocomplete="off" placeholder="DD-MM-YYYY" name="toDate"
+								type="text" value="${todaysDate}">
+						</div>
+
 
 					</div>
 
-
-					<!--tabNavigation-->
-					<div class="cd-tabs">
-						<!--tabMenu-->
-
-						<!--tabMenu-->
-
-
-
+					<div class="row">
+						<div class="col-md-2" style="float: none;">
+							<h4 class="pull-left">Order Status:-</h4>
+						</div>
+						<div class="col-md-8">
+							<select class="chosen-select" name="status" id="statusId"
+								multiple="multiple" onchange="selectOpt(this.value)">
+								<option value="-1" style="text-align: left;">All</option>
+								<c:forEach items="${statusList}" var="status" varStatus="count">
+									<option value="${status.statusId}" style="text-align: left;">${status.statusValue}</option>
+								</c:forEach>
+							</select>
+						</div>
+						<div class="col-md-2">
+							<button class="buttonsaveorder" onclick="getOrderDetailData()"
+								style="margin-left: 75px;">Search</button>
+						</div>
+					</div>
+				</div>
+				<!--tabNavigation-->
+				<div class="row">
+					<div class="col-md-12">
 						<div class="clearfix"></div>
 
 						<div id="table-scroll" class="table-scroll">
-							<div id="faux-table" class="faux-table" aria="hidden"></div>
 							<div class="table-wrap"
-								style="max-height: none; min-height: none;">
+								style="max-height: none; min-height: none; z-index: 0;">
 								<table id="order_table" class="main-table">
 									<thead>
 										<tr class="bgpink">
 											<th class="col-md-1" style="text-align: center;">Sr No</th>
 											<th class="col-md-2" style="text-align: center;">Order
-												ID</th>
-											<th class="col-md-2" style="text-align: center;">Customer</th>
-											<th class="col-md-2" style="text-align: center;">Mobile
-												Number</th>
-											<th class="col-md-1" style="text-align: center;">Order
-												From</th>
-											<th class="col-sm-1" style="text-align: center;">Total</th>
-											<th class="col-md-2" style="text-align: center;">Status</th>
+												No.</th>
 											<th class="col-md-2" style="text-align: center;">Delivery
 												Date</th>
-											<th class="col-md-2" style="text-align: center;">Delivery
-												Time</th>
-											<th class="col-md-2" style="text-align: center;">Kilometer</th>
+											<th class="col-md-2" style="text-align: center;">Customer</th>
+											<th class="col-md-2" style="text-align: center;">Time
+												Slot</th>
+											<th class="col-md-1" style="text-align: center;">Order
+												Status</th>
+											<th class="col-sm-1" style="text-align: center;">Payment
+												Mode</th>
+											<th class="col-md-2" style="text-align: center;">Total</th>
 											<th class="col-md-1" style="text-align: center;">Action</th>
 
 										</tr>
 									</thead>
 									<tbody>
-
-
-
-										<%-- <c:forEach var="i" begin="1" end="5">
-
-											<tr>
-												<td class="col-md-1">${i}</td>
-												<td class="col-md-1" style="text-align: center;">#2315</td>
-												<td class="col-md-1">Test Customer</td>
-												<td class="col-md-1" style="text-align: center;">9090909090</td>
-												<td class="col-md-1">Mobile App</td>
-												<td class="col-md-1" style="text-align: right;">450/-</td>
-
-
-												<c:choose>
-
-													<c:when test="${i==2}">
-														<td class="col-md-1" style="text-align: center;"><input
-															type="text" readonly="readonly"
-															style="text-align: center; border-radius: 50px 50px 50px 50px; background: #b4ffaf; padding: 5px; width: 100px; border: 1px solid #b4ffaf;"
-															value="Completed"></td>
-													</c:when>
-
-
-													<c:when test="${i==4}">
-														<td class="col-md-1" style="text-align: center;"><input
-															type="text" readonly="readonly"
-															style="text-align: center; border-radius: 50px 50px 50px 50px; background: #ffd2d2; padding: 5px; width: 100px; border: 1px solid #ffd2d2;"
-															value="Delivered"></td>
-													</c:when>
-
-													<c:otherwise>
-														<td class="col-md-1" style="text-align: center;"><input
-															type="text" readonly="readonly"
-															style="text-align: center; border-radius: 50px 50px 50px 50px; background: #fffed2; padding: 5px; width: 100px; border: 1px solid #fffed2;"
-															value="Process"></td>
-													</c:otherwise>
-
-												</c:choose>
-
-
-
-												<td class="col-md-1" style="text-align: center;">13/07/2020</td>
-												<td class="col-md-1" style="text-align: center;">11:30am</td>
-												<td class="col-md-1" style="text-align: right;">7</td>
-												<td class="col-md-1" style="text-align: center;"><a
-													onclick="openBillPopup()" title="view/generate bill"><i
-														class="fa fa-shopping-cart" aria-hidden="true"></i></a> &nbsp;
-
-													<a href="#" title="KOT">KOT</a> &nbsp; <a href="#"
-													title="GST Bill"><i class="fa fa-file-pdf-o"
-														aria-hidden="true"></i></a></td>
-
-												</td>
-
-											</tr>
-
-										</c:forEach> --%>
-
-
 									</tbody>
 
 								</table>
 							</div>
 						</div>
 
-						<br />
-
-
+						<br /> </
 					</div>
+
 
 				</div>
 
@@ -827,7 +768,9 @@ table, th, td {
 
 
 		</div>
-
+		<input type="hidden" value="${imagePath}" id="imgPath"> <input
+			type="hidden" value="${fromDate}" name="fromDate" id="fromDate">
+		<input type="hidden" value="${toDate}" name="toDate" id="toDate">
 
 
 	</div>
@@ -915,150 +858,389 @@ table, th, td {
 		src="${pageContext.request.contextPath}/resources/dropdownmultiple/chosen-active.js"></script>
 
 	<!-- ======================================================================== -->
-
 	<script type="text/javascript">
-		function getOrders() {
+		function selectOpt(statusId) {
+			//	alert(statusId)
+			if (statusId == -1) {
 
-			var delDate = $("#datepicker").val();
+				$
+						.getJSON(
+								'${getStatusList}',
+								{
+									ajax : 'true'
+								},
+								function(data) {
+									//alert("OK"+JSON.stringify(data))
+									var len = data.length;
 
-			//alert(delDate);
+									$('#statusId').find('option').remove()
+											.end()
+									for (var i = 0; i < len; i++) {
+										$('#statusId')
+												.append(
+														$(
+																'<option selected style="text-align: left;"></option>')
+																.attr(
+																		'value',
+																		data[i].statusId)
+																.text(
+																		data[i].statusValue));
+									}
+									$('.chosen-select').trigger(
+											"chosen:updated");
+								});
+			}
+		}
+	</script>
+	<script type="text/javascript">
+		function getOrderDetailData() {
+			$('#order_table td').remove();
+			//$('#loader').show();
+			var statusId = $("#statusId").val();
+			var fromDate = $("#fromdatepicker").val();
+			var toDate = $("#todatepicker").val();
+			alert(statusId + " " + fromDate + " " + toDate);
 
 			$
 					.getJSON(
-							'${getOrdersByFrAndDelDateAjax}',
+							'${getOrderListByStatus}',
 							{
-								delDate : delDate,
+								fromDate : fromDate,
+								toDate : toDate,
+								statusId : JSON.stringify(statusId),
 								ajax : 'true'
-
 							},
 							function(data) {
+								//	$('#loader').hide();
+								if (data == null) {
+									alert("No Data Found!");
+								}
 
-								//alert(JSON.stringify(data));
-
-								sessionStorage.setItem("orderList", JSON
-										.stringify(data));
-
-								$('#order_table td').remove();
-
+								var orderTtlAmt = 0;
 								$
 										.each(
 												data,
 												function(key, order) {
 
-													var tr = $('<tr></tr>');
+													var orderStatus = null;
+													var paymentMode = null;
 
-													tr.append($('<td></td>')
-															.html(key + 1));
+													var acStr = '<a href="javascript:void(0)" class="list-icons-item text-primary-600" data-popup="tooltip" title="" data-original-title="Order Detail" onclick="getOrderDetail('
+															+ order.orderId
+															+ ')"><i class="fa fa-list"></i></a>'
+
+													if (order.paymentMethod == 1) {
+														paymentMode = "Cash";
+													} else if (order.paymentMethod == 2) {
+														paymentMode = "Card";
+													} else {
+														paymentMode = "E-Pay";
+													}
+
+													if (order.orderStatus == 0) {
+														orderStatus = "Park Order";
+													} else if (order.orderStatus == 1) {
+														orderStatus = "Shop Confirmation Pending";
+													} else if (order.orderStatus == 2) {
+														orderStatus = "Accept";
+													} else if (order.orderStatus == 3) {
+														orderStatus = "Processing";
+													} else if (order.orderStatus == 4) {
+														orderStatus = "Delivery Pending";
+													} else if (order.orderStatus == 5) {
+														orderStatus = "Delivered";
+													} else if (order.orderStatus == 6) {
+														orderStatus = "Rejected by Shop";
+													} else if (order.orderStatus == 7) {
+														orderStatus = "Return Order";
+													} else if (order.orderStatus == 8) {
+														orderStatus = "Cancelled Order";
+													}
+
+													var tr = $('<tr style="background:##03a9f4;"></tr>');
 
 													tr
 															.append($(
-																	'<td style="text-align: center;"></td>')
+																	'<td  style=""></td>')
+																	.html(
+																			key + 1));
+
+													tr
+															.append($(
+																	'<td style=""></td>')
 																	.html(
 																			order.orderNo));
 
 													tr
 															.append($(
-																	'<td></td>')
+																	'<td style=""></td>')
 																	.html(
-																			order.custName));
+																			order.deliveryDateDisplay));
 
 													tr
 															.append($(
-																	'<td style="text-align: center;"></td>')
+																	'<td style=""></td>')
 																	.html(
-																			order.whatsappNo));
-
-													var platform = "";
-
-													if (order.orderPlatform == 1) {
-														platform = "Executive"
-													} else if (order.orderPlatform == 2) {
-														platform = "Mobile App"
-													}
-
-													tr.append($('<td></td>')
-															.html(platform));
+																			order.custName
+																					+ " - "
+																					+ order.custMobile));
 
 													tr
 															.append($(
-																	'<td style="text-align: right;"></td>')
+																	'<td style=""></td>')
+																	.html(
+																			order.deliveryTimeDisplay));
+
+													tr
+															.append($(
+																	'<td style=""></td>')
+																	.html(
+																			orderStatus));
+
+													tr
+															.append($(
+																	'<td style=""></td>')
+																	.html(
+																			paymentMode));
+
+													orderTtlAmt = orderTtlAmt
+															+ order.totalAmt;
+													tr
+															.append($(
+																	'<td style=""></td>')
 																	.html(
 																			order.totalAmt));
 
-													var status = "";
-
-													if (order.orderStatus == 0) {
-														status = "<input type=text readonly style='text-align: center; border-radius: 50px 50px 50px 50px; background: #fffed2; padding: 5px; width: 100px; border: 1px solid #fffed2;' value=Process>";
-													} else if (order.orderStatus == 1) {
-														status = "<input type=text readonly style='text-align: center; border-radius: 50px 50px 50px 50px; background: #b4ffaf; padding: 5px; width: 100px; border: 1px solid #b4ffaf;' value=Completed>";
-													} else {
-														status = "<input type=text readonly style='text-align: center; border-radius: 50px 50px 50px 50px; background: #b4ffaf; padding: 5px; width: 100px; border: 1px solid #b4ffaf;' value=Completed>";
-													}
-
 													tr
 															.append($(
-																	'<td style="text-align: center;"></td>')
-																	.html(
-																			status));
-
-													tr
-															.append($(
-																	'<td style="text-align: center;"></td>')
-																	.html(
-																			order.deliveryDate));
-
-													tr
-															.append($(
-																	'<td style="text-align: center;"></td>')
-																	.html(
-																			order.deliveryTime));
-
-													tr.append($('<td style="text-align: right;"></td>')
-															.html(order.deliveryKm));
-
-													var view = "<a onclick='openBillPopup("
-															+ order.orderId
-															+ ")' title='view/generate bill'><i class='fa fa-shopping-cart' aria-hidden='true'></i></a> &nbsp;";
-
-													var kotUrl = "${pageContext.request.contextPath}/printOrderKot/"
-															+ order.orderId;
-													//alert(JSON.parse(order));
-
-													//var kot = "<a href="+kotUrl+" title='KOT'>KOT</a> &nbsp;";
-													var kot = "<a href=# title=KOT onclick='printKOT("+key+")'>KOT</a> &nbsp;";
-
-													
-													
-													var gst = "<a href=# title='GST Bill'><i class='fa fa-file-pdf-o' aria-hidden='true'></i></a> &nbsp;";
-
-													tr
-															.append($(
-																	'<td style="text-align: center;"></td>')
-																	.html(
-																			view
-																					+ " "
-																					+ kot
-																					+ " "
-																					+ gst));
+																	'<td style=""></td>')
+																	.html(acStr));
 
 													$('#order_table tbody')
 															.append(tr);
 
 												});
 
-							});
+								var tr = "<tr>";
+								var td1 = "<td colspan='7'>&nbsp;&nbsp;&nbsp;<b> Total</b></td>";
+								var td2 = "<td><b><b>"
+										+ addCommas((orderTtlAmt).toFixed(2));
+								+"</b></td>";
+								var trclosed = "</tr>";
 
+								$('#order_table tbody').append(tr);
+								$('#order_table tbody').append(td1);
+								$('#order_table tbody').append(td2);
+								$('#order_table tbody').append(trclosed);
+
+							});
 		}
 	</script>
 
 	<script type="text/javascript">
-		function printKOT(index) {
+		function getOrderDetail(orderId) {
+			$('#order_dtl_table td').remove();
+			alert(orderId)
+			var imgPath = $("#imgPath").val();
+			if (orderId > 0) {
 
-			var url = "${pageContext.request.contextPath}/printOrderKot/"
-					+ index;
+				$
+						.getJSON(
+								'${getOrderDashDetailByFrId}',
+								{
 
-			$("<iframe>").hide().attr("src", url).appendTo("body");
+									ajax : 'true'
 
+								},
+								function(data) {
+
+									$('#modal_large').modal('toggle');
+									for (var i = 0; i < data.length; i++) {
+
+										if (data[i].orderId == orderId) {
+											var status = null;
+											var paymentMode = null;
+											var pamentStatus = null;
+											var orderType = null;
+											var trailStatus = null;
+
+											if (data[i].orderStatus == 0) {
+												status = "Park Order";
+											} else if (data[i].orderStatus == 1) {
+												status = "Shop Confirmation Pending";
+											} else if (data[i].orderStatus == 2) {
+												status = "Accept";
+											} else if (data[i].orderStatus == 3) {
+												status = "Processing";
+											} else if (data[i].orderStatus == 4) {
+												status = "Delivery Pending";
+											} else if (data[i].orderStatus == 5) {
+												status = "Delivered";
+											} else if (data[i].orderStatus == 6) {
+												status = "Rejected by Shop";
+											} else if (data[i].orderStatus == 7) {
+												status = "Return Order";
+											} else if (data[i].orderStatus == 8) {
+												status = "Cancelled Order";
+											}
+
+											if (data[i].paymentMethod == 1) {
+												paymentMode = "Cash";
+											} else if (data[i].paymentMethod == 2) {
+												paymentMode = "Card";
+											} else if (data[i].paymentMethod == 3) {
+												paymentMode = "E-Pay";
+											} else {
+												paymentMode = "";
+											}
+
+											if (data[i].orderPlatform == 1) {
+												orderType = "Executive";
+											} else if (data[i].orderPlatform == 2) {
+												orderType = "Mobile App";
+											} else {
+												orderType = "Web Site";
+											}
+
+											if (data[i].paidStatus == 0) {
+												pamentStatus = "Pending";
+											} else {
+												pamentStatus = "Paid";
+											}
+
+											document.getElementById("orderNo").value = data[i].orderNo;
+											document.getElementById("custName").value = data[i].custName
+													+ "-" + data[i].custMobile;
+											document.getElementById("frName").value = data[i].frName;
+											document
+													.getElementById("orderStatus").value = status;
+											document
+													.getElementById("pamentStat").value = pamentStatus;
+											document.getElementById("dateTime").value = data[i].deliveryDateDisplay
+													+ " "
+													+ data[i].deliveryTimeDisplay;
+											document
+													.getElementById("orderType").value = orderType;
+											document.getElementById("payMode").value = paymentMode;
+											document.getElementById("ttlAmt").value = data[i].totalAmt;
+
+											document
+													.getElementById("taxableAmt").value = data[i].taxableAmt;
+											document.getElementById("taxAmt").value = data[i].igstAmt;
+											document.getElementById("discAmt").value = data[i].discAmt;
+											document
+													.getElementById("deliveryCharges").value = data[i].deliveryCharges;
+											document
+													.getElementById("totalOrderAmt").value = data[i].totalAmt;
+
+											$
+													.each(
+															data[i].orderDetailList,
+															function(key, itm) {
+
+																var itemPic = '<img src="'+imgPath+itm.itemPic+'"  width="50" height="50" alt="Product Image">';
+
+																var tr = $('<tr style="background:##03a9f4;"></tr>');
+
+																tr
+																		.append($(
+																				'<td  style="padding: 12px; line-height:0; border-top: 1px solid #ddd;"></td>')
+																				.html(
+																						itm.itemName));
+																tr
+																		.append($(
+																				'<td style="padding: 12px; line-height:0; border-top: 1px solid #ddd;""></td>')
+																				.html(
+																						itemPic));
+
+																tr
+																		.append($(
+																				'<td style="padding: 12px; line-height:0; border-top: 1px solid #ddd;""></td>')
+																				.html(
+																						itm.mrp));
+
+																tr
+																		.append($(
+																				'<td style="padding: 12px; line-height:0; border-top: 1px solid #ddd;""></td>')
+																				.html(
+																						itm.qty));
+
+																tr
+																		.append($(
+																				'<td style="padding: 12px; line-height:0; border-top: 1px solid #ddd;""></td>')
+																				.html(
+																						itm.mrp
+																								* itm.qty));
+
+																$(
+																		'#order_dtl_table tbody')
+																		.append(
+																				tr);
+
+															});
+
+											//***************************************Trail Table*****************************************//
+
+											$('#order_trail_table td').remove();
+
+											$
+													.each(
+															data[i].orderTrailList,
+															function(key, trail) {
+
+																if (trail.status == 0) {
+																	trailStatus = "Park Orde";
+																} else if (trail.status == 1) {
+																	trailStatus = "Shop Confirmation Pending";
+																} else if (trail.status == 2) {
+																	trailStatus = "Accept";
+																} else if (trail.status == 3) {
+																	trailStatus = "Processing";
+																} else if (trail.status == 4) {
+																	trailStatus = "Delivery Pending";
+																} else if (trail.status == 5) {
+																	trailStatus = "Delivered";
+																} else if (trail.status == 6) {
+																	trailStatus = "Rejected by Shop";
+																} else if (trail.status == 7) {
+																	trailStatus = "Return Order";
+																} else if (trail.status == 8) {
+																	trailStatus = "Cancelled Order";
+																}
+
+																var tr = $('<tr style="background:##03a9f4;"></tr>');
+
+																tr
+																		.append($(
+																				'<td  style="padding: 12px; line-height:0; border-top: 1px solid #ddd;"></td>')
+																				.html(
+																						trailStatus));
+																tr
+																		.append($(
+																				'<td style="padding: 12px; line-height:0; border-top: 1px solid #ddd;""></td>')
+																				.html(
+																						trail.userName));
+
+																tr
+																		.append($(
+																				'<td style="padding: 12px; line-height:0; border-top: 1px solid #ddd;""></td>')
+																				.html(
+																						trail.trailDate));
+
+																$(
+																		'#order_trail_table tbody')
+																		.append(
+																				tr);
+
+															});
+
+											break;
+
+										}
+									}
+
+								});
+			}
 		}
 	</script>
 
