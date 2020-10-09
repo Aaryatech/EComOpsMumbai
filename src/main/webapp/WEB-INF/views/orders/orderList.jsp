@@ -167,7 +167,7 @@ table, th, td {
 							</div>
 						</div>
 
-						<br /> </
+						<br /> 
 					</div>
 
 
@@ -185,589 +185,409 @@ table, th, td {
 		</div>
 		<!--rightContainer-->
 
-
+<!-- Bill PopUp -->
 		<div id="billPopup" class="add_customer" style="width: 60%;">
-			<button class="addcust_close close_popup" onclick="closeBillPopup()">
-				<i class="fa fa-times" aria-hidden="true"></i>
-			</button>
-			<h3 class="pop_head">
-				<div class="row" style="margin-right: 25px;">
+		<button class="addcust_close close_popup" onclick="closeBillPopup()">
+			<i class="fa fa-times" aria-hidden="true"></i>
+		</button>
+		<h3 class="pop_head">
+			<div class="row" style="margin-right: 25px;">
 
-					<div class="col-lg-3" style="margin-top: 5px;">Generate Bill</div>
-					<div class="col-lg-9" id="statusDiv"></div>
+				<div class="col-lg-3" style="margin-top: 5px;">Order Detail</div>
+				<div class="col-lg-9" id="statusDiv"></div>
 
+			</div>
+		</h3>
+
+		<div class="col-lg-12">
+
+			<div class="row" style="margin-left: 15px; margin-right: 15px;">
+
+				<div class="col-lg-2" style="padding-left: 15px;">
+					<div class="add_frm" style="padding: 0px; border-bottom: 0px">
+						<div class="add_frm_one" style="margin: 0;">
+							<div class="add_customer_one"
+								style="font-size: 14px; width: 100%">Order No :</div>
+						</div>
+
+					</div>
 				</div>
-			</h3>
-
-			<div class="col-lg-12">
-
-				<div class="row" style="margin-left: 15px; margin-right: 15px;">
-
-					<div class="col-lg-2" style="padding-left: 15px;">
-						<div class="add_frm" style="padding: 0px; border-bottom: 0px">
-							<div class="add_frm_one" style="margin: 0;">
-								<div class="add_customer_one"
-									style="font-size: 14px; width: 100%">Order ID :</div>
-							</div>
-
+				<div class="col-lg-4">
+					<div class="add_frm"
+						style="padding: 0px 0px 0px 15px; border-bottom: 0px">
+						<div class="add_frm_one" style="margin: 0">
+							<div class="add_customer_one"
+								style="font-size: 14px; width: 100%;" id="orderNo"></div>
 						</div>
-					</div>
-					<div class="col-lg-4">
-						<div class="add_frm"
-							style="padding: 0px 0px 0px 15px; border-bottom: 0px">
-							<div class="add_frm_one" style="margin: 0">
-								<div class="add_customer_one"
-									style="font-size: 14px; width: 100%;" id="orderNoDiv"></div>
-							</div>
 
-						</div>
-					</div>
-
-					<div class="col-lg-3" style="padding-left: 15px;">
-						<div class="add_frm"
-							style="padding: 0px 0px 0px 15px; border-bottom: 0px">
-							<div class="add_frm_one" style="margin: 0;">
-								<div class="add_customer_one"
-									style="font-size: 14px; width: 100%">Delivery Date :</div>
-							</div>
-
-						</div>
-					</div>
-
-					<div class="col-lg-3" style="padding-left: 15px;">
-						<div class="add_frm" style="padding: 0px; border-bottom: 0px">
-							<div class="add_frm_one" style="margin: 0;">
-								<div class="add_customer_one"
-									style="font-size: 14px; width: 100%;" id="delDateDiv"></div>
-							</div>
-
-						</div>
-					</div>
-
-				</div>
-
-				<div class="row" style="margin-left: 15px; margin-right: 15px;">
-
-					<div class="col-lg-2" style="padding-left: 15px;">
-						<div class="add_frm" style="padding: 0px; border-bottom: 0px">
-							<div class="add_frm_one" style="margin: 0;">
-								<div class="add_customer_one"
-									style="font-size: 14px; width: 100%">Customer :</div>
-							</div>
-
-						</div>
-					</div>
-					<div class="col-lg-4">
-						<div class="add_frm"
-							style="padding: 0px 0px 0px 15px; border-bottom: 0px">
-							<div class="add_frm_one" style="margin: 0">
-								<div class="add_customer_one"
-									style="font-size: 14px; width: 100%;" id="custNameDiv"></div>
-							</div>
-
-						</div>
-					</div>
-
-					<div class="col-lg-3" style="padding-left: 15px;">
-						<div class="add_frm"
-							style="padding: 0px 0px 0px 15px; border-bottom: 0px">
-							<div class="add_frm_one" style="margin: 0;">
-								<div class="add_customer_one"
-									style="font-size: 14px; width: 100%">Mobile Number :</div>
-							</div>
-
-						</div>
-					</div>
-
-					<div class="col-lg-3" style="padding-left: 15px;">
-						<div class="add_frm" style="padding: 0px; border-bottom: 0px">
-							<div class="add_frm_one" style="margin: 0;">
-								<div class="add_customer_one"
-									style="font-size: 14px; width: 100%;" id="mobileDiv"></div>
-							</div>
-
-						</div>
-					</div>
-
-				</div>
-
-
-				<div class="row" style="margin-left: 15px; margin-right: 15px;">
-
-					<div class="col-lg-2" style="padding-left: 15px;">
-						<div class="add_frm" style="padding: 0px; border-bottom: 0px">
-							<div class="add_frm_one" style="margin: 0;">
-								<div class="add_customer_one"
-									style="font-size: 14px; width: 100%">Address :</div>
-							</div>
-
-						</div>
-					</div>
-
-					<div class="col-lg-10">
-						<div class="add_frm"
-							style="padding: 0px 0px 0px 15px; border-bottom: 0px">
-							<div class="add_frm_one" style="margin: 0">
-								<div class="add_customer_one"
-									style="font-size: 14px; width: 100%;" id="addressDiv"></div>
-							</div>
-
-						</div>
-					</div>
-
-
-				</div>
-
-
-				<div class="row" style="margin-left: 15px; margin-right: 15px;">
-
-					<div class="col-lg-2" style="padding-left: 15px;">
-						<div class="add_frm" style="padding: 0px; border-bottom: 0px">
-							<div class="add_frm_one" style="margin: 0;">
-								<div class="add_customer_one"
-									style="font-size: 14px; width: 100%">Pincode :</div>
-							</div>
-
-						</div>
-					</div>
-					<div class="col-lg-4">
-						<div class="add_frm"
-							style="padding: 0px 0px 0px 15px; border-bottom: 0px">
-							<div class="add_frm_one" style="margin: 0">
-								<div class="add_customer_one"
-									style="font-size: 14px; width: 100%;" id="pincodeDiv"></div>
-							</div>
-
-						</div>
-					</div>
-
-					<div class="col-lg-3" style="padding-left: 15px;">
-						<div class="add_frm"
-							style="padding: 0px 0px 0px 15px; border-bottom: 0px">
-							<div class="add_frm_one" style="margin: 0;">
-								<div class="add_customer_one"
-									style="font-size: 14px; width: 100%">Kilometer :</div>
-							</div>
-
-						</div>
-					</div>
-
-					<div class="col-lg-3" style="padding-left: 15px;">
-						<div class="add_frm" style="padding: 0px; border-bottom: 0px">
-							<div class="add_frm_one" style="margin: 0;">
-								<div class="add_customer_one"
-									style="font-size: 14px; width: 100%;" id="kmDiv"></div>
-							</div>
-
-						</div>
-					</div>
-
-				</div>
-				<br>
-
-				<div class="row">
-
-					<div id="table-scroll" class="table-scroll" style="width: 90%">
-						<div class="table-responsive"
-							style="max-height: none; min-height: none;">
-							<table id="table_grid" class="main-table">
-								<thead>
-									<tr class="bgpink">
-										<th class="col-md-1"
-											style="text-align: center; padding: 0 !important; font-size: 14px;">SR</th>
-										<th class="col-md-2"
-											style="text-align: center; padding: 0 !important; font-size: 14px;">PRODUCT</th>
-										<th class="col-md-1"
-											style="text-align: center; padding: 0 !important; font-size: 14px;">QTY</th>
-										<th class="col-sm-1"
-											style="text-align: center; padding: 0 !important; font-size: 14px;">UOM</th>
-										<th class="col-md-1"
-											style="text-align: center; padding: 0 !important; font-size: 14px;">PRICE</th>
-										<th class="col-md-1"
-											style="text-align: center; padding: 0 !important; font-size: 14px;">DISCOUNT</th>
-										<th class="col-md-1"
-											style="text-align: center; padding: 0 !important; font-size: 14px;">TOTAL</th>
-
-									</tr>
-								</thead>
-								<tbody>
-
-									<%-- <c:forEach var="i" begin="1" end="3">
-
-										<tr>
-											<td class="col-md-1"
-												style="padding: 2 !important; font-size: 14px;">${i}</td>
-											<td class="col-md-1"
-												style="padding: 2 !important; font-size: 14px;">Madhvi
-												Penda</td>
-											<td class="col-md-1"
-												style="text-align: right; padding: 2 !important; font-size: 14px;">5.00</td>
-											<td class="col-md-1"
-												style="padding: 2 !important; font-size: 14px;">Kgs</td>
-											<td class="col-md-1"
-												style="text-align: right; padding: 2 !important; font-size: 14px;">480</td>
-											<td class="col-md-1"
-												style="text-align: right; padding: 2 !important; font-size: 14px;">0</td>
-											<td class="col-md-1"
-												style="text-align: right; padding: 2 !important; font-size: 14px;">2400.00</td>
-
-										</tr>
-
-									</c:forEach> --%>
-
-
-								</tbody>
-
-							</table>
-						</div>
-					</div>
-
-				</div>
-
-				<div class="row" style="margin-left: 15px; margin-right: 15px;">
-
-					<div class="col-lg-6" style="padding-left: 15px;">
-						<div class="add_frm" style="padding: 0px; border-bottom: 0px">
-							<div class="add_frm_one" style="margin: 0">
-								<div class="add_customer_one" style="font-size: 14px;">Total
-									UOM :</div>
-							</div>
-
-						</div>
-					</div>
-					<div class="col-lg-6">
-						<div class="add_frm" style="padding: 0px; border-bottom: 0px">
-							<div class="add_frm_one" style="margin: 0">
-								<div class="add_customer_one"
-									style="font-size: 14px; width: 100%; text-align: right;"
-									id="uomDiv"></div>
-							</div>
-
-						</div>
-					</div>
-
-				</div>
-
-
-				<div class="row"
-					style="margin-left: 15px; margin-right: 15px; background: #ffe5e6">
-
-					<div class="col-lg-3" style="padding-left: 15px;">
-						<div class="add_frm" style="padding: 0px; border-bottom: 0px">
-							<div class="add_frm_one" style="margin: 0;">
-								<div class="add_customer_one"
-									style="font-size: 14px; width: 100%">Total Items :</div>
-							</div>
-
-						</div>
-					</div>
-					<div class="col-lg-2">
-						<div class="add_frm"
-							style="padding: 0px 0px 0px 15px; border-bottom: 0px">
-							<div class="add_frm_one" style="margin: 0">
-								<div class="add_customer_one" style="font-size: 14px;"
-									id="totalItemsDiv"></div>
-							</div>
-
-						</div>
-					</div>
-
-					<div class="col-lg-3" style="padding-left: 15px;">
-						<div class="add_frm"
-							style="padding: 0px 0px 0px 15px; border-bottom: 0px">
-							<div class="add_frm_one" style="margin: 0;">
-								<div class="add_customer_one"
-									style="font-size: 14px; width: 100%">Total :</div>
-							</div>
-
-						</div>
-					</div>
-
-					<div class="col-lg-4" style="padding-left: 15px;">
-						<div class="add_frm" style="padding: 0px; border-bottom: 0px">
-							<div class="add_frm_one" style="margin: 0;">
-								<div class="add_customer_one"
-									style="font-size: 14px; width: 100%; text-align: right;"
-									id="totalDiv">0</div>
-							</div>
-
-						</div>
-					</div>
-
-				</div>
-
-
-				<div class="row" style="margin-left: 15px; margin-right: 15px;">
-
-					<div class="col-lg-3" style="padding-left: 15px;"></div>
-
-					<div class="col-lg-2"></div>
-
-					<div class="col-lg-3" style="padding-left: 15px;">
-						<div class="add_frm"
-							style="padding: 0px 0px 0px 15px; border-bottom: 0px">
-							<div class="add_frm_one" style="margin: 0;">
-								<div class="add_customer_one"
-									style="font-size: 14px; width: 100%">Order Tax :</div>
-							</div>
-
-						</div>
-					</div>
-
-					<div class="col-lg-4" style="padding-left: 15px;">
-						<div class="add_frm" style="padding: 0px; border-bottom: 0px">
-							<div class="add_frm_one" style="margin: 0;">
-								<div class="add_customer_one"
-									style="font-size: 14px; width: 100%; text-align: right;"
-									id="orderTaxDiv">0</div>
-							</div>
-
-						</div>
-					</div>
-
-				</div>
-
-
-				<div class="row"
-					style="margin-left: 15px; margin-right: 15px; background: #e5ffeb">
-
-					<div class="col-lg-3" style="padding-left: 15px;">
-						<div class="add_frm" style="padding: 0px; border-bottom: 0px">
-							<div class="add_frm_one" style="margin: 0;">
-								<div class="add_customer_one"
-									style="font-size: 14px; width: 100%">Item Discount :</div>
-							</div>
-
-						</div>
-					</div>
-					<div class="col-lg-2">
-						<div class="add_frm"
-							style="padding: 0px 0px 0px 15px; border-bottom: 0px">
-							<div class="add_frm_one" style="margin: 0">
-								<div class="add_customer_one" style="font-size: 14px;"
-									id="itemDiscDiv">0</div>
-							</div>
-
-						</div>
-					</div>
-
-					<div class="col-lg-3" style="padding-left: 15px;">
-						<div class="add_frm"
-							style="padding: 0px 0px 0px 15px; border-bottom: 0px">
-							<div class="add_frm_one" style="margin: 0;">
-								<div class="add_customer_one"
-									style="font-size: 14px; width: 100%">Bill Discount :</div>
-							</div>
-
-						</div>
-					</div>
-
-					<div class="col-lg-4" style="padding-left: 15px;">
-						<div class="add_frm" style="padding: 0px; border-bottom: 0px">
-							<div class="add_frm_one" style="margin: 0;">
-								<div class="add_customer_one"
-									style="font-size: 14px; width: 100%; text-align: right;"
-									id="billDiscDiv">0</div>
-							</div>
-
-						</div>
-					</div>
-
-				</div>
-
-
-				<div class="row"
-					style="margin-left: 15px; margin-right: 15px; background: #fefcd5">
-
-					<div class="col-lg-3" style="padding-left: 15px;">
-						<div class="add_frm" style="padding: 0px; border-bottom: 0px">
-							<div class="add_frm_one" style="margin: 0;">
-								<div class="add_customer_one"
-									style="font-size: 14px; width: 100%">Total Payable :</div>
-							</div>
-
-						</div>
-					</div>
-					<div class="col-lg-2"></div>
-
-					<div class="col-lg-3" style="padding-left: 15px;">
-						<div class="add_frm"
-							style="padding: 0px 0px 0px 15px; border-bottom: 0px">
-							<div class="add_frm_one" style="margin: 0;">
-								<div class="add_customer_one"
-									style="font-size: 14px; width: 100%"></div>
-							</div>
-
-						</div>
-					</div>
-
-					<div class="col-lg-4" style="padding-left: 15px;">
-						<div class="add_frm" style="padding: 0px; border-bottom: 0px">
-							<div class="add_frm_one" style="margin: 0;">
-								<div class="add_customer_one"
-									style="font-size: 14px; width: 100%; text-align: right;"
-									id="totalPayableDiv">0</div>
-							</div>
-
-						</div>
-					</div>
-
-				</div>
-
-				<!-- <div class="row" style="margin-left: 15px; margin-right: 15px;">
-
-					<div class="col-lg-3" style="padding-left: 15px;">
-						<div class="add_frm" style="padding: 0px; border-bottom: 0px">
-							<div class="add_frm_one" style="margin: 0;">
-								<div class="add_customer_one"
-									style="font-size: 14px; width: 100%">Payment Mode :</div>
-							</div>
-
-						</div>
-					</div>
-
-
-					<div class="col-lg-9" style="padding-left: 15px;">
-						<div class="add_frm"
-							style="padding: 0px 0px 0px 15px; border-bottom: 0px">
-							<div class="add_frm_one" style="margin: 0;">
-								<div class="add_customer_one"
-									style="font-size: 14px; width: 100%">COD</div>
-							</div>
-
-						</div>
-					</div>
-
-				</div> -->
-
-				<div class="row"
-					style="margin-left: 15px; margin-right: 15px; background: #e5ffeb">
-
-					<div class="col-lg-3" style="padding-left: 15px;">
-						<div class="add_frm" style="padding: 0px; border-bottom: 0px">
-							<div class="add_frm_one" style="margin: 0;">
-								<div class="add_customer_one"
-									style="font-size: 14px; width: 100%">Payment Mode :</div>
-							</div>
-
-						</div>
-					</div>
-					<div class="col-lg-2">
-						<div class="add_frm"
-							style="padding: 0px 0px 0px 15px; border-bottom: 0px">
-							<div class="add_frm_one" style="margin: 0">
-								<div class="add_customer_one" style="font-size: 14px;"
-									id="payModeDiv"></div>
-							</div>
-
-						</div>
-					</div>
-
-					<div class="col-lg-3" style="padding-left: 15px;">
-						<div class="add_frm"
-							style="padding: 0px 0px 0px 15px; border-bottom: 0px">
-							<div class="add_frm_one" style="margin: 0;">
-								<div class="add_customer_one"
-									style="font-size: 14px; width: 100%">Grievance :</div>
-							</div>
-
-						</div>
-					</div>
-
-					<div class="col-lg-4" style="padding-left: 15px;">
-						<div class="add_frm" style="padding: 0px; border-bottom: 0px">
-							<div class="add_frm_one" style="margin: 0;">
-								<div class="add_customer_one"
-									style="font-size: 14px; width: 100%; text-align: right;"
-									id="grievanceDiv"></div>
-							</div>
-
-						</div>
-					</div>
-
-				</div>
-
-				<div class="row"
-					style="margin-left: 15px; margin-right: 15px; background: #fff">
-
-					<div class="col-lg-3" style="padding-left: 15px;">
-						<div class="add_frm" style="padding: 0px; border-bottom: 0px">
-							<div class="add_frm_one" style="margin: 0;">
-								<div class="add_customer_one"
-									style="font-size: 14px; width: 100%">Remark :</div>
-							</div>
-
-						</div>
-					</div>
-					<div class="col-lg-2">
-						<div class="add_frm"
-							style="padding: 0px 0px 0px 15px; border-bottom: 0px">
-							<div class="add_frm_one" style="margin: 0">
-								<div class="add_customer_one" style="font-size: 14px;"
-									id="remarkDiv"></div>
-							</div>
-
-						</div>
 					</div>
 				</div>
 
-				<div class="row"
-					style="margin-left: 15px; margin-right: 15px; background: #fff">
-
-					<div class="col-lg-3" style="padding-left: 15px;">
-						<div class="add_frm" style="padding: 0px; border-bottom: 0px">
-							<div class="add_frm_one" style="margin: 0;">
-								<div class="add_customer_one"
-									style="font-size: 14px; width: 100%">Delivery Boy :</div>
-							</div>
-
+				<div class="col-lg-3" style="padding-left: 15px;">
+					<div class="add_frm"
+						style="padding: 0px 0px 0px 15px; border-bottom: 0px">
+						<div class="add_frm_one" style="margin: 0;">
+							<div class="add_customer_one"
+								style="font-size: 14px; width: 100%">Delivery Date :</div>
 						</div>
+
 					</div>
-					<div class="col-lg-9">
-						<div class="add_frm"
-							style="padding: 0px 0px 0px 15px; border-bottom: 0px">
-							<div class="add_frm_one" style="margin: 0">
-								<Select id="deliveryBoy" name="deliveryBoy" style="width: 100%">
-									<c:forEach items="${deliveryBoyList}" var="delBoy">
-										<option value="${delBoy.frEmpId}">${delBoy.frEmpName}
-											- ${delBoy.frEmpContact}</option>
-									</c:forEach>
-								</Select>
-							</div>
-
-						</div>
-					</div>
-
-
-
-
-
 				</div>
 
-				<br>
-				<div class="row" style="margin-left: 15px; margin-right: 15px;">
+				<div class="col-lg-3" style="padding-left: 15px;">
+					<div class="add_frm" style="padding: 0px; border-bottom: 0px">
+						<div class="add_frm_one" style="margin: 0;">
+							<div class="add_customer_one"
+								style="font-size: 14px; width: 100%;" id="dateTime"></div>
+						</div>
 
-					<div class="col-lg-4">
-						<button class="hold can_btn" onclick="closeBillPopup()">REJECT</button>
 					</div>
-					<div class="col-lg-4">
-						<button class="hold hold_btn" onclick="closeBillPopup()">KOT</button>
-					</div>
-					<div class="col-lg-4">
-						<button class="hold pay_btn" onclick="closeBillPopup()">GST
-							BILL</button>
-					</div>
-
-
 				</div>
-				<br>
 
+			</div>
+
+			<div class="row" style="margin-left: 15px; margin-right: 15px;">
+
+				<div class="col-lg-2" style="padding-left: 15px;">
+					<div class="add_frm" style="padding: 0px; border-bottom: 0px">
+						<div class="add_frm_one" style="margin: 0;">
+							<div class="add_customer_one"
+								style="font-size: 14px; width: 100%">Customer :</div>
+						</div>
+
+					</div>
+				</div>
+				<div class="col-lg-4">
+					<div class="add_frm"
+						style="padding: 0px 0px 0px 15px; border-bottom: 0px">
+						<div class="add_frm_one" style="margin: 0">
+							<div class="add_customer_one"
+								style="font-size: 14px; width: 100%;" id="custName"></div>
+						</div>
+
+					</div>
+				</div>
+
+				<div class="col-lg-3" style="padding-left: 15px;">
+					<div class="add_frm"
+						style="padding: 0px 0px 0px 15px; border-bottom: 0px">
+						<div class="add_frm_one" style="margin: 0;">
+							<div class="add_customer_one"
+								style="font-size: 14px; width: 100%">Mobile Number :</div>
+						</div>
+
+					</div>
+				</div>
+
+				<div class="col-lg-3" style="padding-left: 15px;">
+					<div class="add_frm" style="padding: 0px; border-bottom: 0px">
+						<div class="add_frm_one" style="margin: 0;">
+							<div class="add_customer_one"
+								style="font-size: 14px; width: 100%;" id="mobileDiv"></div>
+						</div>
+
+					</div>
+				</div>
 
 			</div>
 
 
+			<div class="row" style="margin-left: 15px; margin-right: 15px;">
+			
+				<div class="col-lg-2" style="padding-left: 15px;">
+					<div class="add_frm" style="padding: 0px; border-bottom: 0px">
+						<div class="add_frm_one" style="margin: 0;">
+							<div class="add_customer_one"
+								style="font-size: 14px; width: 100%">Order Type :</div>
+						</div>
 
+					</div>
+				</div>
+				<div class="col-lg-4">
+					<div class="add_frm"
+						style="padding: 0px 0px 0px 15px; border-bottom: 0px">
+						<div class="add_frm_one" style="margin: 0">
+							<div class="add_customer_one"
+								style="font-size: 14px; width: 100%;" id="orderType"></div>
+						</div>
+
+					</div>
+				</div>
+				
+				<div class="col-lg-3" style="padding-left: 15px;">
+					<div class="add_frm"
+						style="padding: 0px 0px 0px 15px; border-bottom: 0px">
+						<div class="add_frm_one" style="margin: 0;">
+							<div class="add_customer_one"
+								style="font-size: 14px; width: 100%">Order Status :</div>
+						</div>
+
+					</div>
+				</div>
+
+				<div class="col-lg-3" style="padding-left: 15px;">
+					<div class="add_frm" style="padding: 0px; border-bottom: 0px">
+						<div class="add_frm_one" style="margin: 0;">
+							<div class="add_customer_one"
+								style="font-size: 14px; width: 100%;" id="orderStatus"></div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+
+
+			<div class="row" style="margin-left: 15px; margin-right: 15px;">
+			<div class="col-lg-2" style="padding-left: 15px;">
+					<div class="add_frm" style="padding: 0px; border-bottom: 0px">
+						<div class="add_frm_one" style="margin: 0;">
+							<div class="add_customer_one"
+								style="font-size: 14px; width: 100%">Payment Mode :</div>
+						</div>
+
+					</div>
+				</div>
+				<div class="col-lg-4">
+					<div class="add_frm"
+						style="padding: 0px 0px 0px 15px; border-bottom: 0px">
+						<div class="add_frm_one" style="margin: 0">
+							<div class="add_customer_one"
+								style="font-size: 14px; width: 100%;" id="payMode"></div>
+						</div>
+
+					</div>
+				</div>
+				
+				<div class="col-lg-3" style="padding-left: 15px;">
+					<div class="add_frm"
+						style="padding: 0px 0px 0px 15px; border-bottom: 0px">
+						<div class="add_frm_one" style="margin: 0;">
+							<div class="add_customer_one"
+								style="font-size: 14px; width: 100%">Payment Status :</div>
+						</div>
+
+					</div>
+				</div>
+
+				<div class="col-lg-3" style="padding-left: 15px;">
+					<div class="add_frm" style="padding: 0px; border-bottom: 0px">
+						<div class="add_frm_one" style="margin: 0;">
+							<div class="add_customer_one"
+								style="font-size: 14px; width: 100%;" id="pamentStat"></div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+			
+			<div class="row" style="margin-left: 15px; margin-right: 15px;">
+				<div class="col-lg-6">					
+				</div>
+				
+				
+				<div class="col-lg-3" style="padding-left: 15px;">
+					<div class="add_frm"
+						style="padding: 0px 0px 0px 15px; border-bottom: 0px">
+						<div class="add_frm_one" style="margin: 0;">
+							<div class="add_customer_one"
+								style="font-size: 14px; width: 100%">Total :</div>
+						</div>
+
+					</div>
+				</div>
+
+				<div class="col-lg-3" style="padding-left: 15px;">
+					<div class="add_frm" style="padding: 0px; border-bottom: 0px">
+						<div class="add_frm_one" style="margin: 0;">
+							<div class="add_customer_one"
+								style="font-size: 14px; width: 100%;" id="ttlAmt"></div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+			<br>
+
+			<div class="row">
+				<div id="table-scroll" class="table-scroll" style="width: 100%">
+					<div class="table-responsive"
+						style="max-height: none; min-height: none;">
+						<table id="order_dtl_table" class="main-table">
+							<thead>
+								<tr class="bgpink">
+									<th class="col-md-1"
+										style="text-align: center; padding: 0 !important; font-size: 14px;">SR</th>
+									<th class="col-md-2"
+										style="text-align: center; padding: 0 !important; font-size: 14px;">Items Name</th>
+									<th class="col-md-1"
+										style="text-align: center; padding: 0 !important; font-size: 14px;">Product Image</th>
+									<th class="col-sm-1"
+										style="text-align: center; padding: 0 !important; font-size: 14px;">Rate</th>
+									<th class="col-md-1"
+										style="text-align: center; padding: 0 !important; font-size: 14px;">Quantity</th>
+									<th class="col-md-1"
+										style="text-align: center; padding: 0 !important; font-size: 14px;">Total</th>
+
+								</tr>
+							</thead>
+							<tbody>
+
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+			
+			<div class="col-lg-12">
+
+			<div class="row" style="margin-left: 15px; margin-right: 15px;">
+
+				
+				<div class="col-lg-6"> </div>
+
+				<div class="col-lg-3" style="padding-left: 15px;">
+					<div class="add_frm"
+						style="padding: 0px 0px 0px 15px; border-bottom: 0px">
+						<div class="add_frm_one" style="margin: 0;">
+							<div class="add_customer_one"
+								style="font-size: 14px; width: 100%">Product Total :</div>
+						</div>
+
+					</div>
+				</div>
+
+				<div class="col-lg-3" style="padding-left: 15px;">
+					<div class="add_frm" style="padding: 0px; border-bottom: 0px">
+						<div class="add_frm_one" style="margin: 0;">
+							<div class="add_customer_one"
+								style="font-size: 16px; width: 100%; margin-left: 109px;" id="taxableAmt"></div>
+						</div>
+					</div>
+				</div>
+				
+				<div class="col-lg-6"> </div>
+
+				<div class="col-lg-3" style="padding-left: 15px;">
+					<div class="add_frm"
+						style="padding: 0px 0px 0px 15px; border-bottom: 0px">
+						<div class="add_frm_one" style="margin: 0;">
+							<div class="add_customer_one"
+								style="font-size: 14px; width: 100%">Tax :</div>
+						</div>
+
+					</div>
+				</div>
+
+				<div class="col-lg-3" style="padding-left: 15px;">
+					<div class="add_frm" style="padding: 0px; border-bottom: 0px">
+						<div class="add_frm_one" style="margin: 0;">
+							<div class="add_customer_one"
+								style="font-size: 16px; width: 100%; margin-left: 109px;" id="taxAmt"></div>
+						</div>
+					</div>
+				</div>
+				
+				<div class="col-lg-6"> </div>
+
+				<div class="col-lg-3" style="padding-left: 15px;">
+					<div class="add_frm"
+						style="padding: 0px 0px 0px 15px; border-bottom: 0px">
+						<div class="add_frm_one" style="margin: 0;">
+							<div class="add_customer_one"
+								style="font-size: 14px; width: 100%">Offer Discount :</div>
+						</div>
+
+					</div>
+				</div>
+
+				<div class="col-lg-3" style="padding-left: 15px;">
+					<div class="add_frm" style="padding: 0px; border-bottom: 0px">
+						<div class="add_frm_one" style="margin: 0;">
+							<div class="add_customer_one"
+								style="font-size: 16px; width: 100%; margin-left: 109px;" id="discAmt"></div>
+						</div>
+					</div>
+				</div>
+				
+				<div class="col-lg-6"> </div>
+
+				<div class="col-lg-3" style="padding-left: 15px;">
+					<div class="add_frm"
+						style="padding: 0px 0px 0px 15px; border-bottom: 0px">
+						<div class="add_frm_one" style="margin: 0;">
+							<div class="add_customer_one"
+								style="font-size: 14px; width: 100%">Delivery Charges :</div>
+						</div>
+
+					</div>
+				</div>
+
+				<div class="col-lg-3" style="padding-left: 15px;">
+					<div class="add_frm" style="padding: 0px; border-bottom: 0px">
+						<div class="add_frm_one" style="margin: 0;">
+							<div class="add_customer_one"
+								style="font-size: 16px; width: 65%; margin-left: 109px;
+								 border-bottom: solid;  border-width: thin" id="deliveryCharges"></div>
+						</div>
+					</div>
+				</div>
+				
+				
+				<div class="col-lg-6"> </div>
+
+				<div class="col-lg-3" style="padding-left: 15px;">
+					<div class="add_frm"
+						style="padding: 0px 0px 0px 15px; border-bottom: 0px">
+						<div class="add_frm_one" style="margin: 0;">
+							<div class="add_customer_one"
+								style="font-size: 14px; width: 100%">Total :</div>
+						</div>
+
+					</div>
+				</div>
+
+				<div class="col-lg-3" style="padding-left: 15px;">
+					<div class="add_frm" style="padding: 0px; border-bottom: 0px">
+						<div class="add_frm_one" style="margin: 0;">
+							<div class="add_customer_one"
+								style="font-size: 16px; width: 100%; margin-left: 109px;  border-bottom: none;" id="totalOrderAmt"></div>
+						</div>
+					</div>
+				</div>
+
+			</div>
+			</div>
+			
+			<div class="row">
+				<div id="table-scroll" class="table-scroll" style="width: 100%">
+					<div class="table-responsive"
+						style="max-height: none; min-height: none;">
+						<table id="order_trail_table" class="main-table">
+							<thead>
+								<tr class="bgpink">
+									<th class="col-md-1"
+										style="text-align: center; padding: 0 !important; font-size: 14px;">SR</th>
+									<th class="col-md-2"
+										style="text-align: center; padding: 0 !important; font-size: 14px;">Status</th>
+									<th class="col-md-1"
+										style="text-align: center; padding: 0 !important; font-size: 14px;">Action By</th>
+									<th class="col-sm-1"
+										style="text-align: center; padding: 0 !important; font-size: 14px;">Date Time</th>
+
+								</tr>
+							</thead>
+							<tbody>
+
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+
+			<br>
 		</div>
+	</div>
+		
 		<input type="hidden" value="${imagePath}" id="imgPath"> <input
 			type="hidden" value="${fromDate}" name="fromDate" id="fromDate">
 		<input type="hidden" value="${toDate}" name="toDate" id="toDate">
@@ -787,61 +607,222 @@ table, th, td {
 	</script>
 
 	<script type="text/javascript">
-		function openBillPopup(orderId) {
+	function openBillPopup(orderId) {
+		//alert(orderId)
+		$('#order_dtl_table td').remove();	
+		var imgPath = $("#imgPath").val();
+		if (orderId > 0) {
 
-			//getOrderDetails(orderId)
-			$('#billPopup').popup('show');
+			$
+					.getJSON(
+							'${getOrderDashDetailByFrId}',
+							{
 
-			var orderList = sessionStorage.getItem("orderList");
-			var table = $.parseJSON(orderList);
+								ajax : 'true'
 
-			//console.log(table);
-			for (var i = 0; i < table.length; i++) {
+							},
+							function(data) {
+							//	alert("Hi----------"+JSON.stringify(data[0].deliveryDateDisplay))
+								$('#billPopup').popup('show');
+								for (var i = 0; i < data.length; i++) {
 
-				if (orderId == table[i].orderId) {
+									if (data[i].orderId == orderId) {
+										
+										var orderStatus = null;
+										var paymentMode = null;
+										var pamentStatus = null;
+										var orderType = null;
+										var trailStatus = null;
 
-					console.log(table[i].orderDetailList);
+										if (data[i].orderStatus == 0) {
+											orderStatus = "Park Order";
+										} else if (data[i].orderStatus == 1) {
+											orderStatus = "Shop Confirmation Pending";
+										} else if (data[i].orderStatus == 2) {
+											orderStatus = "Accept";
+										} else if (data[i].orderStatus == 3) {
+											orderStatus = "Processing";
+										} else if (data[i].orderStatus == 4) {
+											orderStatus = "Delivery Pending";
+										} else if (data[i].orderStatus == 5) {
+											orderStatus = "Delivered";
+										} else if (data[i].orderStatus == 6) {
+											status = "Rejected by Shop";
+										} else if (data[i].orderStatus == 7) {
+											orderStatus = "Return Order";
+										} else if (data[i].orderStatus == 8) {
+											orderStatus = "Cancelled Order";
+										}
 
-					document.getElementById("orderNoDiv").innerHTML = "#"
-							+ table[i].orderNo;
-					document.getElementById("delDateDiv").innerHTML = table[i].deliveryDate
-							+ " " + table[i].deliveryTime;
-					document.getElementById("custNameDiv").innerHTML = table[i].custName;
-					document.getElementById("mobileDiv").innerHTML = table[i].whatsappNo;
-					document.getElementById("addressDiv").innerHTML = table[i].address;
-					document.getElementById("pincodeDiv").innerHTML = table[i].pincode;
-					document.getElementById("kmDiv").innerHTML = table[i].deliveryKm;
+										if (data[i].paymentMethod == 1) {
+											paymentMode = "Cash";
+										} else if (data[i].paymentMethod == 2) {
+											paymentMode = "Card";
+										} else if (data[i].paymentMethod == 3) {
+											paymentMode = "E-Pay";
+										} else {
+											paymentMode = "";
+										}
 
-					document.getElementById("totalDiv").innerHTML = table[i].totalAmt;
+										if (data[i].orderPlatform == 1) {
+											orderType = "Executive";
+										} else if (data[i].orderPlatform == 2) {
+											orderType = "Mobile App";
+										} else {
+											orderType = "Web Site";
+										}
 
-					document.getElementById("orderTaxDiv").innerHTML = table[i].taxAmt;
+										if (data[i].paidStatus == 0) {
+											pamentStatus = "Pending";
+										} else {
+											pamentStatus = "Paid";
+										}
+										
+										document.getElementById("orderNo").innerHTML = data[i].orderNo;
+										document.getElementById("custName").innerHTML = data[i].custName;
+										document.getElementById("mobileDiv").innerHTML = data[i].custMobile;
+										document
+												.getElementById("orderStatus").innerHTML = orderStatus;
+										document
+												.getElementById("pamentStat").innerHTML = pamentStatus;
+										document.getElementById("dateTime").innerHTML = data[i].deliveryDateDisplay
+												+ " "
+												+ data[i].deliveryTimeDisplay;
+										document
+												.getElementById("orderType").innerHTML = orderType;
+										document.getElementById("payMode").innerHTML = paymentMode;
+										document.getElementById("ttlAmt").innerHTML = data[i].totalAmt;
+										
+										document
+										.getElementById("taxableAmt").innerHTML = data[i].taxableAmt;
+										
+										document.getElementById("taxAmt").innerHTML = data[i].igstAmt;
+										document.getElementById("discAmt").innerHTML = data[i].discAmt;
+										document
+												.getElementById("deliveryCharges").innerHTML = data[i].deliveryCharges;
+										document
+												.getElementById("totalOrderAmt").innerHTML = data[i].totalAmt;
 
-					document.getElementById("itemDiscDiv").innerHTML = table[i].itemDiscAmt;
-					document.getElementById("billDiscDiv").innerHTML = table[i].discAmt;
-					document.getElementById("totalPayableDiv").innerHTML = table[i].totalAmt;
-					document.getElementById("payModeDiv").innerHTML = table[i].paymentMethod;
-					document.getElementById("grievanceDiv").innerHTML = "";
-					document.getElementById("remarkDiv").innerHTML = table[i].remark;
+										
+										$
+												.each(
+														data[i].orderDetailList,
+														function(key, itm) {			
+															
+															var itemPic = '<img src="'+imgPath+itm.itemPic+'"  width="50" height="50" alt="Product Image">';
+																	
+																	
+															var tr = $('<tr style="background:##03a9f4;"></tr>');
+															tr
+															.append($(
+																	'<td style="padding: 2 !important; font-size: 14px;"></td>')
+																	.html(key + 1));
 
-					var process = "<input type=text readonly=readonly style='text-align: center; border-radius: 50px 50px 50px 50px; background: #fffed2; padding: 5px; width: 100px; border: 1px solid #fffed2;' value=Process>";
-					var pending = "<input type=text readonly=readonly style='text-align: center; border-radius: 50px 50px 50px 50px; background: #fffed2; padding: 5px; width: 100px; border: 1px solid #fffed2;' value=Pending>";
-					var complete = "<input type=text readonly=readonly style='text-align: center; border-radius: 50px 50px 50px 50px; background: #b4ffaf; padding: 5px; width: 100px; border: 1px solid #fffed2;' value=complete>";
 
-					if (table[i].orderStatus == 0) {
-						document.getElementById("statusDiv").innerHTML = process;
-					} else {
-						document.getElementById("statusDiv").innerHTML = complete;
-					}
+															tr
+																	.append($(
+																			'<td  style="padding: 12px; line-height:0; border-top: 1px solid #ddd;"></td>')
+																			.html(
+																					itm.itemName));
+															tr
+																	.append($(
+																			'<td style="padding: 12px; line-height:0; border-top: 1px solid #ddd;""></td>')
+																			.html(itemPic));
 
-					getOrderDetails(table[i].orderDetailList);
+															tr
+																	.append($(
+																			'<td style="padding: 12px; line-height:0; border-top: 1px solid #ddd;""></td>')
+																			.html(
+																					itm.mrp));
 
-					break;
+															tr
+																	.append($(
+																			'<td style="padding: 12px; line-height:0; border-top: 1px solid #ddd;""></td>')
+																			.html(
+																					itm.qty));
 
-				}
-			}
+															tr
+																	.append($(
+																			'<td style="padding: 12px; line-height:0; border-top: 1px solid #ddd;""></td>')
+																			.html(
+																					itm.mrp
+																							* itm.qty));
 
+															$(
+																	'#order_dtl_table tbody')
+																	.append(
+																			tr);
+
+														});
+
+										//***************************************Trail Table*****************************************//
+
+										$('#order_trail_table td').remove();
+
+										$
+												.each(
+														data[i].orderTrailList,
+														function(key, trail) {
+
+															if (trail.status == 0) {
+																trailStatus = "Park Orde";
+															} else if (trail.status == 1) {
+																trailStatus = "Shop Confirmation Pending";
+															} else if (trail.status == 2) {
+																trailStatus = "Accept";
+															} else if (trail.status == 3) {
+																trailStatus = "Processing";
+															} else if (trail.status == 4) {
+																trailStatus = "Delivery Pending";
+															} else if (trail.status == 5) {
+																trailStatus = "Delivered";
+															} else if (trail.status == 6) {
+																trailStatus = "Rejected by Shop";
+															} else if (trail.status == 7) {
+																trailStatus = "Return Order";
+															} else if (trail.status == 8) {
+																trailStatus = "Cancelled Order";
+															}
+
+															var tr = $('<tr style="background:##03a9f4;"></tr>');
+															tr
+															.append($(
+																	'<td style="padding: 2 !important; font-size: 14px;"></td>')
+																	.html(key + 1));
+
+
+															tr
+																	.append($(
+																			'<td  style="padding: 12px; line-height:0; border-top: 1px solid #ddd;"></td>')
+																			.html(
+																					trailStatus));
+															tr
+																	.append($(
+																			'<td style="padding: 12px; line-height:0; border-top: 1px solid #ddd;""></td>')
+																			.html(
+																					trail.userName));
+
+															tr
+																	.append($(
+																			'<td style="padding: 12px; line-height:0; border-top: 1px solid #ddd;""></td>')
+																			.html(
+																					trail.trailDate));
+
+															$(
+																	'#order_trail_table tbody')
+																	.append(
+																			tr);
+
+														});
+
+										break;
+
+									}
+								}
+
+							});
 		}
-
+	}
 		function closeBillPopup() {
 
 			$('#billPopup').popup('hide');
@@ -925,7 +906,7 @@ table, th, td {
 													var orderStatus = null;
 													var paymentMode = null;
 
-													var acStr = '<a href="javascript:void(0)" class="list-icons-item text-primary-600" data-popup="tooltip" title="" data-original-title="Order Detail" onclick="getOrderDetail('
+													var acStr = '<a href="javascript:void(0)" class="list-icons-item text-primary-600" data-popup="tooltip" title="" data-original-title="Order Detail" onclick="openBillPopup('
 															+ order.orderId
 															+ ')"><i class="fa fa-list"></i></a>'
 

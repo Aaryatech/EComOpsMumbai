@@ -1454,7 +1454,7 @@
 											document
 													.getElementById("totalOrderAmt").innerHTML = data[i].totalAmt;
 
-											alert("Hi----------"+JSON.stringify(data[i].orderDetailList))
+											
 											$
 													.each(
 															data[i].orderDetailList,
