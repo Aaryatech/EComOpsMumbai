@@ -52,6 +52,7 @@ import com.monginis.ops.model.FrEmpLoginResp;
 import com.monginis.ops.model.FrEmpMaster;
 import com.monginis.ops.model.FrLoginResponse;
 import com.monginis.ops.model.Franchisee;
+import com.monginis.ops.model.GetDashPieStatusCnt;
 import com.monginis.ops.model.Info;
 import com.monginis.ops.model.Setting;
 import java.io.BufferedOutputStream;
@@ -116,7 +117,7 @@ public class HomeController {
 		return model;
 
 	}
-
+	List<GetDashPieStatusCnt> dashDataList = new ArrayList<GetDashPieStatusCnt>();
 	@RequestMapping(value = "/home", method = RequestMethod.GET)
 	public ModelAndView displayHome(HttpServletRequest request, HttpServletResponse response, Locale locale)
 			throws ParseException {
@@ -136,6 +137,7 @@ public class HomeController {
 			MultiValueMap<String, Object> map = new LinkedMultiValueMap<String, Object>();
 
 			map.add("frId", frId);
+			
 
 			model.addObject("url", Constant.MESSAGE_IMAGE_URL);
 
@@ -162,18 +164,14 @@ public class HomeController {
 				model.addObject("fromDate", fDate);
 				model.addObject("toDate", tDate);
 				model.addObject("typeTitle", "");
+				model.addObject("custmDates", "1");
 
 			} else if (type == 1) {
 				fromDate = sf.format(date);
 				toDate = sf.format(date);
 				model.addObject("typeTitle", "Today's");
+				model.addObject("custmDates", "0");
 			} else if (type == 2) {
-				/*
-				 * final DayOfWeek firstDayOfWeek = WeekFields.of(locale).getFirstDayOfWeek();
-				 * final DayOfWeek lastDayOfWeek = DayOfWeek.of(((firstDayOfWeek.getValue() + 5)
-				 * % DayOfWeek.values().length) + 1);
-				 */
-
 				Calendar calendar = Calendar.getInstance();
 				while (calendar.get(Calendar.DAY_OF_WEEK) != Calendar.MONDAY) {
 					calendar.add(Calendar.DATE, -1);
@@ -187,15 +185,10 @@ public class HomeController {
 					calendar2.add(Calendar.DATE, 1);
 				}
 				Date d2 = calendar2.getTime();
-				toDate = sf.format(d2);
-				/*
-				 * Calendar calendar1 = Calendar.getInstance(); calendar1.add(Calendar.DATE, 0);
-				 * Date d1 =calendar1.getTime();
-				 */
-
-				// toDate=sf.format(d1);
+				toDate = sf.format(d2);				
 				System.err.println("d1**" + toDate);
 				model.addObject("typeTitle", "This Week");
+				model.addObject("custmDates", "0");
 			} else {
 
 				Date begining, end;
@@ -214,8 +207,22 @@ public class HomeController {
 				toDate = sf.format(end);
 				System.err.println("end" + toDate);
 				model.addObject("typeTitle", "This Month");
+				model.addObject("custmDates", "0");
 			}
-
+			System.err.println(" Dates---------"+fromDate+" to "+toDate);
+			
+			map.add("frId", frDetails.getFrId());
+			map.add("fromDate", fromDate);
+			map.add("toDate", toDate);
+			map.add("compId", frDetails.getCompanyId());
+			
+			GetDashPieStatusCnt[] dashDataArr = Constant.getRestTemplate()
+					.postForObject(Constant.URL + "getAllStatusCountByFrId", map, GetDashPieStatusCnt[].class);
+			dashDataList = new ArrayList<GetDashPieStatusCnt>(Arrays.asList(dashDataArr));
+			System.out.println("Order Details------------>"+dashDataList);
+			model.addObject("countDetails", dashDataList);
+			
+			model.addObject("imagePath", Constant.FR_IMAGE_URL);
 		
 		} catch (Exception e) {
 			e.printStackTrace();

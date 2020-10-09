@@ -82,14 +82,18 @@ public class OrderController {
 			MultiValueMap<String, Object> map = new LinkedMultiValueMap<>();
 			
 			String statusId = request.getParameter("statusId");	
-
+			System.out.println("ID ------"+statusId);
 			String statusStr = "";
 
+			
 			if (statusId != null) {
-
+				try {
 				statusStr = statusId.toString().substring(1, statusId.toString().length() - 1);
 				statusStr = statusStr.replaceAll("\"", "");
 				statusStr = statusStr.replaceAll(" ", "");
+				}catch (Exception e) {
+					statusStr = statusId;
+				}
 			}
 			
 			HttpSession session = request.getSession();
