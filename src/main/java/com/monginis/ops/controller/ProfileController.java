@@ -91,12 +91,11 @@ public class ProfileController {
 	public @ResponseBody int getCurrentEmpCodeValue(HttpServletRequest request,HttpServletResponse response) {
 		
 		int value=0;
-		
-		RestTemplate rest = new RestTemplate();
-			
 		try {
-			Setting setting= rest.getForObject(Constant.URL + "/getSettingDataById?settingId={settingId}",
-					Setting.class,57);
+			MultiValueMap<String, Object> map = new LinkedMultiValueMap<String, Object>();
+			map.add("settingId", 3);
+			Setting setting = Constant.getRestTemplate().postForObject(Constant.URL + "/getSettingDataById", map,
+					Setting.class);
 			value=setting.getSettingValue();
 			
 		}catch(Exception e) {e.printStackTrace();}

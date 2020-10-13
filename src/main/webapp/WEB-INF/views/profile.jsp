@@ -82,7 +82,7 @@
 	rel="stylesheet" type="text/css" />
 
 </head>
-<body>
+<body onload="getCurrentEmpCode()">
 	<c:url var="checkUserAuthority" value="/checkUserAuthority" />
 	<c:url var="updateUserPasswords" value="/updateUserPasswords" />
 	<c:url var="updateAdminPassword" value="/updateAdminPassword" />
@@ -596,10 +596,10 @@
 								<div class="add_input">
 
 									<input type="radio" id="emp_status_yes"
-										${emp.delStatus==0 ? 'checked' : ''} name="emp_status"
-										value="0" checked> Yes <input type="radio"
-										id="emp_status_no" ${emp.delStatus==1 ? 'checked' : ''}
-										name="emp_status" value="1"> NO
+										${emp.delStatus==1 ? 'checked' : ''} name="emp_status"
+										value="1" checked> Yes <input type="radio"
+										id="emp_status_no" ${emp.delStatus==0 ? 'checked' : ''}
+										name="emp_status" value="0"> NO
 
 								</div>
 								<div class="clr"></div>
@@ -864,7 +864,7 @@
 																	.html(
 																			emp.frEmpJoiningDate));
 													var stat = '';
-													if (emp.delStatus == 0) {
+													if (emp.delStatus == 1) {
 														stat = 'Active'
 													} else {
 														stat = 'In-Active'
@@ -1052,7 +1052,7 @@
 
 	<script type="text/javascript">
 		function getCurrentEmpCode() {
-
+		
 			$.getJSON('${getCurrentEmpCodeValue}', {
 				ajax : 'true'
 			}, function(data) {
