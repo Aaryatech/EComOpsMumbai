@@ -861,17 +861,17 @@
 
 								<div class="ibox">
 									<div class="ibox-head">
-										<div class="ibox-title">Purchase Reports</div>
+										<div class="ibox-title">Reports</div>
 									</div>
 
 									<a
-										href="${pageContext.request.contextPath}/viewBillWisePurchaseReport"><i
-										class="fa fa-files-o icon"></i>Billwise Purchase Report</a> <a
-										href="${pageContext.request.contextPath}/viewMonthWisePurchaseReport"><i
-										class="fa fa-files-o icon"></i>Monthwise Purchase Report</a> <a
-										href="${pageContext.request.contextPath}/viewItemWiseDetailReport"><i
-										class="fa fa-files-o icon"></i>Itemwise-Billwise-Datewise
-										Purchase Report</a> <a
+										href="${pageContext.request.contextPath}/showOrderWiseReportBetDate"><i
+										class="fa fa-files-o icon"></i>Order Wise Report</a> <a
+										href="${pageContext.request.contextPath}/BillDateWiseReport"><i
+										class="fa fa-files-o icon"></i>Bill Date Wise Report</a> <a
+										href="${pageContext.request.contextPath}/statusWiseReport"><i
+										class="fa fa-files-o icon"></i>Order Status Wise Report
+										Purchase Report</a><%--  <a
 										href="${pageContext.request.contextPath}/showSaleReportBySubCategory"><i
 										class="fa fa-files-o icon"></i> Sub Category Summary Report</a> <a
 										href="${pageContext.request.contextPath}/showFranchiseeWiseBillReport"><i
@@ -882,14 +882,14 @@
 										href="${pageContext.request.contextPath}/showYearlyFrSubCatSaleReport"><i
 										class="fa fa-files-o icon"></i>Month Wise Sub Category
 										Purchase Report Or Month Wise Item Purchase Report</a>
-
+ --%>
 
 								</div>
 							</li>
 						</c:if>
 
 
-						<c:if
+					<%-- 	<c:if
 							test="${sessionScope.frEmpDetails.designation==1 or sessionScope.frEmpDetails.designation==2}">
 							<li class="small-box">
 
@@ -900,7 +900,7 @@
 									<a
 										href="${pageContext.request.contextPath}/showCutomerPendingList"><i
 										class="fa fa-files-o icon"></i>Customer Pending Details</a>
-									<%-- 
+									
 								 <a href="${pageContext.request.contextPath}/showSpAdvanceReport"><i
 									class="fa fa-files-o icon"></i>SP Advance Report</a>
 								 
@@ -916,7 +916,7 @@
 									href="${pageContext.request.contextPath}/grnReport"><i
 									class="fa fa-files-o icon"></i> GRN Report (Sale)</a> <a
 									href="${pageContext.request.contextPath}/gvnReport"><i
-									class="fa fa-files-o icon"></i> GVN Report (Sale)</a>  --%>
+									class="fa fa-files-o icon"></i> GVN Report (Sale)</a> 
 
 									<a href="${pageContext.request.contextPath}/showCutomerList"><i
 										class="fa fa-files-o icon"></i>Customer List(Sale)</a>
@@ -928,9 +928,9 @@
 										class="fa fa-files-o icon"></i>Delivery Boy Wise Report</a>
 								</div>
 							</li>
-						</c:if>
+						</c:if> --%>
 
-						<c:if
+						<%-- <c:if
 							test="${sessionScope.frEmpDetails.designation==1 or sessionScope.frEmpDetails.designation==2}">
 							<li class="small-box">
 
@@ -966,9 +966,9 @@
 								</div>
 
 							</li>
-						</c:if>
+						</c:if> --%>
 					</div>
-					<div class="row">
+					<%-- <div class="row">
 						<li class="small-box">
 
 							<div class="ibox">
@@ -990,12 +990,12 @@
 									class="fa fa-files-o icon"></i>Credit Note HSNwise Report</a> <a
 									href="${pageContext.request.contextPath}/showHSNwiseReportBetDate"><i
 									class="fa fa-files-o icon"></i>HSN wise Summary Report</a>
-								<%-- <a
+								<a
 									href="${pageContext.request.contextPath}/showGstRegister"><i
-									class="fa fa-files-o icon"></i>Billwise HSN Register Report</a> --%>
-								<%-- <a
+									class="fa fa-files-o icon"></i>Billwise HSN Register Report</a>
+								<a
 								href="${pageContext.request.contextPath}/viewItemWiseReport"><i
-								class="fa fa-files-o icon"></i>Itemwise Purchase Report</a> --%>
+								class="fa fa-files-o icon"></i>Itemwise Purchase Report</a>
 								<a
 									href="${pageContext.request.contextPath}/viewBillTaxPurchaseReport"><i
 									class="fa fa-files-o icon"></i>Purchase Billwise Tax (Input)
@@ -1035,7 +1035,7 @@
 						</li>
 
 
-						<%-- 		<li class="small-box">
+								<li class="small-box">
 
 							<div class="ibox">
 								<div class="ibox-head">
@@ -1045,9 +1045,9 @@
 									href="${pageContext.request.contextPath}/showCutomerPendingList"><i
 									class="fa fa-files-o icon"></i>Customer Pending Report</a>
 							</div>
-						</li> --%>
+						</li>
 
-					</div>
+					</div> --%>
 				</ul>
 			</div>
 		</div>
