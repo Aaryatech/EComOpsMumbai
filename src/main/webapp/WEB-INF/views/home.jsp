@@ -17,12 +17,18 @@
 <jsp:include page="/WEB-INF/views/include/header.jsp"></jsp:include>
 <!--Here Previous Block of Code, Commented at End -->
 </head>
-<%-- <c:url var="getCatSellList" value="/getCatSellList" />
+<%-- 
 <c:url var="getItemSellBill" value="/getItemSellBill" />
 <c:url var="getDatewiseSellList" value="/getDatewiseSellList" />
-
 <c:url var="getPendingOrdersByFrAjax" value="/getPendingOrdersByFrAjax" /> --%>
 
+<c:url var="getItemSellBill" value="/getItemSellBill" />
+<c:url var="getCatSellList" value="/getCatSellList" />
+
+<c:url var="changeOrderStatus" value="/changeOrderStatus" />
+<c:url var="generateBillForOrder" value="/generateBillForOrder" />
+<c:url var="getDeliveryBoyList" value="/getDeliveryBoyList" />
+<c:url var="acceptAndProcessOrder" value="/acceptAndProcessOrder" />
 <c:url var="getOrderListByStatus" value="/getOrderListByStatusAjax"></c:url>
 <c:url var="getOrderDashDetailByFrId" value="/getOrderDashDetailByFrId"></c:url>
 
@@ -248,6 +254,7 @@
 										</div>
 									</c:when>
 								</c:choose>
+								<input type="hidden" value="${divType}" id="divType">
 
 
 
@@ -597,12 +604,16 @@
 						</tbody>
 					</table>
 				</div>
-
-
 			</div>
 			<div class="clr"></div>
-
-
+		</div>
+		
+		<div id="overlay2">
+			<div id="text2">
+				<img
+					src="${pageContext.request.contextPath}/resources/newpos/images/loader.gif"
+					alt="madhvi_logo">
+			</div>
 		</div>
 
 		<div class="charts_bx">
@@ -632,15 +643,24 @@
 	<!--  trial -->
 	<script type="text/javascript"
 		src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript">
+		$(document).ready(function() {
+			//alert("hi");
+			//getPendingOrders();
+			drawAllCharts();
+			//getOrderDataFromFirebase();
+		});
 
+		//onload="getPendingOrders();drawAllCharts();getOrderDataFromFirebase(); "
+	</script>
 	<script type="text/javascript">
 		function drawDonutChart() {
 			//alert("hii donut ch");
 			//to draw donut chart
 			var chart;
 			var datag = '';
-			var frmd = document.getElementById("frmd").value;
-			var tod = document.getElementById("tod").value;
+			var frmd = document.getElementById("fromdatepicker").value;
+			var tod = document.getElementById("todatepicker").value;
 			var a = "";
 			var dataSale = [];
 			var Header = [ 'Category', 'Amount', 'ID' ];
@@ -728,11 +748,11 @@
 			;
 
 			if (type == 4) {
-				document.getElementById("ihide").style = "visible"
+				document.getElementById("ihide").style = "display:block";
 				document.getElementById("fromdatepicker").required = true;
 				document.getElementById("todatepicker").required = true;
 			} else {
-				document.getElementById("ihide").style = "display:none"
+				document.getElementById("ihide").style = "display:none";
 				document.getElementById("fromdatepicker").required = false;
 				document.getElementById("todatepicker").required = false;
 			}
@@ -817,9 +837,8 @@
 
 	<script type="text/javascript">
 		function itemSellBillCal(id) {
-
-			var frmd = document.getElementById("frmd").value;
-			var tod = document.getElementById("tod").value;
+			var frmd = document.getElementById("fromdatepicker").value;
+			var tod = document.getElementById("todatepicker").value;
 			var flag = 1;
 			$.post('${getItemSellBill}', {
 				id : id,
@@ -911,11 +930,11 @@
 		function showDiv(typdId) {
 			//alert("Id="+typdId);
 			if (typdId == 4) {
-				document.getElementById("ihide").style = "visible"
+				document.getElementById("ihide").style = "display:block";
 				document.getElementById("fromdatepicker").required = true;
 				document.getElementById("todatepicker").required = true;
 			} else {
-				document.getElementById("ihide").style = "display:none"
+				document.getElementById("ihide").style = "display:none";
 				document.getElementById("fromdatepicker").required = false;
 				document.getElementById("todatepicker").required = false;
 			}
@@ -1338,12 +1357,74 @@
 					</div>
 				</div>
 			</div>
+			<br>
+			<div class="row"
+				style="margin-left: 15px; margin-right: 15px; background: #fff; display: none;"
+				id="deliveryDiv">
 
+				<div class="col-lg-3" style="padding-left: 15px;">
+					<div class="add_frm" style="padding: 0px; border-bottom: 0px">
+						<div class="add_frm_one" style="margin: 0;">
+							<div class="add_customer_one"
+								style="font-size: 14px; width: 100%" id="deliveryLabel">Delivery
+								Boy :</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-9">
+					<div class="add_frm"
+						style="padding: 0px 0px 0px 15px; border-bottom: 0px">
+						<div class="add_frm_one" style="margin: 0">
+							<Select id="deliveryBoy" name="deliveryBoy" style="width: 100%"
+								class="chosen-select">
+								<%-- <c:forEach items="${deliveryBoyList}" var="delBoy">
+										<option value="${delBoy.frEmpId}">${delBoy.frEmpName}
+											- ${delBoy.frEmpContact}</option>
+									</c:forEach> --%>
+							</Select>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="row"
+				style="margin-left: 15px; margin-right: 15px; background: #fff; display: none;"
+				id="enterRemarkDiv">
+
+				<div class="col-lg-3" style="padding-left: 15px;">
+					<div class="add_frm" style="padding: 0px; border-bottom: 0px">
+						<div class="add_frm_one" style="margin: 0;">
+							<div class="add_customer_one"
+								style="font-size: 14px; width: 100%" id="deliveryLabel">
+								<span id="remarkLbl"></span> Remark <span style="color: red;">*</span>
+								:
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-lg-9">
+					<div class="add_frm"
+						style="padding: 0px 0px 0px 15px; border-bottom: 0px">
+						<div class="add_frm_one" style="margin: 0">
+							<input type="text" list="templates" id="enterRemark"
+								name="enterRemark" class="form-control chosen"
+								style="width: 100%; text-align: left;" autocomplete="off">
+							<datalist id="templates">
+								<!-- <option value='Remark 1'>Remark 1</option>
+								<option value='Remark 2'>Remark 2</option> -->
+							</datalist>
+						</div>
+					</div>
+				</div>
+			</div>
+			<br>
+			<div class="row"
+				style="margin-left: 15px; margin-right: 15px; display: flex; text-align: center;">
+				<div class="col-md-12" id="buttonDiv"></div>
+			</div>
 			<br>
 		</div>
-
-
-
 	</div>
 
 	<!-- **************************************************************** -->
@@ -1565,7 +1646,132 @@
 																				tr);
 
 															});
+											
+											/* ----------BUTTON----------- */
+											
+											var acceptBtn = "&nbsp;&nbsp;<button class='pay_btn' style='width:20%; height:33px; line-height:0px; transition: all ease 0.5s;' id=acceptBtn onclick=changeOrderStatus('"
+													+ data[i].orderId
+													+ "','2','"
+													+ data[i].uuidNo
+													+ "')>ACCEPT</button>&nbsp;&nbsp;";
 
+											var acceptAndProcessBtn = "&nbsp;&nbsp;<button class='pay_btn' style='width:20%; height:33px; line-height:0px; transition: all ease 0.5s;' id=acceptBtn onclick=changeOrderStatus('"
+													+ data[i].orderId
+													+ "','23','"
+													+ data[i].uuidNo
+													+ "')>ACCEPT & PROCESS</button>&nbsp;&nbsp;";
+
+											var acceptAndProcessWithPrintBtn = "&nbsp;&nbsp;<button class='pay_btn' style='width:22%; height:33px; line-height:0px; transition: all ease 0.5s; display : none;' id=acceptBtn onclick=changeOrderStatus('"
+													+ data[i].orderId
+													+ "','233','"
+													+ data[i].uuidNo
+													+ "')>ACCEPT & PROCESS &nbsp;<i class='fa fa-print ' aria-hidden='true' style='font-size: 18px;' ></i></button>&nbsp;&nbsp;";
+
+											var rejectBtn = "&nbsp;&nbsp;<button class=' can_btn' style='width:20%; height:33px; line-height:0px; transition: all ease 0.5s;'  id=rejectBtn onclick=changeOrderStatus('"
+													+ data[i].orderId
+													+ "','6','"
+													+ data[i].uuidNo
+													+ "')>REJECT</button>&nbsp;&nbsp;";
+
+											var billBtn = "&nbsp;&nbsp;<button class=' hold_btn' style='width:20%; height:33px; line-height:0px; transition: all ease 0.5s;'  id=billBtn onclick=generateBill('"
+													+ data[i].orderId
+													+ "',0,'"
+													+ data[i].id
+													+ "')>BILL</button>&nbsp;&nbsp;";
+
+											var billBtnWithPrint = "&nbsp;&nbsp;<button class=' hold_btn' style='width:20%; height:33px; line-height:0px; transition: all ease 0.5s;'  id=billBtn onclick=generateBill('"
+													+ data[i].orderId
+													+ "',1,'"
+													+ data[i].uuidNo
+													+ "')>BILL AND PRINT &nbsp;<i class='fa fa-print ' aria-hidden='true' style='font-size: 18px;' ></i></button>&nbsp;&nbsp;";
+
+											var processBtn = "&nbsp;&nbsp;<button class=' pay_btn' style='width:20%; height:33px; line-height:0px; transition: all ease 0.5s;'  id=processBtn onclick=changeOrderStatus('"
+													+ data[i].orderId
+													+ "','3','"
+													+ data[i].uuidNo
+													+ "')>PROCESS</button>&nbsp;&nbsp;";
+
+											var processBtnWithPrint = "&nbsp;&nbsp;<button class=' pay_btn' style='width:20%; height:33px; line-height:0px; transition: all ease 0.5s; display:none;'  id=processBtn onclick=changeOrderStatus('"
+													+ data[i].orderId
+													+ "','33','"
+													+ data[i].uuidNo
+													+ "')>PROCESS(KOT) &nbsp;<i class='fa fa-print ' aria-hidden='true' style='font-size: 18px;' ></i></button>&nbsp;&nbsp;";
+
+											var deliveredBtn = "&nbsp;&nbsp;<button  style='width:20%; height:33px; line-height:0px; transition: all ease 0.5s;' id=acceptBtn onclick=changeOrderStatus('"
+													+ data[i].orderId
+													+ "','5','"
+													+ data[i].uuidNo
+													+ "')>DELIVERED</button>&nbsp;&nbsp;";
+
+											var returnBtn = "&nbsp;&nbsp;<button class=' can_btn' style='width:20%; height:33px; line-height:0px; transition: all ease 0.5s;'  id=rejectBtn onclick=changeOrderStatus('"
+													+ data[i].orderId
+													+ "','7','"
+													+ data[i].uuidNo
+													+ "')>RETURN</button>&nbsp;&nbsp;";
+													
+													
+													if (data[i].orderStatus == 1) {														
+														document.getElementById("buttonDiv").innerHTML = acceptBtn
+																+ ""
+																+ acceptAndProcessBtn
+																+ ""
+																+ acceptAndProcessWithPrintBtn + "" + rejectBtn;
+
+														document.getElementById("enterRemarkDiv").style.display = "block";
+														document.getElementById("remarkLbl").innerHTML = "Reject";
+														document.getElementById("enterRemark").value = "";
+
+														getRemarkList(6);
+
+													} else if (data[i].orderStatus == 2) {
+			
+														document.getElementById("buttonDiv").innerHTML = processBtn
+																+ "" + processBtnWithPrint + "" + rejectBtn;
+
+														document.getElementById("enterRemarkDiv").style.display = "block";
+														document.getElementById("remarkLbl").innerHTML = "Reject";
+														document.getElementById("enterRemark").value = ""; 
+
+														getRemarkList(6);
+
+													} else if (data[i].orderStatus == 3) {
+
+														document.getElementById("deliveryDiv").style.display = "block";
+
+														document.getElementById("buttonDiv").innerHTML = billBtn
+																+ "" + billBtnWithPrint;
+
+													} else if (data[i].orderStatus == 4) {
+
+														document.getElementById("statusDiv").innerHTML = delPending;
+
+														document.getElementById("buttonDiv").innerHTML = deliveredBtn
+																+ "" + returnBtn;
+
+														document.getElementById("enterRemarkDiv").style.display = "block";
+														document.getElementById("remarkLbl").innerHTML = "Return";
+														document.getElementById("enterRemark").value = ""; 
+
+														getRemarkList(7);
+
+													} else if (data[i].orderStatus == 5) {
+														
+														document.getElementById("buttonDiv").innerHTML = "";
+
+													} else if (table[i].orderStatus == 6) {
+
+														document.getElementById("buttonDiv").innerHTML = "";
+
+													} else if (data[i].orderStatus == 7) {
+														
+														document.getElementById("buttonDiv").innerHTML = "";
+
+													} else if (data[i].orderStatus == 8) {
+
+														document.getElementById("buttonDiv").innerHTML = "";
+
+													}
+													 setDeliveryBoyDropdownData(data[i].frId, data[i].orderDeliveredBy);
 											break;
 
 										}
@@ -1576,15 +1782,257 @@
 		}
 
 		function closeBillPopup() {
-
 			$('#billPopup').popup('hide');
+			document.getElementById("deliveryDiv").style.display = "none";
+			document.getElementById("enterRemarkDiv").style.display = "none";
+			document.getElementById("remarkLbl").innerHTML = "";
+			document.getElementById("enterRemark").value = "";
+		}
+	</script>
+	<script type="text/javascript">
+		//ACCEPT ORDER - CHANGE STATUS IN ORDER--------------------------------
 
+		function changeOrderStatus(orderId, status, uuidNo) {	
+			var res = false;
+
+			if (status == 2) {
+				res = confirm("Do you want to accept the order ?");
+			} else if (status == 23) {
+				res = confirm("Do you want to accept and process the order ?");
+			} else if (status == 233) {
+				res = confirm("Do you want to accept and process the order ?");
+			} else if (status == 6) {
+				res = confirm("Do you want to reject the order ?");
+			} else if (status == 5) {
+				res = confirm("Do you want to deliver the order ?");
+			} else if (status == 7) {
+				res = confirm("Do you want to return the order ?");
+			} else {
+				res = true;
+			}
+
+			if (res == true) {		
+				
+				document.getElementById("overlay2").style.display = "block";
+				
+				var newStatus = status;
+
+				if (status == 33 || status == 23 || status == 233) {
+					newStatus = 3;
+				}
+
+				var remark = "";
+
+				if (status == 23 || status == 233) {
+					
+					$
+							.post(
+									'${acceptAndProcessOrder}',
+									{
+										orderId : orderId,
+										status : newStatus,
+										remark : remark,
+										ajax : 'true'
+									},
+									function(data) {
+										//alert(JSON.stringify(data));
+										document.getElementById("overlay2").style.display = "none";
+
+										if (data.error == false) {
+											window.location.reload();
+											/* var db = firebase.database();
+											db.ref(
+													today_date_temp + "/"
+															+ uuidNo
+															+ "/status").set(3); */
+
+											closeBillPopup();
+										//	getPendingOrders();
+
+											/* if (status == 233) {
+												kotPrint(jsonData);
+											} */
+
+										}
+
+									});
+
+				} else {
+
+					var flag = true;
+
+					if (newStatus == 6) {
+						remark = document.getElementById("enterRemark").value;
+						if (remark == "") {
+							alert("Please enter remark");
+							flag = false;
+							document.getElementById("enterRemark").focus();
+						} else {
+							flag = true;
+						}
+					}
+
+					if (newStatus == 7) {
+						remark = document.getElementById("enterRemark").value;
+						if (remark == "") {
+							alert("Please enter remark");
+							flag = false;
+							document.getElementById("enterRemark").focus();
+						} else {
+							flag = true;
+						}
+					}
+
+					if (flag) {
+						$
+								.post(
+										'${changeOrderStatus}',
+										{
+											orderId : orderId,
+											status : newStatus,
+											remark : remark,
+											ajax : 'true'
+										},
+										function(data) {
+											//alert(JSON.stringify(data));
+											document.getElementById("overlay2").style.display = "none";
+
+											if (data.error == false) {
+												window.location.reload();
+												
+												/* var db = firebase.database();
+
+												if (status == 33
+														|| status == 23
+														|| status == 233) {
+													db
+															.ref(
+																	today_date_temp
+																			+ "/"
+																			+ uuidNo
+																			+ "/status")
+															.set(3);
+												} else {
+													db
+															.ref(
+																	today_date_temp
+																			+ "/"
+																			+ uuidNo
+																			+ "/status")
+															.set(status);
+												}
+ */
+												closeBillPopup();
+												//getPendingOrders();
+
+												/* if (status == 33
+														|| status == 233) {
+													kotPrint(jsonData);
+												} */
+
+											}
+
+										});
+					} else {
+						document.getElementById("overlay2").style.display = "none";
+					}
+
+				}
+
+			}//if
+
+		}
+
+		//GENERATE BILL - ---------------------
+
+		function generateBill(orderId, print, uuidNo) {
+		
+			var deliveryBoyId = document.getElementById("deliveryBoy").value;
+
+			if (deliveryBoyId == 0) {				
+				alert("Please Select Delivery Boy");				
+
+			} else {
+
+				document.getElementById("overlay2").style.display = "block";
+
+				$
+						.post(
+								'${generateBillForOrder}',
+								{
+									orderId : orderId,
+									delBoyId : deliveryBoyId,
+									ajax : 'true'
+								},
+								function(data) {									
+									if (data.error == false) {
+
+										/* var db = firebase.database();
+										db.ref(
+												today_date_temp + "/" + uuidNo
+														+ "/status").set(4); */
+
+										closeBillPopup();
+									//	getPendingOrders();
+
+										if (print == 1) {										
+											var url = "${pageContext.request.contextPath}/printGSTBill/"
+													+ orderId;
+
+											$("<iframe>").hide().attr("src",
+													url).appendTo("body");
+										}
+
+									}
+
+									document.getElementById("overlay2").style.display = "none";
+
+								});
+
+			}//Else
+
+		}
+		
+		function setDeliveryBoyDropdownData(frId, delId) {
+
+			$.getJSON('${getDeliveryBoyList}', {
+				frId : frId,
+				ajax : 'true'
+			}, function(data) {
+
+				//alert(JSON.stringify(data));
+
+				$('#deliveryBoy').find('option').remove().end()
+
+				$("#deliveryBoy").append(
+						$("<option value='0'>Select Option</option>"));
+
+				for (var i = 0; i < data.length; i++) {
+
+					var flag = 0;
+					if (delId == data[i].id) {
+						$("#deliveryBoy").append(
+								$("<option selected></option>").attr("value",
+										data[i].delBoyId).text(data[i].name));
+					} else {
+						$("#deliveryBoy").append(
+								$("<option></option>")
+										.attr("value", data[i].delBoyId).text(
+												data[i].name));
+					}
+
+				}
+				$("#deliveryBoy").trigger("chosen:updated");
+
+			});
 		}
 	</script>
 	<script>
 	function getBillStatusDetail(statusId){ 
+		document.getElementById("overlay2").style.display = "block";
+		
 		$('#order_table td').remove();
-		//$('#loader').show();
+		
 			var fromDate = $("#fromdatepicker").val();
 			var toDate = $("#todatepicker").val();
 		
@@ -1602,7 +2050,7 @@
 								if (data == null) {
 									alert("No Data Found!");									
 								}
-								
+								document.getElementById("overlay2").style.display = "none";
 								
 								var orderTtlAmt = 0;
 								$
@@ -1722,18 +2170,14 @@
 								$('#order_table tbody').append(trclosed);  
 							
 							});
+					document.getElementById("overlay2").style.display = "none";
 		}
 	</script>
 
 
 	<script type="text/javascript">
-		function getPendingOrders() {
-			
-			if($("#custmDates").val()>0){
-				document.getElementById("ihide").style.display = "block";
-			}else{
-				document.getElementById("ihide").style.display = "none";
-			}
+		function getPendingOrders() {			
+			showDiv($("#divType").val());
 			/* $
 					.getJSON(
 							'${getPendingOrdersByFrAjax}',
@@ -1811,8 +2255,8 @@
 
 												});
 
-							});
-		} */
+							});*/
+		} 
 	</script> 
 
 

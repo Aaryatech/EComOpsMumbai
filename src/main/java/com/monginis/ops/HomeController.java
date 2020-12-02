@@ -55,6 +55,7 @@ import com.monginis.ops.model.Franchisee;
 import com.monginis.ops.model.GetDashPieStatusCnt;
 import com.monginis.ops.model.Info;
 import com.monginis.ops.model.Setting;
+import com.monginis.ops.model.dash.CategorywiseItemSell;
 import com.monginis.ops.model.dash.CategorywiseSell;
 
 import java.io.BufferedOutputStream;
@@ -173,6 +174,10 @@ public class HomeController {
 				toDate = sf.format(date);
 				model.addObject("typeTitle", "Today's");
 				model.addObject("custmDates", "0");
+				
+				model.addObject("fromDate", DateConvertor.convertToDMY(fromDate));
+				model.addObject("toDate", DateConvertor.convertToDMY(toDate));
+				
 			} else if (type == 2) {
 				Calendar calendar = Calendar.getInstance();
 				while (calendar.get(Calendar.DAY_OF_WEEK) != Calendar.MONDAY) {
@@ -191,6 +196,9 @@ public class HomeController {
 				System.err.println("d1**" + toDate);
 				model.addObject("typeTitle", "This Week");
 				model.addObject("custmDates", "0");
+				
+				model.addObject("fromDate", DateConvertor.convertToDMY(fromDate));
+				model.addObject("toDate", DateConvertor.convertToDMY(toDate));
 			} else {
 
 				Date begining, end;
@@ -210,6 +218,9 @@ public class HomeController {
 				System.err.println("end" + toDate);
 				model.addObject("typeTitle", "This Month");
 				model.addObject("custmDates", "0");
+				
+				model.addObject("fromDate", DateConvertor.convertToDMY(fromDate));
+				model.addObject("toDate", DateConvertor.convertToDMY(toDate));
 			}
 			System.err.println(" Dates---------"+fromDate+" to "+toDate);
 			
@@ -639,6 +650,37 @@ public class HomeController {
 		return sectionList;
 	}
 
-	
+	@RequestMapping(value = "/getItemSellBill", method = RequestMethod.POST)
+	@ResponseBody
+	public List<CategorywiseItemSell> getItemSellBill(HttpServletRequest request, HttpServletResponse responsel) {
+		HttpSession session = request.getSession();
+		Franchisee frDetails = (Franchisee) session.getAttribute("frDetails");
+		String fromDate = request.getParameter("frmd");
+		int catId = Integer.parseInt(request.getParameter("id"));
+		int flag = Integer.parseInt(request.getParameter("flag"));
+		String toDate = request.getParameter("tod");
+		RestTemplate restTemplate = new RestTemplate();
+		List<CategorywiseItemSell> sectionList = new ArrayList<>();
+		try {
+			MultiValueMap<String, Object> map = new LinkedMultiValueMap<String, Object>();
+
+			map.add("fromDate", DateConvertor.convertToYMD(fromDate));
+			map.add("toDate", DateConvertor.convertToYMD(toDate));
+			map.add("frId", frDetails.getFrId());
+			map.add("catId", catId);
+			map.add("flag", flag);
+
+//			System.err.println("ITEM PARAM ------------------- DATE - " + fromDate + " - " + toDate + "   CATID - "
+//					+ catId + "        FLAG - " + flag);
+
+			CategorywiseItemSell[] catSell = Constant.getRestTemplate().postForObject(Constant.URL + "/getCatwiseItemSell", map,
+					CategorywiseItemSell[].class);
+			sectionList = new ArrayList<CategorywiseItemSell>(Arrays.asList(catSell));
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return sectionList;
+	}
 
 }
