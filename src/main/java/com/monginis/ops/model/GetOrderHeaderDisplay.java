@@ -4,6 +4,7 @@ import java.util.List;
 
 public class GetOrderHeaderDisplay {
 
+	private String id;
 	private int orderId;
 	private String orderNo;
 	private String orderDate;
@@ -61,6 +62,7 @@ public class GetOrderHeaderDisplay {
 	private float deliveryCharges;
 	private int paymentSubMode;
 	private int isAgent;
+	private String uuidNo;
 
 	private String orderDeliveredByName;
 	private String custName;
@@ -673,32 +675,48 @@ public class GetOrderHeaderDisplay {
 		this.orderDateDisplay = orderDateDisplay;
 	}
 
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	public String getUuidNo() {
+		return uuidNo;
+	}
+
+	public void setUuidNo(String uuidNo) {
+		this.uuidNo = uuidNo;
+	}
+
 	@Override
 	public String toString() {
-		return "GetOrderHeaderDisplay [orderId=" + orderId + ", orderNo=" + orderNo + ", orderDate=" + orderDate
-				+ ", frId=" + frId + ", custId=" + custId + ", status=" + status + ", taxableAmt=" + taxableAmt
-				+ ", cgstAmt=" + cgstAmt + ", sgstAmt=" + sgstAmt + ", igstAmt=" + igstAmt + ", discAmt=" + discAmt
-				+ ", itemDiscAmt=" + itemDiscAmt + ", taxAmt=" + taxAmt + ", totalAmt=" + totalAmt + ", orderStatus="
-				+ orderStatus + ", paidStatus=" + paidStatus + ", paymentMethod=" + paymentMethod + ", paymentRemark="
-				+ paymentRemark + ", cityId=" + cityId + ", areaId=" + areaId + ", addressId=" + addressId
-				+ ", address=" + address + ", whatsappNo=" + whatsappNo + ", landmark=" + landmark + ", deliveryDate="
-				+ deliveryDate + ", deliveryTime=" + deliveryTime + ", insertDateTime=" + insertDateTime
-				+ ", insertUserId=" + insertUserId + ", orderPlatform=" + orderPlatform + ", delStatus=" + delStatus
-				+ ", offerId=" + offerId + ", remark=" + remark + ", orderDeliveredBy=" + orderDeliveredBy + ", exInt1="
-				+ exInt1 + ", exInt2=" + exInt2 + ", exInt3=" + exInt3 + ", exInt4=" + exInt4 + ", exVar1=" + exVar1
-				+ ", exVar2=" + exVar2 + ", exVar3=" + exVar3 + ", exVar4=" + exVar4 + ", exFloat1=" + exFloat1
-				+ ", exFloat2=" + exFloat2 + ", exFloat3=" + exFloat3 + ", exFloat4=" + exFloat4 + ", exDate1="
-				+ exDate1 + ", exDate2=" + exDate2 + ", billingName=" + billingName + ", billingAddress="
-				+ billingAddress + ", customerGstnNo=" + customerGstnNo + ", deliveryType=" + deliveryType
-				+ ", deliveryInstId=" + deliveryInstId + ", deliveryInstText=" + deliveryInstText + ", deliveryKm="
-				+ deliveryKm + ", deliveryCharges=" + deliveryCharges + ", paymentSubMode=" + paymentSubMode
-				+ ", isAgent=" + isAgent + ", orderDeliveredByName=" + orderDeliveredByName + ", custName=" + custName
-				+ ", custMobile=" + custMobile + ", emailId=" + emailId + ", frName=" + frName + ", cityName="
-				+ cityName + ", areaName=" + areaName + ", offerName=" + offerName + ", offerDesc=" + offerDesc
-				+ ", deliveryMonth=" + deliveryMonth + ", deliveryYear=" + deliveryYear + ", deliveryDateDisplay="
-				+ deliveryDateDisplay + ", orderDateDisplay=" + orderDateDisplay + ", deliveryTimeDisplay="
-				+ deliveryTimeDisplay + ", monthName=" + monthName + ", orderDetailList=" + orderDetailList
-				+ ", orderTrailList=" + orderTrailList + "]";
+		return "GetOrderHeaderDisplay [id=" + id + ", orderId=" + orderId + ", orderNo=" + orderNo + ", orderDate="
+				+ orderDate + ", frId=" + frId + ", custId=" + custId + ", status=" + status + ", taxableAmt="
+				+ taxableAmt + ", cgstAmt=" + cgstAmt + ", sgstAmt=" + sgstAmt + ", igstAmt=" + igstAmt + ", discAmt="
+				+ discAmt + ", itemDiscAmt=" + itemDiscAmt + ", taxAmt=" + taxAmt + ", totalAmt=" + totalAmt
+				+ ", orderStatus=" + orderStatus + ", paidStatus=" + paidStatus + ", paymentMethod=" + paymentMethod
+				+ ", paymentRemark=" + paymentRemark + ", cityId=" + cityId + ", areaId=" + areaId + ", addressId="
+				+ addressId + ", address=" + address + ", whatsappNo=" + whatsappNo + ", landmark=" + landmark
+				+ ", deliveryDate=" + deliveryDate + ", deliveryTime=" + deliveryTime + ", insertDateTime="
+				+ insertDateTime + ", insertUserId=" + insertUserId + ", orderPlatform=" + orderPlatform
+				+ ", delStatus=" + delStatus + ", offerId=" + offerId + ", remark=" + remark + ", orderDeliveredBy="
+				+ orderDeliveredBy + ", exInt1=" + exInt1 + ", exInt2=" + exInt2 + ", exInt3=" + exInt3 + ", exInt4="
+				+ exInt4 + ", exVar1=" + exVar1 + ", exVar2=" + exVar2 + ", exVar3=" + exVar3 + ", exVar4=" + exVar4
+				+ ", exFloat1=" + exFloat1 + ", exFloat2=" + exFloat2 + ", exFloat3=" + exFloat3 + ", exFloat4="
+				+ exFloat4 + ", exDate1=" + exDate1 + ", exDate2=" + exDate2 + ", billingName=" + billingName
+				+ ", billingAddress=" + billingAddress + ", customerGstnNo=" + customerGstnNo + ", deliveryType="
+				+ deliveryType + ", deliveryInstId=" + deliveryInstId + ", deliveryInstText=" + deliveryInstText
+				+ ", deliveryKm=" + deliveryKm + ", deliveryCharges=" + deliveryCharges + ", paymentSubMode="
+				+ paymentSubMode + ", isAgent=" + isAgent + ", uuidNo=" + uuidNo + ", orderDeliveredByName="
+				+ orderDeliveredByName + ", custName=" + custName + ", custMobile=" + custMobile + ", emailId="
+				+ emailId + ", frName=" + frName + ", cityName=" + cityName + ", areaName=" + areaName + ", offerName="
+				+ offerName + ", offerDesc=" + offerDesc + ", deliveryMonth=" + deliveryMonth + ", deliveryYear="
+				+ deliveryYear + ", deliveryDateDisplay=" + deliveryDateDisplay + ", orderDateDisplay="
+				+ orderDateDisplay + ", deliveryTimeDisplay=" + deliveryTimeDisplay + ", monthName=" + monthName
+				+ ", orderDetailList=" + orderDetailList + ", orderTrailList=" + orderTrailList + "]";
 	}
 
 	

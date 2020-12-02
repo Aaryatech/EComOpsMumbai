@@ -55,6 +55,8 @@ import com.monginis.ops.model.Franchisee;
 import com.monginis.ops.model.GetDashPieStatusCnt;
 import com.monginis.ops.model.Info;
 import com.monginis.ops.model.Setting;
+import com.monginis.ops.model.dash.CategorywiseSell;
+
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.time.DayOfWeek;
@@ -222,6 +224,7 @@ public class HomeController {
 			System.out.println("Order Details------------>"+dashDataList);
 			model.addObject("countDetails", dashDataList);
 			
+			model.addObject("divType", type);
 			model.addObject("imagePath", Constant.FR_IMAGE_URL);
 		
 		} catch (Exception e) {
@@ -610,6 +613,30 @@ public class HomeController {
 
 		return "redirect:/frEmpLogin";
 		// return "redirect:/";
+	}
+	
+	@RequestMapping(value = "/getCatSellList", method = RequestMethod.POST)
+	@ResponseBody
+	public List<CategorywiseSell> getCatSellList(HttpServletRequest request, HttpServletResponse responsel) {
+		System.err.println("************");
+		HttpSession session = request.getSession();
+		Franchisee frDetails = (Franchisee) session.getAttribute("frDetails");
+		
+		List<CategorywiseSell> sectionList = new ArrayList<>();
+		try {
+			MultiValueMap<String, Object> map = new LinkedMultiValueMap<String, Object>();
+			
+			map.add("frId", frDetails.getFrId());
+			map.add("fromDate", DateConvertor.convertToYMD(request.getParameter("frmd")));
+			map.add("toDate", DateConvertor.convertToYMD(request.getParameter("tod")));
+			CategorywiseSell[] catSell = Constant.getRestTemplate().postForObject(Constant.URL + "/getCatwiseSell", map,
+					CategorywiseSell[].class);
+			sectionList = new ArrayList<CategorywiseSell>(Arrays.asList(catSell));
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return sectionList;
 	}
 
 	

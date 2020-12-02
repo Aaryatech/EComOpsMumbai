@@ -65,9 +65,13 @@ public class SellBillHeader implements Serializable {
 	private int delStatus;
 	private int extInt1;
 	private float extFloat1;
+	private float extFloat2;
+	private float extFloat3;
 
 	private String extVar1;
-
+	private int extInt2;
+	private String extVar2;
+	
 	public String getExtVar1() {
 		return extVar1;
 	}
@@ -334,6 +338,38 @@ public class SellBillHeader implements Serializable {
 		this.extFloat1 = extFloat1;
 	}
 
+	public float getExtFloat2() {
+		return extFloat2;
+	}
+
+	public void setExtFloat2(float extFloat2) {
+		this.extFloat2 = extFloat2;
+	}
+
+	public float getExtFloat3() {
+		return extFloat3;
+	}
+
+	public void setExtFloat3(float extFloat3) {
+		this.extFloat3 = extFloat3;
+	}
+
+	public int getExtInt2() {
+		return extInt2;
+	}
+
+	public void setExtInt2(int extInt2) {
+		this.extInt2 = extInt2;
+	}
+
+	public String getExtVar2() {
+		return extVar2;
+	}
+
+	public void setExtVar2(String extVar2) {
+		this.extVar2 = extVar2;
+	}
+
 	@Override
 	public String toString() {
 		return "SellBillHeader [sellBillNo=" + sellBillNo + ", invoiceNo=" + invoiceNo + ", billDate=" + billDate
@@ -345,8 +381,10 @@ public class SellBillHeader implements Serializable {
 				+ ", couponNo=" + couponNo + ", custId=" + custId + ", custLoyaltyPtRate=" + custLoyaltyPtRate
 				+ ", custLoyaltyPt=" + custLoyaltyPt + ", userName=" + userName + ", userGstNo=" + userGstNo
 				+ ", userPhone=" + userPhone + ", status=" + status + ", billType=" + billType + ", delStatus="
-				+ delStatus + ", extInt1=" + extInt1 + ", extFloat1=" + extFloat1 + ", extVar1=" + extVar1
+				+ delStatus + ", extInt1=" + extInt1 + ", extFloat1=" + extFloat1 + ", extFloat2=" + extFloat2
+				+ ", extFloat3=" + extFloat3 + ", extVar1=" + extVar1 + ", extInt2=" + extInt2 + ", extVar2=" + extVar2
 				+ ", sellBillDetailsList=" + sellBillDetailsList + "]";
 	}
 
+	
 }
