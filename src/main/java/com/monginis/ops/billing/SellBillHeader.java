@@ -40,7 +40,7 @@ public class SellBillHeader implements Serializable {
 
 	private int paymentMode;
 
-	private int isDairyMartBill;// new
+	private int isDairyMartBill;// Company Id
 
 	private float advanceAmt; // new
 

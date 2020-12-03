@@ -1981,6 +1981,9 @@
 
 											$("<iframe>").hide().attr("src",
 													url).appendTo("body");
+										}else{
+											
+											window.location.reload();
 										}
 
 									}

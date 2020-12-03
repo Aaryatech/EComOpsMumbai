@@ -55,7 +55,7 @@ chosen-container {
 
 <c:url var="getOrderBetDateAndStatus" value="/getOrderBetDateAndStatus"></c:url>
 <c:url var="getOrderStatusListRep" value="/getOrderStatusListRep"></c:url>
-<c:url var="getOrderDashDetailByFrId" value="/getOrderDashDetailByFrId"></c:url>
+<c:url var="getShowOrderDetail" value="/getShowOrderDetail"></c:url>
 
 
 	<!--topLeft-nav-->
@@ -760,14 +760,12 @@ chosen-container {
 
 			$
 					.getJSON(
-							'${getOrderDashDetailByFrId}',
+							'${getShowOrderDetail}',
 							{
-
 								ajax : 'true'
-
 							},
 							function(data) {
-							//	alert("Hi----------"+JSON.stringify(data[0].deliveryDateDisplay))
+								
 								$('#billPopup').popup('show');
 								for (var i = 0; i < data.length; i++) {
 
@@ -1023,7 +1021,7 @@ chosen-container {
 			var fromDate = document.getElementById("fromdatepicker").value;
 			var toDate = document.getElementById("todatepicker").value;
 			 window
-				.open('${pageContext.request.contextPath}/pdfReport?reportURL=pdf/getOrderReportPdf/'
+				.open('${pageContext.request.contextPath}/pdfReport?url=pdf/getOrderReportPdf/'
 						+fromDate
 						+ '/'
 						+ toDate);

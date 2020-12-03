@@ -871,7 +871,12 @@
 										class="fa fa-files-o icon"></i>Bill Date Wise Report</a> <a
 										href="${pageContext.request.contextPath}/statusWiseReport"><i
 										class="fa fa-files-o icon"></i>Order Status Wise Report
-										Purchase Report</a><%--  <a
+										Purchase Report</a>
+										<a
+										href="${pageContext.request.contextPath}/showCustWiseReportBetDate"><i
+										class="fa fa-files-o icon"></i>Customer Wise Report
+										Purchase Report</a>
+										<%--  <a
 										href="${pageContext.request.contextPath}/showSaleReportBySubCategory"><i
 										class="fa fa-files-o icon"></i> Sub Category Summary Report</a> <a
 										href="${pageContext.request.contextPath}/showFranchiseeWiseBillReport"><i

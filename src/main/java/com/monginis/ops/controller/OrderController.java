@@ -360,6 +360,7 @@ public class OrderController {
 					SellBillHeader sellBillHeader = new SellBillHeader();
 
 					sellBillHeader.setExtInt2(order.getOrderId());
+					sellBillHeader.setIsDairyMartBill(order.getExInt1()); //Company Id
 					sellBillHeader.setFrId(frDetails.getFrId());
 					sellBillHeader.setFrCode(frDetails.getFrCode());
 					sellBillHeader.setDelStatus(1);
