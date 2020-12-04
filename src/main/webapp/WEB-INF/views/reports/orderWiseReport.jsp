@@ -133,7 +133,7 @@ chosen-container {
 							<!--style="margin-left: 17px;"  -->
 							
 							<button class="buttonsaveorder" value="PDF" id="PDFButton"
-								onclick="genPdf()" style="display: none;">PDF</button>
+								onclick="genPdf()">PDF</button>
 						</div>
 					</div>
 				<!-- </div> --><!--  -->
@@ -212,7 +212,7 @@ chosen-container {
 								if (data == null) {
 									alert("No Data Found!");
 								}
-								document.getElementById("PDFButton").style.display = "block";
+								
 								document.getElementById("range").style.display = "block";
 								document.getElementById("expExcel").disabled = false;
 								var orderTtlAmt = 0;
@@ -733,9 +733,8 @@ chosen-container {
 		</div>
 	</div>
 		
-		<input type="hidden" value="${imagePath}" id="imgPath"> <input
-		type="hidden" value="${fromDate}" name="fromDate" id="fromDate">
-		<input type="hidden" value="${toDate}" name="toDate" id="toDate">
+		<input type="hidden" value="${frId}" id="frId"> 
+		<input type="hidden" value="${compId}" id="compId">
 	
 
 	</div>
@@ -1021,14 +1020,18 @@ chosen-container {
 			var fromDate = document.getElementById("fromdatepicker").value;
 			var toDate = document.getElementById("todatepicker").value;
 			var statusId = $("#statusId").val();
-			alert(statusId)
+			var frId = $("#frId").val();
+			var compId = $("#compId").val(); 
+			
 			 window
 				.open('${pageContext.request.contextPath}/pdfReport?url=pdf/getOrderReportPdf/'
 						+fromDate
 						+ '/'
 						+ toDate
 						+ '/'
-						+ statusId);
+						+ statusId
+						+'/'
+						+frId+'/'+compId);
 			/* var isValid = validate();
 			if (isValid == true) {
 				var fromDate = document.getElementById("fromdatepicker").value;

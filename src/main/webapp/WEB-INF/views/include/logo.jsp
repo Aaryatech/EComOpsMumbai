@@ -59,7 +59,7 @@
 <header>
 	<div class="logo">
 		<a href="${pageContext.request.contextPath}/home"><img
-			src="${pageContext.request.contextPath}/resources/newpos/images/madhvi_logo.jpg"
+			src="${pageContext.request.contextPath}/resources/newpos/images/mongi.png"
 			alt="madhvi_logo"></a>
 	</div>
 	<div class="drop_menu">

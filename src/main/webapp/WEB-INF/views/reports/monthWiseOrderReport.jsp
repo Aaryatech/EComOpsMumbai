@@ -21,6 +21,10 @@ chosen-container {
 .select2-selection--multiple .select2-selection__rendered {
 	border-bottom: 1px solid #ddd;
 }
+
+.hide-calendar .ui-datepicker-calendar {
+	display: none;
+}
 </style>
 
 
@@ -38,7 +42,7 @@ chosen-container {
 <!--datepicker-->
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/resources/js/jquery-ui.js"></script>
-<script>
+<!-- <script>
 	$(function() {
 		$("#todatepicker").datepicker({
 			dateFormat : 'dd-mm-yy'
@@ -49,12 +53,12 @@ chosen-container {
 			dateFormat : 'dd-mm-yy'
 		});
 	});
-</script>
+</script> -->
 </head>
 <body>
 
-<c:url var="getCustPrchsRepBetDate" value="/getCustPrchsRepBetDate"></c:url>
-<c:url var="getCustPrchsReportDetail" value="/getCustPrchsReportDetail"></c:url>
+<c:url var="getMonthlyBillsReport" value="/getMonthlyBillsReport"></c:url>
+<c:url var="getDateWiseCustDtlReport" value="/getDateWiseCustDtlReport"></c:url>
 
 
 	<!--topLeft-nav-->
@@ -86,8 +90,7 @@ chosen-container {
 					<div class="row">
 						<br>
 						<div class="col-md-12">
-							<h2 class="pageTitle">Customer Wise Report
-										Purchase Report</h2>
+							<h2 class="pageTitle">Month Wise Bill Report</h2>
 						</div>
 						<br>
 					</div>
@@ -99,23 +102,23 @@ chosen-container {
 							<h4 class="pull-left">From Date:-</h4>
 						</div>
 						<div class="col-md-3">
-							<input id="fromdatepicker" class="texboxitemcode texboxcal"
-								autocomplete="off" placeholder="DD-MM-YYYY" name="fromDate"
-								type="text" value="${todaysDate}">
+							<input id="fromdatepicker" class="texboxitemcode texboxcal float_l"
+								autocomplete="off" placeholder="From Month" name="fromDate"
+								type="text" value="${frommonth}">
 						</div>
 						<div class="col-md-1">
 							<h4 class="pull-left">To Date:-</h4>
 						</div>
 						<div class="col-md-3">
-							<input id="todatepicker" class="texboxitemcode texboxcal"
-								autocomplete="off" placeholder="DD-MM-YYYY" name="toDate"
-								type="text" value="${todaysDate}">
+							<input id="todatepicker" class="texboxitemcode texboxcal float_l"
+								autocomplete="off" placeholder="To Month" name="toDate"
+								type="text" value="${tomonth}">
 						</div>
 						<div class="col-md-3">
-							<button class="buttonsaveorder" onclick="getCustPurchaseRep()" >Search</button>							
+							<button class="buttonsaveorder" onclick="getMonthlyRep()" >Search</button>							
 							
 							<button class="buttonsaveorder" value="PDF" id="PDFButton"
-								onclick="genPdf()">PDF</button>
+								onclick="genPdf()" >PDF</button>
 						</div>
 
 					</div>
@@ -132,10 +135,13 @@ chosen-container {
 									<thead>
 										<tr class="bgpink">
 											<th class="col-md-1" style="text-align: center;">Sr No</th>											
-											<th class="col-md-2" style="text-align: center;">Customer</th>
-											<th class="col-md-2" style="text-align: center;">Mobile No.</th>											
-											<th class="col-md-1" style="text-align: center;">Date Of Birth</th>											
-											<th class="col-md-2" style="text-align: center;">Total Purchase</th>
+											<th class="col-md-2" style="text-align: center;">Month</th>
+											<th class="col-md-2" style="text-align: center;">Year</th>
+											<th class="col-md-2" style="text-align: center;">No. Of Bills</th>											
+											<th class="col-md-1" style="text-align: center;">Total Amt</th>											
+											<th class="col-md-2" style="text-align: center;">COD</th>
+											<th class="col-md-2" style="text-align: center;">Card</th>
+											<th class="col-md-2" style="text-align: center;">E-Pay</th>
 											<th class="col-md-1" style="text-align: center;">Detail</th>
 										</tr>
 									</thead>
@@ -168,16 +174,16 @@ chosen-container {
 		<!--rightContainer-->
 		
 		<script type="text/javascript">
-		function getCustPurchaseRep() {
+		function getMonthlyRep() {
 			$('#order_table td').remove();
 			//$('#loader').show();			
 			var fromDate = $("#fromdatepicker").val();
 			var toDate = $("#todatepicker").val();
-			//alert(statusId + " " + fromDate + " " + toDate);
+		//	alert(fromDate + " " + toDate);
 
 			$
 					.getJSON(
-							'${getCustPrchsRepBetDate}',
+							'${getMonthlyBillsReport}',
 							{
 								fromDate : fromDate,
 								toDate : toDate,
@@ -188,7 +194,7 @@ chosen-container {
 								if (data == null) {
 									alert("No Data Found!");
 								}
-								
+								//document.getElementById("PDFButton").style.display = "block";
 								document.getElementById("range").style.display = "block";
 								document.getElementById("expExcel").disabled = false;
 								var orderTtlAmt = 0;
@@ -196,9 +202,9 @@ chosen-container {
 										.each(
 												data,
 												function(key, order) {
-													var acStr = '<a href="javascript:void(0)" class="list-icons-item text-primary-600" data-popup="tooltip" title="" data-original-title="Order Detail" onclick="openBillPopup('
-															+ order.custId
-															+ ')"><i class="fa fa-list"></i></a>'
+													var acStr = '<a href="javascript:void(0)" class="list-icons-item text-primary-600" data-popup="tooltip" title="" data-original-title="Order Detail" onclick="openBillPopup(\''
+															+ order.billDate
+															+ '\')"><i class="fa fa-list"></i></a>'
 
 
 													
@@ -213,30 +219,49 @@ chosen-container {
 
 													tr
 															.append($(
-																	'<td style="text-align: lsft;"></td>')
-																	.html(
-																			order.custName));
-
-													tr
-															.append($(
 																	'<td style="text-align: center;"></td>')
 																	.html(
-																			order.custMobileNo));
-
+																			order.monthName));
 													tr
-															.append($(
-																	'<td style="text-align: center;"></td>')
-																	.html(
-																			order.dateOfBirth));
-												
+													.append($(
+															'<td style="text-align: right;"></td>')
+															.html(
+																	order.orderYear));
+													
+													tr
+													.append($(
+															'<td style="text-align: center;"></td>')
+															.html(
+																	order.totalBills));
 
 													orderTtlAmt = orderTtlAmt
-															+ order.grandTotal;
+													+ order.totalAmt;
 													tr
 															.append($(
 																	'<td style="text-align: right;"></td>')
 																	.html(
-																			order.grandTotal));
+																			order.totalAmt));
+
+													
+													tr
+													.append($(
+															'<td style="text-align: center;"></td>')
+															.html(
+																	order.cod));
+													
+													tr
+													.append($(
+															'<td style="text-align: center;"></td>')
+															.html(
+																	order.card));
+													
+													tr
+													.append($(
+															'<td style="text-align: center;"></td>')
+															.html(
+																	order.epay));
+
+													
 
 													tr
 															.append($(
@@ -272,7 +297,7 @@ chosen-container {
 		<h3 class="pop_head">
 			<div class="row" style="margin-right: 25px;">
 
-				<div class="col-lg-10" style="margin-top: 5px;">Customer Purchase Order Detail</div>
+				<div class="col-lg-10" style="margin-top: 5px;">Order Date Wise Customer Purchase Detail</div>
 				<div class="col-lg-2" id="statusDiv"></div>
 
 			</div>
@@ -335,26 +360,22 @@ chosen-container {
 	</script>
 
 	<script type="text/javascript">
-	function openBillPopup(custId) {
-	//	alert(custId)
-		var fromDate = $("#fromdatepicker").val();
-		var toDate = $("#todatepicker").val();
+	function openBillPopup(orderDate) {
+		//alert(orderDate)
 		
 		$('#order_dtl_table td').remove();	
 		
-		if (custId > 0) {
+		if (orderDate != null) {
+
 			$
 					.getJSON(
-							'${getCustPrchsReportDetail}',
+							'${getDateWiseCustDtlReport}',
 							{
-								fromDate : fromDate,
-								toDate : toDate,
-								custId : custId,
+								fromDate : orderDate,
+								toDate : orderDate,
 								ajax : 'true'
 							},
 							function(data) {
-								
-							//	alert(JSON.stringify(data))
 								document.getElementById("dtlExpExcel").disabled = false;
 								$('#billPopup').popup('show');	
 								var ttlBillAmt = 0;
@@ -448,7 +469,7 @@ chosen-container {
 			var toDate = document.getElementById("todatepicker").value;
 			var frId = $("#frId").val(); 
 			 window
-				.open('${pageContext.request.contextPath}/pdfReport?url=pdf/getCustPrchsOrderDrlPdf/'
+				.open('${pageContext.request.contextPath}/pdfReport?url=pdf/getMonthWiseBillPdf/'
 						+fromDate
 						+ '/'
 						+ toDate
@@ -506,6 +527,85 @@ chosen-container {
 			return isValid;
 
 		}
+	</script>
+	<script>
+	$(document)
+	.ready(
+			function() {
+				$('#fromdatepicker')
+						.datepicker(
+								{
+									changeMonth : true,
+									changeYear : true,
+									dateFormat : 'mm-yy',
+
+									onClose : function() {
+										var iMonth = $(
+												"#ui-datepicker-div .ui-datepicker-month :selected")
+												.val();
+										var iYear = $(
+												"#ui-datepicker-div .ui-datepicker-year :selected")
+												.val();
+										$(this).datepicker(
+												'setDate',
+												new Date(iYear,
+														iMonth, 1));
+									},
+
+									beforeShow : function() {
+										$('#ui-datepicker-div')
+												.addClass(
+														'hide-calendar');
+
+										/*  if ((selDate = $(this).val()).length > 0) 
+										 {
+										    iYear = selDate.substring(selDate.length - 4, selDate.length);
+										    iMonth = jQuery.inArray(selDate.substring(0, selDate.length - 5), $(this).datepicker('option', 'monthNames'));
+										    $(this).datepicker('option', 'defaultDate', new Date(iYear, iMonth, 1));
+										     $(this).datepicker('setDate', new Date(iYear, iMonth, 1));
+										 } */
+									}
+								});
+			});
+	
+		$(document)
+				.ready(
+						function() {
+							$('#todatepicker')
+									.datepicker(
+											{
+												changeMonth : true,
+												changeYear : true,
+												dateFormat : 'mm-yy',
+
+												onClose : function() {
+													var iMonth = $(
+															"#ui-datepicker-div .ui-datepicker-month :selected")
+															.val();
+													var iYear = $(
+															"#ui-datepicker-div .ui-datepicker-year :selected")
+															.val();
+													$(this).datepicker(
+															'setDate',
+															new Date(iYear,
+																	iMonth, 1));
+												},
+
+												beforeShow : function() {
+													$('#ui-datepicker-div')
+															.addClass(
+																	'hide-calendar');
+
+													/*   if ((selDate = $(this).val()).length > 0) 
+													  {
+													     iYear = selDate.substring(selDate.length - 4, selDate.length);
+													     iMonth = jQuery.inArray(selDate.substring(0, selDate.length - 5), $(this).datepicker('option', 'monthNames'));
+													     $(this).datepicker('option', 'defaultDate', new Date(iYear, iMonth, 1));
+													     $(this).datepicker('setDate', new Date(iYear, iMonth, 1));
+													  } */
+												}
+											});
+						});
 	</script>
 	
 </body>

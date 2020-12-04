@@ -16,7 +16,7 @@
 	href="${pageContext.request.contextPath}/resources/newpos/css/monginis.css"
 	type="text/css" />
 <link rel="icon"
-	href="${pageContext.request.contextPath}/resources/newpos/images/favicon.png"
+	href="${pageContext.request.contextPath}/resources/newpos/images/feviconicon.png"
 	type="images/png" sizes="32x32">
 
 <link
@@ -37,7 +37,7 @@
 			<div class="login_bx">
 				<h2 class="lgn_head">
 					<img
-						src="${pageContext.request.contextPath}/resources/newpos/images/lgn_logo.jpg"
+						src="${pageContext.request.contextPath}/resources/newpos/images/monginis1.png"
 						alt="lgn_logo">
 				</h2>
 				<div class="lgn_container">

@@ -9,7 +9,8 @@ public class GetDateWiseBillReport {
 	private int cod;
 	private int card;
 	private int epay;
-
+	private String monthName;
+	private String orderYear;
 	public String getId() {
 		return id;
 	}
@@ -68,11 +69,27 @@ public class GetDateWiseBillReport {
 		this.epay = epay;
 	}
 
+	public String getMonthName() {
+		return monthName;
+	}
+
+	public void setMonthName(String monthName) {
+		this.monthName = monthName;
+	}
+
+	public String getOrderYear() {
+		return orderYear;
+	}
+
+	public void setOrderYear(String orderYear) {
+		this.orderYear = orderYear;
+	}
+
 	@Override
 	public String toString() {
 		return "GetDateWiseBillReport [id=" + id + ", billDate=" + billDate + ", totalAmt=" + totalAmt + ", totalBills="
-				+ totalBills + ", cod=" + cod + ", card=" + card + ", epay=" + epay + "]";
+				+ totalBills + ", cod=" + cod + ", card=" + card + ", epay=" + epay + ", monthName=" + monthName
+				+ ", orderYear=" + orderYear + "]";
 	}
 
-	
 }

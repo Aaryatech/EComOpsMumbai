@@ -21,6 +21,10 @@ chosen-container {
 .select2-selection--multiple .select2-selection__rendered {
 	border-bottom: 1px solid #ddd;
 }
+.popupPdf{
+position: absolute;
+left: 700px;
+}
 </style>
 
 
@@ -86,7 +90,7 @@ chosen-container {
 					<div class="row">
 						<br>
 						<div class="col-md-12">
-							<h2 class="pageTitle">Date Wise Bill Report</h2>
+							<h2 class="pageTitle">Order Date Wise Report</h2>
 						</div>
 						<br>
 					</div>
@@ -114,7 +118,7 @@ chosen-container {
 							<button class="buttonsaveorder" onclick="getCustPurchaseRep()" >Search</button>							
 							
 							<button class="buttonsaveorder" value="PDF" id="PDFButton"
-								onclick="genPdf()" style="display: none;">PDF</button>
+								onclick="genPdf()">PDF</button>
 						</div>
 
 					</div>
@@ -189,7 +193,7 @@ chosen-container {
 								if (data == null) {
 									alert("No Data Found!");
 								}
-								document.getElementById("PDFButton").style.display = "block";
+								
 								document.getElementById("range").style.display = "block";
 								document.getElementById("expExcel").disabled = false;
 								var orderTtlAmt = 0;
@@ -214,7 +218,7 @@ chosen-container {
 
 													tr
 															.append($(
-																	'<td style="text-align: lsft;"></td>')
+																	'<td style="text-align: left;"></td>')
 																	.html(
 																			order.billDate));
 													tr
@@ -286,7 +290,7 @@ chosen-container {
 		<h3 class="pop_head">
 			<div class="row" style="margin-right: 25px;">
 
-				<div class="col-lg-10" style="margin-top: 5px;">Order Date Wise Customer Purchase Detail</div>
+				<div class="col-lg-10" style="margin-top: 5px;">Order Date Detail</div>
 				<div class="col-lg-2" id="statusDiv"></div>
 
 			</div>
@@ -330,6 +334,9 @@ chosen-container {
 				<input type="button" id="dtlExpExcel" class="buttonsaveorder"
 										value="EXPORT TO Excel" onclick="exportToExcelDtl();"
 						disabled="disabled">
+						
+						<!-- <button class="buttonsaveorder popupPdf" value="PDF" id="PDFButton"
+								onclick="genDtlPdf()">PDF</button> -->
 			</div> 
 			<br>
 		</div>
@@ -497,6 +504,12 @@ chosen-container {
 			window.open("${pageContext.request.contextPath}/exportToExcelDummy");
 			document.getElementById("expExcel").disabled = true;
 		}
+		
+		function genDtlPdf(){
+			 window
+				.open('${pageContext.request.contextPath}/pdfReport?url=pdf/getDateWiseDtlPdf');
+		}
+		
 		function validate() {
 
 			var fromDate = $("#fromdatepicker").val();
