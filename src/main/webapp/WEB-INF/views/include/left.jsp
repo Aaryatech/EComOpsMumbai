@@ -867,7 +867,7 @@
 									<a
 										href="${pageContext.request.contextPath}/showOrderWiseReportBetDate"><i
 										class="fa fa-files-o icon"></i>Order Wise Report</a> <a
-										href="${pageContext.request.contextPath}/BillDateWiseReport"><i
+										href="${pageContext.request.contextPath}/showDateWiseBillReport"><i
 										class="fa fa-files-o icon"></i>Bill Date Wise Report</a> <a
 										href="${pageContext.request.contextPath}/statusWiseReport"><i
 										class="fa fa-files-o icon"></i>Order Status Wise Report

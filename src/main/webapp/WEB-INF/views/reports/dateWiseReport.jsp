@@ -53,8 +53,8 @@ chosen-container {
 </head>
 <body>
 
-<c:url var="getCustPrchsRepBetDate" value="/getCustPrchsRepBetDate"></c:url>
-<c:url var="getCustPrchsReportDetail" value="/getCustPrchsReportDetail"></c:url>
+<c:url var="getDateWiseillsReport" value="/getDateWiseillsReport"></c:url>
+<c:url var="getDateWiseCustDtlReport" value="/getDateWiseCustDtlReport"></c:url>
 
 
 	<!--topLeft-nav-->
@@ -86,8 +86,7 @@ chosen-container {
 					<div class="row">
 						<br>
 						<div class="col-md-12">
-							<h2 class="pageTitle">Customer Wise Report
-										Purchase Report</h2>
+							<h2 class="pageTitle">Date Wise Bill Report</h2>
 						</div>
 						<br>
 					</div>
@@ -132,10 +131,12 @@ chosen-container {
 									<thead>
 										<tr class="bgpink">
 											<th class="col-md-1" style="text-align: center;">Sr No</th>											
-											<th class="col-md-2" style="text-align: center;">Customer</th>
-											<th class="col-md-2" style="text-align: center;">Mobile No.</th>											
-											<th class="col-md-1" style="text-align: center;">Date Of Birth</th>											
-											<th class="col-md-2" style="text-align: center;">Total Purchase</th>
+											<th class="col-md-2" style="text-align: center;">Date</th>
+											<th class="col-md-2" style="text-align: center;">No. Of Bills</th>											
+											<th class="col-md-1" style="text-align: center;">Total Amt</th>											
+											<th class="col-md-2" style="text-align: center;">COD</th>
+											<th class="col-md-2" style="text-align: center;">Card</th>
+											<th class="col-md-2" style="text-align: center;">E-Pay</th>
 											<th class="col-md-1" style="text-align: center;">Detail</th>
 										</tr>
 									</thead>
@@ -177,7 +178,7 @@ chosen-container {
 
 			$
 					.getJSON(
-							'${getCustPrchsRepBetDate}',
+							'${getDateWiseillsReport}',
 							{
 								fromDate : fromDate,
 								toDate : toDate,
@@ -196,9 +197,9 @@ chosen-container {
 										.each(
 												data,
 												function(key, order) {
-													var acStr = '<a href="javascript:void(0)" class="list-icons-item text-primary-600" data-popup="tooltip" title="" data-original-title="Order Detail" onclick="openBillPopup('
-															+ order.custId
-															+ ')"><i class="fa fa-list"></i></a>'
+													var acStr = '<a href="javascript:void(0)" class="list-icons-item text-primary-600" data-popup="tooltip" title="" data-original-title="Order Detail" onclick="openBillPopup(\''
+															+ order.billDate
+															+ '\')"><i class="fa fa-list"></i></a>'
 
 
 													
@@ -215,28 +216,41 @@ chosen-container {
 															.append($(
 																	'<td style="text-align: lsft;"></td>')
 																	.html(
-																			order.custName));
-
+																			order.billDate));
 													tr
-															.append($(
-																	'<td style="text-align: center;"></td>')
-																	.html(
-																			order.custMobileNo));
-
-													tr
-															.append($(
-																	'<td style="text-align: center;"></td>')
-																	.html(
-																			order.dateOfBirth));
-												
+													.append($(
+															'<td style="text-align: center;"></td>')
+															.html(
+																	order.totalBills));
 
 													orderTtlAmt = orderTtlAmt
-															+ order.grandTotal;
+													+ order.totalAmt;
 													tr
 															.append($(
 																	'<td style="text-align: right;"></td>')
 																	.html(
-																			order.grandTotal));
+																			order.totalAmt));
+
+													
+													tr
+													.append($(
+															'<td style="text-align: center;"></td>')
+															.html(
+																	order.cod));
+													
+													tr
+													.append($(
+															'<td style="text-align: center;"></td>')
+															.html(
+																	order.card));
+													
+													tr
+													.append($(
+															'<td style="text-align: center;"></td>')
+															.html(
+																	order.epay));
+
+													
 
 													tr
 															.append($(
@@ -272,7 +286,7 @@ chosen-container {
 		<h3 class="pop_head">
 			<div class="row" style="margin-right: 25px;">
 
-				<div class="col-lg-10" style="margin-top: 5px;">Customer Purchase Order Detail</div>
+				<div class="col-lg-10" style="margin-top: 5px;">Order Date Wise Customer Purchase Detail</div>
 				<div class="col-lg-2" id="statusDiv"></div>
 
 			</div>
@@ -335,26 +349,22 @@ chosen-container {
 	</script>
 
 	<script type="text/javascript">
-	function openBillPopup(custId) {
-	//	alert(custId)
-		var fromDate = $("#fromdatepicker").val();
-		var toDate = $("#todatepicker").val();
+	function openBillPopup(orderDate) {
+		//alert(orderDate)
 		
 		$('#order_dtl_table td').remove();	
 		
-		if (custId > 0) {
+		if (orderDate != null) {
+
 			$
 					.getJSON(
-							'${getCustPrchsReportDetail}',
+							'${getDateWiseCustDtlReport}',
 							{
-								fromDate : fromDate,
-								toDate : toDate,
-								custId : custId,
+								fromDate : orderDate,
+								toDate : orderDate,
 								ajax : 'true'
 							},
 							function(data) {
-								
-							//	alert(JSON.stringify(data))
 								document.getElementById("dtlExpExcel").disabled = false;
 								$('#billPopup').popup('show');	
 								var ttlBillAmt = 0;
@@ -448,7 +458,7 @@ chosen-container {
 			var toDate = document.getElementById("todatepicker").value;
 			var frId = $("#frId").val(); 
 			 window
-				.open('${pageContext.request.contextPath}/pdfReport?url=pdf/getCustPrchsOrderDrlPdf/'
+				.open('${pageContext.request.contextPath}/pdfReport?url=pdf/getDateWiseBillPdf/'
 						+fromDate
 						+ '/'
 						+ toDate

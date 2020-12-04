@@ -46,19 +46,21 @@ import com.monginis.ops.model.Franchisee;
 import com.monginis.ops.model.GetOrderHeaderDisplay;
 import com.monginis.ops.model.Status;
 import com.monginis.ops.report.model.GetCustomerWisReport;
+import com.monginis.ops.report.model.GetDateWiseBillReport;
 import com.monginis.ops.report.model.GetSellBillHeader;
 
 @Controller
 @Scope("session")
 public class ReportsController {
-	
+
 	String todaysDate;
 
 	public static float roundUp(float d) {
 		return BigDecimal.valueOf(d).setScale(2, BigDecimal.ROUND_HALF_UP).floatValue();
 	}
-	
+
 	List<Status> statusList = new ArrayList<Status>();
+
 	@RequestMapping(value = "/showOrderWiseReportBetDate", method = RequestMethod.GET)
 	public ModelAndView showHSNwiseReportBetDate(HttpServletRequest request, HttpServletResponse response) {
 
@@ -74,13 +76,12 @@ public class ReportsController {
 			DateTimeFormatter formatters = DateTimeFormatter.ofPattern("d-MM-uuuu");
 			todaysDate = date.format(formatters);
 			model.addObject("todaysDate", todaysDate);
-			
-			Status[] statusArr = Constant.getRestTemplate().getForObject(Constant.URL + "getAllStatus",
-					Status[].class);
-			
-			 statusList = new ArrayList<Status>(Arrays.asList(statusArr));
+
+			Status[] statusArr = Constant.getRestTemplate().getForObject(Constant.URL + "getAllStatus", Status[].class);
+
+			statusList = new ArrayList<Status>(Arrays.asList(statusArr));
 			model.addObject("statusList", statusList);
-			
+
 		} catch (Exception e) {
 
 			System.out.println("Exc in show   report hsn wise  " + e.getMessage());
@@ -89,13 +90,14 @@ public class ReportsController {
 
 		return model;
 	}
-	
+
 	@RequestMapping(value = "/getOrderStatusListRep", method = RequestMethod.GET)
 	@ResponseBody
 	public List<Status> getStatusList(HttpServletRequest request, HttpServletResponse response) {
-		System.err.println("Status List----------"+statusList);
+		System.err.println("Status List----------" + statusList);
 		return statusList;
 	}
+
 	List<GetOrderHeaderDisplay> orderList = null;
 
 	@RequestMapping(value = "/getOrderBetDateAndStatus", method = RequestMethod.GET)
@@ -109,29 +111,28 @@ public class ReportsController {
 		try {
 			System.err.println("In Here");
 			MultiValueMap<String, Object> map = new LinkedMultiValueMap<>();
-			
-			String statusId = request.getParameter("statusId");	
-			System.out.println("ID ------"+statusId);
+
+			String statusId = request.getParameter("statusId");
+			System.out.println("ID ------" + statusId);
 			String statusStr = "";
 
-			
 			if (statusId != null) {
 				try {
-				statusStr = statusId.toString().substring(1, statusId.toString().length() - 1);
-				statusStr = statusStr.replaceAll("\"", "");
-				statusStr = statusStr.replaceAll(" ", "");
-				}catch (Exception e) {
+					statusStr = statusId.toString().substring(1, statusId.toString().length() - 1);
+					statusStr = statusStr.replaceAll("\"", "");
+					statusStr = statusStr.replaceAll(" ", "");
+				} catch (Exception e) {
 					statusStr = statusId;
 				}
 			}
-			
+
 			int frId = frDetails.getFrId();
 			int compId = frDetails.getCompanyId();
-			
+
 			fromDate = request.getParameter("fromDate");
 			toDate = request.getParameter("toDate");
-			
-			System.out.println(statusStr+" "+fromDate);
+
+			System.out.println(statusStr + " " + fromDate);
 			map.add("fromDate", DateConvertor.convertToYMD(fromDate));
 			map.add("toDate", DateConvertor.convertToYMD(toDate));
 			map.add("status", statusStr);
@@ -141,8 +142,8 @@ public class ReportsController {
 			GetOrderHeaderDisplay[] orderRepArr = Constant.getRestTemplate()
 					.postForObject(Constant.URL + "/getOrderHeaderListByFrId", map, GetOrderHeaderDisplay[].class);
 
-			orderList = new ArrayList<GetOrderHeaderDisplay>(Arrays.asList(orderRepArr));			
-			System.out.println("Order List--->"+orderList);
+			orderList = new ArrayList<GetOrderHeaderDisplay>(Arrays.asList(orderRepArr));
+			System.out.println("Order List--->" + orderList);
 		} catch (
 
 		Exception e) {
@@ -177,15 +178,22 @@ public class ReportsController {
 			rowData.add(orderList.get(i).getOrderNo());
 			rowData.add(" " + orderList.get(i).getDeliveryDateDisplay());
 			rowData.add(" " + orderList.get(i).getCustName());
-			String status = orderList.get(i).getOrderStatus()==0 ? "Park Order" : orderList.get(i).getOrderStatus()==1 ? "Shop Confirmation Pending" :
-				orderList.get(i).getOrderStatus()==2 ? "Accept" : orderList.get(i).getOrderStatus()==3 ? "Processing" :
-					orderList.get(i).getOrderStatus()==4 ? "Delivery Pending" : orderList.get(i).getOrderStatus()==5 ? "Delivered" :
-						orderList.get(i).getOrderStatus()==6 ? "Rejected by Shop" : orderList.get(i).getOrderStatus()==7 ? "Return Order" : "Cancelled Order";
-			rowData.add(" " +  status);
+			String status = orderList.get(i).getOrderStatus() == 0 ? "Park Order"
+					: orderList.get(i).getOrderStatus() == 1 ? "Shop Confirmation Pending"
+							: orderList.get(i).getOrderStatus() == 2 ? "Accept"
+									: orderList.get(i).getOrderStatus() == 3 ? "Processing"
+											: orderList.get(i).getOrderStatus() == 4 ? "Delivery Pending"
+													: orderList.get(i).getOrderStatus() == 5 ? "Delivered"
+															: orderList.get(i).getOrderStatus() == 6
+																	? "Rejected by Shop"
+																	: orderList.get(i).getOrderStatus() == 7
+																			? "Return Order"
+																			: "Cancelled Order";
+			rowData.add(" " + status);
 			rowData.add(" " + roundUp(orderList.get(i).getTotalAmt()));
 
 			grandTotal = grandTotal + roundUp(orderList.get(i).getTotalAmt());
-				
+
 			srno = srno + 1;
 
 			expoExcel.setRowData(rowData);
@@ -197,7 +205,7 @@ public class ReportsController {
 		rowData = new ArrayList<String>();
 
 		rowData.add("");
-		rowData.add("");	
+		rowData.add("");
 		rowData.add("");
 		rowData.add("Total");
 		rowData.add("");
@@ -218,39 +226,39 @@ public class ReportsController {
 
 		return orderList;
 	}
-	
+
 	@RequestMapping(value = "/getShowOrderDetail", method = RequestMethod.GET)
 	@ResponseBody
 	public List<GetOrderHeaderDisplay> getOrderDetailByBillId(HttpServletRequest request,
 			HttpServletResponse response) {
-		System.out.println("Order List Details--->"+orderList);
+		System.out.println("Order List Details--->" + orderList);
 		return orderList;
 
 	}
-	
+
 	@RequestMapping(value = "pdf/getOrderReportPdf/{fromDate}/{toDate}", method = RequestMethod.GET)
-	public ModelAndView getOrdrListPdf(HttpServletRequest request, HttpServletResponse response, 
+	public ModelAndView getOrdrListPdf(HttpServletRequest request, HttpServletResponse response,
 			@PathVariable String fromDate, @PathVariable String toDate) throws FileNotFoundException {
 		ModelAndView model = null;
 		try {
 			model = new ModelAndView("reports/reportPdf/orderWisePdf");
-		
+
 			HttpSession ses = request.getSession();
 			Franchisee frDetails = (Franchisee) ses.getAttribute("frDetails");
-		//	System.err.println("Orde PDF List------------"+orderList);
-			
+			// System.err.println("Orde PDF List------------"+orderList);
+
 			model.addObject("orderList", orderList);
 			model.addObject("fromDate", fromDate);
 			model.addObject("toDate", toDate);
-			model.addObject("frName", (frDetails.getFrCode())+" "+frDetails.getFrName());
-			}catch (Exception e) {
-				System.out.println("Excep in /getOrdrComFrmGrpByPdf "+e.getMessage());
-			}
-		
+			model.addObject("frName", (frDetails.getFrCode()) + " " + frDetails.getFrName());
+		} catch (Exception e) {
+			System.out.println("Excep in /getOrdrComFrmGrpByPdf " + e.getMessage());
+		}
+
 		return model;
 
 	}
-	
+
 	@RequestMapping(value = "/showCustWiseReportBetDate", method = RequestMethod.GET)
 	public ModelAndView showCustWiseReportBetDate(HttpServletRequest request, HttpServletResponse response) {
 
@@ -265,8 +273,11 @@ public class ReportsController {
 			LocalDate date = LocalDate.now(z);
 			DateTimeFormatter formatters = DateTimeFormatter.ofPattern("d-MM-uuuu");
 			todaysDate = date.format(formatters);
+			HttpSession ses = request.getSession();
+			Franchisee frDetails = (Franchisee) ses.getAttribute("frDetails");
+			model.addObject("frId", frDetails.getFrId());
 			model.addObject("todaysDate", todaysDate);
-						
+
 		} catch (Exception e) {
 
 			System.out.println("Exc in /showCustWiseReportBetDate  " + e.getMessage());
@@ -275,8 +286,9 @@ public class ReportsController {
 
 		return model;
 	}
-		
+
 	List<GetCustomerWisReport> custRepList = new ArrayList<GetCustomerWisReport>();
+
 	@RequestMapping(value = "/getCustPrchsRepBetDate", method = RequestMethod.GET)
 	public @ResponseBody List<GetCustomerWisReport> getCustPrchsRepBetDate(HttpServletRequest request,
 			HttpServletResponse response) {
@@ -288,24 +300,23 @@ public class ReportsController {
 		try {
 			System.err.println("In Here");
 			MultiValueMap<String, Object> map = new LinkedMultiValueMap<>();
-						
+
 			int frId = frDetails.getFrId();
 			int compId = frDetails.getCompanyId();
-			
+
 			fromDate = request.getParameter("fromDate");
 			toDate = request.getParameter("toDate");
-			
-			
+
 			map.add("fromDate", DateConvertor.convertToYMD(fromDate));
 			map.add("toDate", DateConvertor.convertToYMD(toDate));
-			//map.add("compId", compId);
+			// map.add("compId", compId);
 			map.add("frId", frId);
 
 			GetCustomerWisReport[] orderRepArr = Constant.getRestTemplate()
 					.postForObject(Constant.URL + "/getCustPurchaseRepByFrId", map, GetCustomerWisReport[].class);
 
-			custRepList = new ArrayList<GetCustomerWisReport>(Arrays.asList(orderRepArr));			
-			System.out.println("Order List--->"+orderList);
+			custRepList = new ArrayList<GetCustomerWisReport>(Arrays.asList(orderRepArr));
+			System.out.println("Order List--->" + orderList);
 		} catch (
 
 		Exception e) {
@@ -342,7 +353,7 @@ public class ReportsController {
 			rowData.add(" " + roundUp(custRepList.get(i).getGrandTotal()));
 
 			grandTotal = grandTotal + roundUp(custRepList.get(i).getGrandTotal());
-				
+
 			srno = srno + 1;
 
 			expoExcel.setRowData(rowData);
@@ -374,33 +385,28 @@ public class ReportsController {
 
 		return custRepList;
 	}
-	
-	@RequestMapping(value = "pdf/getCustPrchsOrderDrlPdf/{fromDate}/{toDate}", method = RequestMethod.GET)
-	public ModelAndView getCustPrchsOrderDrlPdf(@PathVariable("fromDate") String fromDate, @PathVariable("toDate") String toDate, HttpServletRequest request,
+
+	@RequestMapping(value = "pdf/getCustPrchsOrderDrlPdf/{fromDate}/{toDate}/{frId}", method = RequestMethod.GET)
+	public ModelAndView getCustPrchsOrderDrlPdf(@PathVariable("fromDate") String fromDate,
+			@PathVariable("toDate") String toDate, @PathVariable("frId") int frId, HttpServletRequest request,
 			HttpServletResponse response) {
 		ModelAndView model = null;
-		HttpSession ses = request.getSession();
-		Franchisee frDetails = (Franchisee) ses.getAttribute("frDetails");
-System.out.println("frDetails--"+frDetails);
+		
 		try {
-			
 			model = new ModelAndView("/reports/reportPdf/custOrderDtlPdf");
-			System.err.println("In Here");
+
 			MultiValueMap<String, Object> map = new LinkedMultiValueMap<>();
-						
-			int frId = frDetails.getFrId();
-			int compId = frDetails.getCompanyId();			
-			
+
 			map.add("fromDate", DateConvertor.convertToYMD(fromDate));
 			map.add("toDate", DateConvertor.convertToYMD(toDate));
-			//map.add("compId", compId);
+			// map.add("compId", compId);
 			map.add("frId", frId);
 
 			GetCustomerWisReport[] orderRepArr = Constant.getRestTemplate()
 					.postForObject(Constant.URL + "/getCustPurchaseRepByFrId", map, GetCustomerWisReport[].class);
 
-			custRepList = new ArrayList<GetCustomerWisReport>(Arrays.asList(orderRepArr));			
-			
+			custRepList = new ArrayList<GetCustomerWisReport>(Arrays.asList(orderRepArr));
+
 			model.addObject("custRepList", custRepList);
 		} catch (
 
@@ -411,8 +417,8 @@ System.out.println("frDetails--"+frDetails);
 		}
 		return model;
 	}
-	
-//	
+
+
 	List<GetSellBillHeader> custPrchDtlList = new ArrayList<GetSellBillHeader>();
 	@RequestMapping(value = "/getCustPrchsReportDetail", method = RequestMethod.GET)
 	public @ResponseBody List<GetSellBillHeader> getCustPrchsReportDetail(HttpServletRequest request,
@@ -425,13 +431,13 @@ System.out.println("frDetails--"+frDetails);
 		try {
 			System.err.println("In Here");
 			MultiValueMap<String, Object> map = new LinkedMultiValueMap<>();
-						
+
 			int frId = frDetails.getFrId();
 			int compId = frDetails.getCompanyId();
-			
+
 			fromDate = request.getParameter("fromDate");
 			toDate = request.getParameter("toDate");
-			
+
 			map.add("fromDate", DateConvertor.convertToYMD(fromDate));
 			map.add("toDate", DateConvertor.convertToYMD(toDate));
 			map.add("custId", Integer.parseInt(request.getParameter("custId")));
@@ -441,8 +447,8 @@ System.out.println("frDetails--"+frDetails);
 			GetSellBillHeader[] orderRepArr = Constant.getRestTemplate()
 					.postForObject(Constant.URL + "/getCustPurchaseDetailReport", map, GetSellBillHeader[].class);
 
-			custPrchDtlList = new ArrayList<GetSellBillHeader>(Arrays.asList(orderRepArr));			
-			System.out.println("Order List--->"+custPrchDtlList);
+			custPrchDtlList = new ArrayList<GetSellBillHeader>(Arrays.asList(orderRepArr));
+			System.out.println("Order List--->" + custPrchDtlList);
 		} catch (
 
 		Exception e) {
@@ -477,10 +483,11 @@ System.out.println("frDetails--"+frDetails);
 			rowData.add(custPrchDtlList.get(i).getInvoiceNo());
 			rowData.add(" " + custPrchDtlList.get(i).getBillDate());
 			rowData.add(" " + roundUp(custPrchDtlList.get(i).getGrandTotal()));
-			rowData.add(custPrchDtlList.get(i).getPaymentMode()==1 ? "Cash" : custPrchDtlList.get(i).getPaymentMode()==2 ? "Card" : "E-Pay");
+			rowData.add(custPrchDtlList.get(i).getPaymentMode() == 1 ? "Cash"
+					: custPrchDtlList.get(i).getPaymentMode() == 2 ? "Card" : "E-Pay");
 			rowData.add(" " + custPrchDtlList.get(i).getDelvrBoyName());
-			grandTotal = grandTotal + roundUp(custRepList.get(i).getGrandTotal());
-				
+			grandTotal = grandTotal + roundUp(custPrchDtlList.get(i).getGrandTotal());
+
 			srno = srno + 1;
 
 			expoExcel.setRowData(rowData);
@@ -508,10 +515,9 @@ System.out.println("frDetails--"+frDetails);
 
 		session.setAttribute("exportExcelList", exportToExcelList);
 		session.setAttribute("excelName", "CustPurchaseOrderDtlReport");
-
+		System.out.println("custPrchDtlList>>>>"+custPrchDtlList);
 		return custPrchDtlList;
 	}
-	
 
 	private Dimension format = PD4Constants.A4;
 	private boolean landscapeValue = false;
@@ -525,7 +531,7 @@ System.out.println("frDetails--"+frDetails);
 
 	private int userSpaceWidth = 750;
 	private static int BUFFER_SIZE = 1024;
-	
+
 	@RequestMapping(value = "/pdfReport", method = RequestMethod.GET)
 	public void showPDF(HttpServletRequest request, HttpServletResponse response) {
 		System.out.println("Inside PDf For Report URL ");
@@ -634,6 +640,267 @@ System.out.println("frDetails--"+frDetails);
 		}
 	}
 	
+	/*-----------------------------------------------------------------------------------*/
+	 @RequestMapping(value = "/showDateWiseBillReport", method = RequestMethod.GET)
+	public ModelAndView showDateWiseBillReport(HttpServletRequest request, HttpServletResponse response) {
+
+		ModelAndView model = null;
+		HttpSession session = request.getSession();
+
+		model = new ModelAndView("reports/dateWiseReport");
+
+		try {
+			ZoneId z = ZoneId.of("Asia/Calcutta");
+
+			LocalDate date = LocalDate.now(z);
+			DateTimeFormatter formatters = DateTimeFormatter.ofPattern("d-MM-uuuu");
+			todaysDate = date.format(formatters);
+			model.addObject("todaysDate", todaysDate);
+			
+			HttpSession ses = request.getSession();
+			Franchisee frDetails = (Franchisee) ses.getAttribute("frDetails");
+			model.addObject("frId", frDetails.getFrId());
+		} catch (Exception e) {
+
+			System.out.println("Excep in /showDateWiseBillReport  " + e.getMessage());
+			e.printStackTrace();
+		}
+
+		return model;
+	}
+	 
+	 List<GetDateWiseBillReport> dateBillRep = new ArrayList<GetDateWiseBillReport>();
+		@RequestMapping(value = "/getDateWiseillsReport", method = RequestMethod.GET)
+		public @ResponseBody List<GetDateWiseBillReport> getDateWiseillsReport(HttpServletRequest request,
+				HttpServletResponse response) {
+			String fromDate = "";
+			String toDate = "";
+			HttpSession ses = request.getSession();
+			Franchisee frDetails = (Franchisee) ses.getAttribute("frDetails");
+
+			try {
+				System.err.println("In Here");
+				MultiValueMap<String, Object> map = new LinkedMultiValueMap<>();
+
+				int frId = frDetails.getFrId();
+				int compId = frDetails.getCompanyId();
+
+				fromDate = request.getParameter("fromDate");
+				toDate = request.getParameter("toDate");
+
+				map.add("fromDate", DateConvertor.convertToYMD(fromDate));
+				map.add("toDate", DateConvertor.convertToYMD(toDate));				
+				map.add("frId", frId);
+
+				GetDateWiseBillReport[] orderRepArr = Constant.getRestTemplate()
+						.postForObject(Constant.URL + "/getDateWiseBillsReport", map, GetDateWiseBillReport[].class);
+
+				dateBillRep = new ArrayList<GetDateWiseBillReport>(Arrays.asList(orderRepArr));
+				System.out.println("Order List--->" + dateBillRep);
+			} catch (
+
+			Exception e) {
+				System.out.println("Excep in /getDateWiseillsReport " + e.getMessage());
+				e.printStackTrace();
+
+			}
+
+			// exportToExcel
+
+			List<ExportToExcel> exportToExcelList = new ArrayList<ExportToExcel>();
+
+			ExportToExcel expoExcel = new ExportToExcel();
+			List<String> rowData = new ArrayList<String>();
+
+			rowData.add("Sr No");
+			rowData.add("Bill Date");
+			rowData.add("No. Of Bills");
+			rowData.add("Total Amt.");
+			rowData.add("COD");
+			rowData.add("Cash");
+			rowData.add("Card");
+			float grandTotal = 0.0f;
+
+			expoExcel.setRowData(rowData);
+			int srno = 1;
+			exportToExcelList.add(expoExcel);
+			for (int i = 0; i < dateBillRep.size(); i++) {
+				expoExcel = new ExportToExcel();
+				rowData = new ArrayList<String>();
+
+				rowData.add(" " + srno);
+				rowData.add(dateBillRep.get(i).getBillDate());
+				rowData.add(" " + dateBillRep.get(i).getTotalBills());
+				rowData.add(" " + roundUp(dateBillRep.get(i).getTotalAmt()));	
+				rowData.add(" " + dateBillRep.get(i).getCod());	
+				rowData.add(" " + dateBillRep.get(i).getCard());	
+				rowData.add(" " + dateBillRep.get(i).getEpay());	
+				grandTotal = grandTotal + roundUp(dateBillRep.get(i).getTotalAmt());
+
+				srno = srno + 1;
+
+				expoExcel.setRowData(rowData);
+				exportToExcelList.add(expoExcel);
+
+			}
+
+			expoExcel = new ExportToExcel();
+			rowData = new ArrayList<String>();
 	
+			rowData.add("");		
+			rowData.add("Total");
+			rowData.add("");
+			rowData.add("" + Long.toString((long) (grandTotal)));
+			rowData.add("");
+			rowData.add("");
+			rowData.add("");
+			expoExcel.setRowData(rowData);
+			exportToExcelList.add(expoExcel);
+
+			HttpSession session = request.getSession();
+			session.setAttribute("exportExcelListNew", exportToExcelList);
+			session.setAttribute("excelNameNew", "DateWiseBillReport");
+			session.setAttribute("reportNameNew", "Customer Purchase Order Detail Report");
+			session.setAttribute("searchByNew", "From Date: " + fromDate + "  To Date: " + toDate + " ");
+			session.setAttribute("mergeUpto1", "$A$1:$L$1");
+			session.setAttribute("mergeUpto2", "$A$2:$L$2");
+
+			session.setAttribute("exportExcelList", exportToExcelList);
+			session.setAttribute("excelName", "DateWiseBillReport");
+
+			return dateBillRep;
+		}
+		
+		@RequestMapping(value = "pdf/getDateWiseBillPdf/{fromDate}/{toDate}/{frId}", method = RequestMethod.GET)
+		public ModelAndView getDateWiseBillPdf(@PathVariable("fromDate") String fromDate,
+				@PathVariable("toDate") String toDate, @PathVariable("frId") int frId, HttpServletRequest request,
+				HttpServletResponse response) {
+			ModelAndView model = null;
+			
+			try {
+				model = new ModelAndView("/reports/reportPdf/dateBillPdf");
+
+				MultiValueMap<String, Object> map = new LinkedMultiValueMap<>();
+
+				map.add("fromDate", DateConvertor.convertToYMD(fromDate));
+				map.add("toDate", DateConvertor.convertToYMD(toDate));
+				map.add("frId", frId);
+
+				GetDateWiseBillReport[] orderRepArr = Constant.getRestTemplate()
+						.postForObject(Constant.URL + "/getDateWiseBillsReport", map, GetDateWiseBillReport[].class);
+
+				dateBillRep = new ArrayList<GetDateWiseBillReport>(Arrays.asList(orderRepArr));
+
+				model.addObject("dateBillRep", dateBillRep);
+			} catch (
+
+			Exception e) {
+				System.out.println("Excep in /getDateWiseBillPdf " + e.getMessage());
+				e.printStackTrace();
+			}
+			return model;
+		}
+		
+		@RequestMapping(value = "/getDateWiseCustDtlReport", method = RequestMethod.GET)
+		public @ResponseBody List<GetSellBillHeader> getDateWiseCustDtlReport(HttpServletRequest request,
+				HttpServletResponse response) {
+			String fromDate = "";
+			String toDate = "";
+			HttpSession ses = request.getSession();
+			Franchisee frDetails = (Franchisee) ses.getAttribute("frDetails");
+			List<GetSellBillHeader> orderDateCust = new ArrayList<GetSellBillHeader>();
+			try {
+				System.err.println("In Here");
+				MultiValueMap<String, Object> map = new LinkedMultiValueMap<>();
+
+				int frId = frDetails.getFrId();
+				int compId = frDetails.getCompanyId();
+
+				fromDate = request.getParameter("fromDate");
+				toDate = request.getParameter("toDate");
+
+				map.add("fromDate", DateConvertor.convertToYMD(fromDate));
+				map.add("toDate", DateConvertor.convertToYMD(toDate));				
+				map.add("compId", compId);
+				map.add("frId", frId);
+
+				GetSellBillHeader[] orderRepArr = Constant.getRestTemplate()
+						.postForObject(Constant.URL + "/getOrderDateWiseCustReport", map, GetSellBillHeader[].class);
+
+				 orderDateCust = new ArrayList<GetSellBillHeader>(Arrays.asList(orderRepArr));
+				System.out.println("Order List--->" + orderDateCust);
+			} catch (
+
+			Exception e) {
+				System.out.println("Excep in /getDateWiseCustDtlReport " + e.getMessage());
+				e.printStackTrace();
+
+			}
+
+			// exportToExcel
+
+			List<ExportToExcel> exportToExcelList = new ArrayList<ExportToExcel>();
+
+			ExportToExcel expoExcel = new ExportToExcel();
+			List<String> rowData = new ArrayList<String>();
+
+			rowData.add("Sr No");
+			rowData.add("Bill No.");
+			rowData.add("Bill Date");
+			rowData.add("Bill Amt.");
+			rowData.add("Payment Mode");
+			rowData.add("Delivery Boy");
+			float grandTotal = 0.0f;
+
+			expoExcel.setRowData(rowData);
+			int srno = 1;
+			exportToExcelList.add(expoExcel);
+			for (int i = 0; i < orderDateCust.size(); i++) {
+				expoExcel = new ExportToExcel();
+				rowData = new ArrayList<String>();
+
+				rowData.add(" " + srno);
+				rowData.add(orderDateCust.get(i).getInvoiceNo());
+				rowData.add(" " + orderDateCust.get(i).getBillDate());
+				rowData.add(" " + roundUp(orderDateCust.get(i).getGrandTotal()));
+				rowData.add(orderDateCust.get(i).getPaymentMode() == 1 ? "Cash"
+						: orderDateCust.get(i).getPaymentMode() == 2 ? "Card" : "E-Pay");
+				rowData.add(" " + orderDateCust.get(i).getDelvrBoyName());
+				grandTotal = grandTotal + roundUp(orderDateCust.get(i).getGrandTotal());
+
+				srno = srno + 1;
+
+				expoExcel.setRowData(rowData);
+				exportToExcelList.add(expoExcel);
+
+			}
+
+			expoExcel = new ExportToExcel();
+			rowData = new ArrayList<String>();
+	
+			rowData.add("");		
+			rowData.add("Total");
+			rowData.add("");
+			rowData.add("" + Long.toString((long) (grandTotal)));
+			rowData.add("");
+			rowData.add("");
+			rowData.add("");
+			expoExcel.setRowData(rowData);
+			exportToExcelList.add(expoExcel);
+
+			HttpSession session = request.getSession();
+			session.setAttribute("exportExcelListDummy", exportToExcelList);
+			session.setAttribute("excelNameNew", "OrderDateWiseCustBillReport");
+			session.setAttribute("reportNameNew", "Order Date Customer Bill Detail Report");
+			session.setAttribute("searchByNew", "From Date: " + fromDate + "  To Date: " + toDate + " ");
+			session.setAttribute("mergeUpto1", "$A$1:$L$1");
+			session.setAttribute("mergeUpto2", "$A$2:$L$2");
+
+			session.setAttribute("exportExcelList", exportToExcelList);
+			session.setAttribute("excelName", "OrderDateWiseCustBillReport");
+
+			return orderDateCust;
+		}
+		
 
 }

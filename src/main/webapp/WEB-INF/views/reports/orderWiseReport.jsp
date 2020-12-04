@@ -734,9 +734,9 @@ chosen-container {
 	</div>
 		
 		<input type="hidden" value="${imagePath}" id="imgPath"> <input
-			type="hidden" value="${fromDate}" name="fromDate" id="fromDate">
+		type="hidden" value="${fromDate}" name="fromDate" id="fromDate">
 		<input type="hidden" value="${toDate}" name="toDate" id="toDate">
-
+	
 
 	</div>
 	<!--wrapper-end-->
@@ -1020,11 +1020,15 @@ chosen-container {
 		function genPdf() {
 			var fromDate = document.getElementById("fromdatepicker").value;
 			var toDate = document.getElementById("todatepicker").value;
+			var statusId = $("#statusId").val();
+			alert(statusId)
 			 window
 				.open('${pageContext.request.contextPath}/pdfReport?url=pdf/getOrderReportPdf/'
 						+fromDate
 						+ '/'
-						+ toDate);
+						+ toDate
+						+ '/'
+						+ statusId);
 			/* var isValid = validate();
 			if (isValid == true) {
 				var fromDate = document.getElementById("fromdatepicker").value;

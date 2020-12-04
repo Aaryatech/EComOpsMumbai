@@ -83,7 +83,7 @@ public class GetOrderHeaderDisplay {
 
 	List<GetOrderDetailDisplay> orderDetailList;
 	List<GetOrderTrailDisplay> orderTrailList;
-
+	
 	public int getOrderId() {
 		return orderId;
 	}
