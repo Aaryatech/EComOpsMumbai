@@ -998,7 +998,7 @@ public class ReportsController {
 					GetDateWiseBillReport[] orderRepArr = Constant.getRestTemplate()
 							.postForObject(Constant.URL + "/getDateWiseBillsReport", map, GetDateWiseBillReport[].class);
 
-					dateBillRep = new ArrayList<GetDateWiseBillReport>(Arrays.asList(orderRepArr));
+					monthlyBillRep = new ArrayList<GetDateWiseBillReport>(Arrays.asList(orderRepArr));
 					
 				} catch (
 
@@ -1016,7 +1016,8 @@ public class ReportsController {
 				List<String> rowData = new ArrayList<String>();
 
 				rowData.add("Sr No");
-				rowData.add("Bill Date");
+				rowData.add("Month");
+				rowData.add("Year");
 				rowData.add("No. Of Bills");
 				rowData.add("Total Amt.");
 				rowData.add("COD");
@@ -1027,18 +1028,19 @@ public class ReportsController {
 				expoExcel.setRowData(rowData);
 				int srno = 1;
 				exportToExcelList.add(expoExcel);
-				for (int i = 0; i < dateBillRep.size(); i++) {
+				for (int i = 0; i < monthlyBillRep.size(); i++) {
 					expoExcel = new ExportToExcel();
 					rowData = new ArrayList<String>();
 
 					rowData.add(" " + srno);
-					rowData.add(dateBillRep.get(i).getBillDate());
-					rowData.add(" " + dateBillRep.get(i).getTotalBills());
-					rowData.add(" " + roundUp(dateBillRep.get(i).getTotalAmt()));	
-					rowData.add(" " + dateBillRep.get(i).getCod());	
-					rowData.add(" " + dateBillRep.get(i).getCard());	
-					rowData.add(" " + dateBillRep.get(i).getEpay());	
-					grandTotal = grandTotal + roundUp(dateBillRep.get(i).getTotalAmt());
+					rowData.add(monthlyBillRep.get(i).getMonthName());
+					rowData.add(monthlyBillRep.get(i).getOrderYear());
+					rowData.add(" " + monthlyBillRep.get(i).getTotalBills());
+					rowData.add(" " + roundUp(monthlyBillRep.get(i).getTotalAmt()));	
+					rowData.add(" " + monthlyBillRep.get(i).getCod());	
+					rowData.add(" " + monthlyBillRep.get(i).getCard());	
+					rowData.add(" " + monthlyBillRep.get(i).getEpay());	
+					grandTotal = grandTotal + roundUp(monthlyBillRep.get(i).getTotalAmt());
 
 					srno = srno + 1;
 
@@ -1062,16 +1064,16 @@ public class ReportsController {
 
 				HttpSession session = request.getSession();
 				session.setAttribute("exportExcelListNew", exportToExcelList);
-				session.setAttribute("excelNameNew", "DateWiseBillReport");
-				session.setAttribute("reportNameNew", "Customer Purchase Order Detail Report");
+				session.setAttribute("excelNameNew", "MonthWiseBillReport");
+				session.setAttribute("reportNameNew", "Month Wiser Bill Report");
 				session.setAttribute("searchByNew", "From Date: " + fromDate + "  To Date: " + toDate + " ");
 				session.setAttribute("mergeUpto1", "$A$1:$L$1");
 				session.setAttribute("mergeUpto2", "$A$2:$L$2");
 
 				session.setAttribute("exportExcelList", exportToExcelList);
-				session.setAttribute("excelName", "DateWiseBillReport");
+				session.setAttribute("excelName", "MonthWiseBillReport");
 
-				return dateBillRep;
+				return monthlyBillRep;
 			}
 			
 			@RequestMapping(value = "pdf/getMonthWiseBillPdf/{fromDate}/{toDate}/{frId}", method = RequestMethod.GET)
