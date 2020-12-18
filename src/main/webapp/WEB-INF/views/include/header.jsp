@@ -15,7 +15,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/newpos/css/monginis.css" type="text/css"/>
 <link href="${pageContext.request.contextPath}/resources/css/style.css"
 	rel="stylesheet" type="text/css" />
-<link rel="icon" href="${pageContext.request.contextPath}/resources/newpos/images/mongi.png" type="images/png" sizes="32x32">
+<link rel="icon" href="${pageContext.request.contextPath}/resources/images/feviconicon.png" type="images/png" sizes="32x32">
 
 <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700&display=swap" rel="stylesheet">
 

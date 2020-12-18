@@ -5,13 +5,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta charset="utf-8" />
-<title>Madhvi</title>
+<title>Monginis</title>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport"
 	content="width=device-width; initial-scale=1.0; maximum-scale=1.0" />
-<meta name="keywords" content="Madhvi" />
-<meta name="description" content="Madhvi" />
-<meta name="author" content="Madhvi">
+<meta name="keywords" content="Monginis" />
+<meta name="description" content="Monginis" />
+<meta name="author" content="Monginis">
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/newpos/css/monginis.css"
 	type="text/css" />
@@ -37,7 +37,7 @@
 			<div class="login_bx">
 				<h2 class="lgn_head">
 					<img
-						src="${pageContext.request.contextPath}/resources/newpos/images/monginis1.png"
+						src="${pageContext.request.contextPath}/resources/images/monginislogo.png"
 						alt="lgn_logo">
 				</h2>
 				<div class="lgn_container">
