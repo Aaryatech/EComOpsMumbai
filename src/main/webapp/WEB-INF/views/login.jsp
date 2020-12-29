@@ -26,10 +26,20 @@
 <!--commanJS-->
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/resources/newpos/js/jquery-1.10.2.min.js"></script>
-
+<style type="text/css">
+.login_bg {
+	background-image:
+		url("${pageContext.request.contextPath}/resources/images/lgn_bg.jpg");
+	background-repeat: no-repeat;
+	background-size: cover;
+	position: relative;
+	height: 100vh;
+}
+</style>
 </head>
 
 <body class="login_page">
+<div class="login_bg">
 	<form action="${pageContext.request.contextPath}/loginProcess"
 		method="post">
 		<!--wrapper-start-->
@@ -52,7 +62,7 @@
 					</c:choose> --%>
 
 					<c:if test="${not empty sessionScope.loginError}">
-						<p class="lgn_account" style="color: red; font-size: medium; font-weight: bold;"><c:out value="${sessionScope.loginError}" /></p>
+						<p class="lgn_account" style="color: #ec268f !important; font-size: medium; font-weight: bold;"><c:out value="${sessionScope.loginError}" /></p>
 					</c:if>
 
 					<p class="lgn_account">Please login to your account.</p>
@@ -68,25 +78,25 @@
 							src="${pageContext.request.contextPath}/resources/newpos/images/pass_icn.png"
 							alt="pass_icn">
 					</div>
-					<div class="a">
+					<!-- <div class="a">
 						<label class="container">Remember me <input
 							type="checkbox"> <span class="checkmark"></span>
 						</label>
-					</div>
+					</div> --> 
 					<div class="lgn_btn">
 						<button type="submit" class="signin_btn">
 							<i class="fa fa-sign-in" aria-hidden="true"></i> &nbsp;Sign in
 						</button>
 					</div>
-					<p class="lgn_frgt">
+					<!-- <p class="lgn_frgt">
 						<a href="#">Forgot your password?</a> <br> Don't worry! <a
 							href="#">click here</a> To Reset
-					</p>
+					</p> -->
 				</div>
 			</div>
 		</div>
 		<!--wrapper-end-->
 	</form>
-
+</div>
 </body>
 </html>

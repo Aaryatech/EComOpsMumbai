@@ -54,7 +54,7 @@
 			<tr>
 				<td colspan="2" align="center"
 					style="padding: 2px; border-bottom: 1px solid #E7E7E7;"><img
-					src="${pageContext.request.contextPath}/resources/newpos/images/madhvi_logo.jpg"
+					src="${pageContext.request.contextPath}/resources/images/monginis1.png"
 					alt="madhvi_logo"></td>
 			</tr>
 			<tr>
@@ -65,7 +65,7 @@
 			<tr>
 				<td colspan="2" align="center"
 					style="padding: 2px; border-bottom: 1px solid #E7E7E7;"><b>${frDetails.frName}
-						<br> (Madhvi Dairy Retail Outlet)
+						<br>
 				</b></td>
 			</tr>
 			<tr>
@@ -367,16 +367,16 @@
 						<tr>
 							<td align="center"
 								style="border-top: 1px solid #E7E7E7; padding: 3px;" colspan="6"><span>
-									Customer Care: 9824051188 </span></td>
+									Customer Care: 0000000088 </span></td>
 						</tr>
 
 						<tr>
 							<td align="left"
 								style="border-top: 1px solid #E7E7E7; padding: 3px;" colspan="6"><span>
-									For wholesale inquiry contact DairyMart Team<br> Ph: 82600
-									60048/49<br> Visit us on www.madhvi.in<br> Please
+									For any enquiry contact  us<br> Ph: 82600
+									60048/49<br> Visit us on www.monginis.in<br> Please
 									Email us your feedback/suggestions on<br>
-									madhvidairy@gmail.com<br> This is a computer generated
+									monginis@gmail.com<br> This is a computer generated
 									invoice <br> Subject to ${frDetails.frCity} Jurisdiction
 							</span></td>
 						</tr>
@@ -390,7 +390,7 @@
 							<td style="border-top: 1px solid #E7E7E7; padding: 2px;"
 								colspan="6">-For wholesale inquiry contact DairyMart Team
 								<br>-visit us on www.madhvi.in<br>-Email
-								feedback/suggestions on madhvidairy@gmail.com<br>-This is a
+								feedback/suggestions on monginis@gmail.com<br>-This is a
 								computer generated invoice
 							</td>
 						</tr> -->

@@ -11,9 +11,9 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport"
 	content="width=device-width; initial-scale=1.0; maximum-scale=1.0" />
-<meta name="keywords" content="Madhvi" />
-<meta name="description" content="Madhvi" />
-<meta name="author" content="Madhvi">
+<meta name="keywords" content="Monginis" />
+<meta name="description" content="Monginis" />
+<meta name="author" content="Monginis">
 <jsp:include page="/WEB-INF/views/include/header.jsp"></jsp:include>
 <!--Here Previous Block of Code, Commented at End -->
 </head>
@@ -45,116 +45,7 @@
 			</jsp:include>
 			<section class="main_container">
 				<!--page title-start-->
-				<div class="page_head">
-
-					<%-- <div class="morquee_bx">
-						<div class="morquee_bx_l">Latest News</div>
-						<div class="morquee_bx_r marquee">
-
-							<c:set var="news" value=""></c:set>
-
-							<c:forEach items="${schedulerLists}" var="schedulerLists"
-								varStatus="count">
-
-								<c:set var="news"
-									value="${news}&nbsp;|&nbsp;${schedulerLists.schMessage}"></c:set>
-								<span style="color:${colors}">
-									${schedulerLists.schMessage} </span>
-
-
-							</c:forEach>
-
-							<span style="color:${colors}"> ${news} </span>
-						</div>
-					</div> --%>
-
-					<%-- <div class="row"
-						style="display: inline-block; height: 44px; background: #ed1c24; width: 100%; line-height: 44px; margin: 0 0 20px 0;">
-
-						<div class="col-md-2"
-							style="float: left; width: 11%; height: 44px; line-height: 44px; background: #fcf300; color: #111111; text-align: center; font-size: 20px;">Latest
-							News</div>
-						<div class="col-md-10" style="height: 44px; width: 89%;">
-
-							<c:set var="news" value=""></c:set>
-
-
-							<c:forEach items="${schedulerLists}" var="schedulerLists"
-								varStatus="count">
-
-								<c:set var="news"
-									value="${news}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${schedulerLists.schMessage}"></c:set>
-
-
-							</c:forEach>
-							<marquee behavior="scroll" direction="left"
-								style="font-size: 16px; color: white; margin-left: -15px; margin-right: -15px;"
-								scrollamount="4" onmouseover="this.stop()"
-								onmouseout="this.start()">${news} </marquee>
-
-
-
-						</div>
-					</div> --%>
-
-
-					<div class="row">
-
-						<div class="col-sm-12" style="margin: 0 0 20px 0;">
-
-							<div class="col-sm-2"
-								style="background: #fcf300; color: #111111; text-align: center; font-size: 20px; padding-top: 10px; padding-bottom: 10px;">Latest
-								News</div>
-							<div class="col-sm-10"
-								style="background: #ed1c24; padding-top: 10px; padding-bottom: 5px;">
-
-								<c:set var="news" value=""></c:set>
-
-
-								<c:forEach items="${schedulerLists}" var="schedulerLists"
-									varStatus="count">
-
-									<c:set var="news"
-										value="${news}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${schedulerLists.schMessage}"></c:set>
-
-
-								</c:forEach>
-								<marquee behavior="scroll" direction="left"
-									style="font-size: 16px; color: white; margin-left: -15px; margin-right: -15px; margin-top: 5px;"
-									scrollamount="4" onmouseover="this.stop()"
-									onmouseout="this.start()">${news} </marquee>
-
-
-
-							</div>
-
-						</div>
-
-
-					</div>
-
-
-					<%-- <div class="latestNews" style="background: #ed1c24;">
-					
-						<h3 class="latestNewsTitle" style="background: #fcf300; color: #111111; width: 200px;">Latest News </h3>
-							<div class="microsoft marquee" style="margin-left:37px;">
-						<c:forEach items="${schedulerLists}" var="schedulerLists"  varStatus="count">
-						
-					            <c:set var="colors" value="white"/>
-					            <c:choose>
-					            <c:when test="${count.index%2==0}">
-					            <c:set var="colors" value="white"/>
-					           </c:when>
-					           <c:otherwise>
-					            <c:set var="colors" value="lightblue"/>
-					          </c:otherwise>
-					          </c:choose>
-								<span style="color:${colors}"> ${schedulerLists.schMessage} </span>
-							
-						
-						</c:forEach>
-						</div>
-					</div> --%>
+				<div class="page_head">				
 
 					<div class="page_title">Dashboard</div>
 
@@ -168,7 +59,39 @@
 						</ul>
 					</div> -->
 
-					<div class="custom_right">
+				<%-- 
+				<div class="quick_links">
+					<h3 class="bx_title">Quick Links</h3>
+					<ul>
+						<li><a href="#"><i class="fa fa-list-ul"
+								aria-hidden="true"></i> Sell:${countDetails.saleAmt} </a></li>
+						<li><a href="#"><i class="fa fa-file-pdf-o"
+								aria-hidden="true"></i> Discount:${countDetails.discountAmt}</a></li>
+						<li><a href="#"><i class="fa fa-file-pdf-o"
+								aria-hidden="true"></i> Purchase:${countDetails.purchaseAmt}</a></li>
+						<li><a href="#"><i class="fa fa-file-pdf-o"
+								aria-hidden="true"></i> No. of
+								Bill:${countDetails.noOfBillGenerated}</a></li>
+						<li><a href="#"><i class="fa fa-line-chart"
+								aria-hidden="true"></i> Profit:${countDetails.profitAmt} </a></li>
+						<li><a href="#"><i class="fa fa-file-pdf-o"
+								aria-hidden="true"></i> Advance Amt:${countDetails.advanceAmt}</a></li>
+						<li><a href="#"><i class="fa fa-refresh"
+								aria-hidden="true"></i> Credit Bill
+								Amt:${countDetails.creditAmt}</a></li>
+						<li><a href="#"><i class="fa fa-file-word-o"
+								aria-hidden="true"></i> Cash Amt:${countDetails.cashAmt}</a></li>
+						<li><a href="#"><i class="fa fa-money" aria-hidden="true"></i>
+								Card Amount:${countDetails.cardAmt}</a></li>
+						<li><a href="#"><i class="fa fa-file-o"
+								aria-hidden="true"></i> e-pay Amt:${countDetails.epayAmt}</a></li>
+						<li><a href="#"><i class="fa fa-file-o"
+								aria-hidden="true"></i> Expense:${countDetails.expenseAmt}</a></li>
+					</ul>
+				</div> --%>
+
+				<div class="sales_list">
+				<div>
 						<form action="${pageContext.request.contextPath}/home"
 							method="get">
 
@@ -301,44 +224,11 @@
 
 							</div>
 						</form>
-					</div>
+					<!-- </div> -->
 					<input type="hidden" value="${custmDates}" id="custmDates">
 					<input type="hidden" value="${imagePath}" id="imgPath">
 					<div class="clr"></div>
-				</div>
-
-				<%-- 
-				<div class="quick_links">
-					<h3 class="bx_title">Quick Links</h3>
-					<ul>
-						<li><a href="#"><i class="fa fa-list-ul"
-								aria-hidden="true"></i> Sell:${countDetails.saleAmt} </a></li>
-						<li><a href="#"><i class="fa fa-file-pdf-o"
-								aria-hidden="true"></i> Discount:${countDetails.discountAmt}</a></li>
-						<li><a href="#"><i class="fa fa-file-pdf-o"
-								aria-hidden="true"></i> Purchase:${countDetails.purchaseAmt}</a></li>
-						<li><a href="#"><i class="fa fa-file-pdf-o"
-								aria-hidden="true"></i> No. of
-								Bill:${countDetails.noOfBillGenerated}</a></li>
-						<li><a href="#"><i class="fa fa-line-chart"
-								aria-hidden="true"></i> Profit:${countDetails.profitAmt} </a></li>
-						<li><a href="#"><i class="fa fa-file-pdf-o"
-								aria-hidden="true"></i> Advance Amt:${countDetails.advanceAmt}</a></li>
-						<li><a href="#"><i class="fa fa-refresh"
-								aria-hidden="true"></i> Credit Bill
-								Amt:${countDetails.creditAmt}</a></li>
-						<li><a href="#"><i class="fa fa-file-word-o"
-								aria-hidden="true"></i> Cash Amt:${countDetails.cashAmt}</a></li>
-						<li><a href="#"><i class="fa fa-money" aria-hidden="true"></i>
-								Card Amount:${countDetails.cardAmt}</a></li>
-						<li><a href="#"><i class="fa fa-file-o"
-								aria-hidden="true"></i> e-pay Amt:${countDetails.epayAmt}</a></li>
-						<li><a href="#"><i class="fa fa-file-o"
-								aria-hidden="true"></i> Expense:${countDetails.expenseAmt}</a></li>
-					</ul>
-				</div> --%>
-
-				<div class="sales_list">
+					
 					<ul>
 					<c:forEach items="${countDetails}" var="countDetails" varStatus="count">
 						<c:if test="${!empty countDetails.statusName}">
@@ -1528,7 +1418,7 @@
 											document
 											.getElementById("taxableAmt").innerHTML = data[i].taxableAmt;
 											
-											document.getElementById("taxAmt").innerHTML = data[i].igstAmt;
+											document.getElementById("taxAmt").innerHTML = data[i].taxAmt;
 											document.getElementById("discAmt").innerHTML = data[i].discAmt;
 											document
 													.getElementById("deliveryCharges").innerHTML = data[i].deliveryCharges;

@@ -268,11 +268,11 @@ a.saveOrder:hover{background:#343690;}
 -o-border-radius:5px;-ms-border-radius:5px;border-radius:5px;-webkit-transition: all ease 0.5s;-moz-transition: all ease 0.5s;-o-transition: all ease 0.5s;-ms-transition: all ease 0.5s;transition: all ease 0.5s;}
 .btnReset:hover{background:#eee;border:2px solid #ccc;-webkit-transition: all ease 0.5s;-moz-transition: all ease 0.5s;-o-transition: all ease 0.5s;-ms-transition: all ease 0.5s;transition: all ease 0.5s;}
 
-.buttonsaveorder{background:#fcf300;text-align:center; margin:0px; padding:6px 15px;cursor:pointer;border:2px solid #fcf300; color:#333; font-size:14px; 
+.buttonsaveorder{background:#343690;text-align:center; margin:0px; padding:6px 15px;cursor:pointer;border:2px solid #343690; color:#FFF; font-size:14px; 
 line-height:20px; font-weight:600; display:inline-block; vertical-align:top;
 -webkit-border-radius:5px;-moz-border-radius:5px;
 -o-border-radius:5px;-ms-border-radius:5px;border-radius:5px;-webkit-transition: all ease 0.5s;-moz-transition: all ease 0.5s;-o-transition: all ease 0.5s;-ms-transition: all ease 0.5s;transition: all ease 0.5s;}
-.buttonsaveorder:hover{background:#ef2929;border:2px solid #ef2929; color:#fff;-webkit-transition: all ease 0.5s;-moz-transition: all ease 0.5s;-o-transition: all ease 0.5s;-ms-transition: all ease 0.5s;transition: all ease 0.5s;}
+.buttonsaveorder:hover{background:#ec268f;border:2px solid #ec268f; color:#fff;-webkit-transition: all ease 0.5s;-moz-transition: all ease 0.5s;-o-transition: all ease 0.5s;-ms-transition: all ease 0.5s;transition: all ease 0.5s;}
 
 
 
@@ -491,7 +491,7 @@ table.responsive-table {width:100%; border-collapse: collapse; overflow-x: auto;
 
 
 /*new dashboard css*/
-.sales_list{display: block; margin:0 0 15px 0; background: #FFF; border-top:3px solid #ffeb00; padding:10px;}
+.sales_list{display: block; margin:0 0 15px 0; background: #FFF;  padding:10px; /* border-top:3px solid #ffeb00; */}
 .sales_list ul{margin:0px; padding:0px;}
 .sales_list ul li{list-style-type: none; float:left; width: 25%; padding:10px;}
 .sale_one{padding: 0; height: 100px; display: table; width: 100%;}
@@ -565,9 +565,9 @@ box-shadow: 0 6px 20px 0 rgba(244,143,177,.5)!important;
 
 .chart_r{ position:relative; min-height: 568px;}
 .right_btns{position: absolute; right: 12px; top: 12px;}
-.sub_btn{background: #fcf300; font-size: 12px; font-weight: 600; color: #333; border:none; padding: 5px 10px; border-radius:3px;
+.sub_btn{background: #343690; font-size: 12px; font-weight: 600; color: #FFF; border:none; padding: 5px 10px; border-radius:3px;
 -webkit-transition: all ease 0.5s;-moz-transition: all ease 0.5s;-o-transition: all ease 0.5s;-ms-transition: all ease 0.5s;transition: all ease 0.5s;}
-.sub_btn:hover{background:#ef2929; color: #FFF; -webkit-transition: all ease 0.5s;-moz-transition: all ease 0.5s;-o-transition: all ease 0.5s;
+.sub_btn:hover{background:#ec268f; color: #FFF; -webkit-transition: all ease 0.5s;-moz-transition: all ease 0.5s;-o-transition: all ease 0.5s;
 -ms-transition: all ease 0.5s;transition: all ease 0.5s;}
 
 .sub_right{display: inline-block;}

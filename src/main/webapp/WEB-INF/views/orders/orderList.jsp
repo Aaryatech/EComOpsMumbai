@@ -773,7 +773,7 @@ table, th, td {
 										document
 										.getElementById("taxableAmt").innerHTML = data[i].taxableAmt;
 										
-										document.getElementById("taxAmt").innerHTML = data[i].igstAmt;
+										document.getElementById("taxAmt").innerHTML = data[i].taxAmt;
 										document.getElementById("discAmt").innerHTML = data[i].discAmt;
 										document
 												.getElementById("deliveryCharges").innerHTML = data[i].deliveryCharges;
