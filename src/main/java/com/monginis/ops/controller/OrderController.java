@@ -331,7 +331,8 @@ public class OrderController {
 							sellBillDetail.setCgstRs(detail.getCgstAmt());
 							sellBillDetail.setIgstRs(detail.getIgstAmt());
 
-							sellBillDetail.setQty(detail.getQty());
+							//sellBillDetail.setQty(detail.getQty());
+							sellBillDetail.setQty(detail.getExFloat3());
 							sellBillDetail.setSellBillDetailNo(0);
 							sellBillDetail.setSellBillNo(0);
 							sellBillDetail.setBillStockType(1);

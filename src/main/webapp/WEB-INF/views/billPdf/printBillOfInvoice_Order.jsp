@@ -195,7 +195,7 @@
 																<c:when test="${itemBillList.isDecimal==1}">
 																	<fmt:formatNumber type="number" groupingUsed="false"
 																		value="${itemBillList.qty}" maxFractionDigits="3"
-																		minFractionDigits="3" />
+																		minFractionDigits="2" />
 																</c:when>
 																<c:otherwise>
 																	<fmt:formatNumber type="number" groupingUsed="false"
@@ -280,7 +280,7 @@
 
 												<c:if test="${sellBillHeaderAndDetail.extFloat3 > 0}">
 													<tr>
-														<td colspan="4" align="right"><span class="style7">Wallet
+														<td colspan="4" align="right"><span class="style7">Total
 																Amount:</span></td>
 														<td align="right"><span class="style7">${sellBillHeaderAndDetail.extFloat3}</span></td>
 													</tr>
