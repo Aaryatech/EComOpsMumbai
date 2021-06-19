@@ -72,7 +72,7 @@
 					</c:if>
 
 
-					<c:if
+					<%-- <c:if
 						test="${(sessionScope.frEmpDetails.designation==1 or sessionScope.frEmpDetails.designation==2 or sessionScope.frEmpDetails.designation==3) && sessionScope.isEmpPresent==1}">
 						<li><a
 							href="${pageContext.request.contextPath}/newcustomerbill/0"><div
@@ -83,7 +83,7 @@
 								<div class="title">
 									POINT OF SALE(POS)<span></span>
 								</div></a></li>
-					</c:if>
+					</c:if> --%>
 
 					<c:set var="flag" value="${0}"></c:set>
 					<c:forEach items="${setList}" var="setting" varStatus="count">
@@ -157,7 +157,7 @@
 					</c:if>
 
 
-					<c:if
+					<%-- <c:if
 						test="${sessionScope.frEmpDetails.designation==1 or sessionScope.frEmpDetails.designation==2 or sessionScope.frEmpDetails.designation==3}">
 
 						<li><a href="${pageContext.request.contextPath}/viewBill"><div
@@ -168,7 +168,7 @@
 								<div class="title">
 									View Sell Bills <span></span>
 								</div></a></li>
-					</c:if>
+					</c:if> --%>
 
 
 
@@ -406,7 +406,7 @@
 					</c:if>
 
 
-					<c:if
+					<%-- <c:if
 						test="${sessionScope.frEmpDetails.designation==1 or sessionScope.frEmpDetails.designation==2 or sessionScope.frEmpDetails.designation==3}">
 
 						<li><a
@@ -428,7 +428,7 @@
 								<div class="title">
 									Expense <span>List</span>
 								</div></a></li>
-					</c:if>
+					</c:if> --%>
 
 
 					<c:set var="flag" value="${0}"></c:set>

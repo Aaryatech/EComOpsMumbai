@@ -91,13 +91,13 @@
 				</div> --%>
 
 				<div class="sales_list">
-				<div>
+				
 						<form action="${pageContext.request.contextPath}/home"
-							method="get">
+							method="get" id="submitInsert">
 
 							<%-- <input type="hidden" name="tod" id="tod" value="${tod}">
-							<input type="hidden" name="frmd" id="frmd" value="${frmd}">
-							<input type="hidden" name="catId" id="catId" value="${tod}"> --%>
+							<input type="hidden" name="frmd" id="frmd" value="${frmd}"> --%>
+							<input type="hidden" name="catId" id="catId" value="0">
 							<div class="colOuter">
 
 
@@ -188,7 +188,8 @@
 									<div class="col-md-2">
 										<input id="fromdatepicker" class="texboxitemcode texboxcal"
 											required="required" placeholder="From Date" name="fromDate"
-											value="${fromDate}" autocomplete="off" type="text">
+											value="${fromDate}" autocomplete="off" type="text"><span class="validation-invalid-label text-danger" id="error_from"
+											style="display: none;">From date must be smaller than to date.</span>
 
 									</div>
 									<div class="col-md-1">
@@ -197,8 +198,8 @@
 									<div class="col-md-2">
 										<input id="todatepicker" class="texboxitemcode texboxcal"
 											required="required" placeholder="To Date" name="toDate"
-											value="${toDate}" autocomplete="off" type="text">
-
+											value="${toDate}" autocomplete="off" type="text"> <span class="validation-invalid-label text-danger" id="error_to"
+											style="display: none;">To date must be greater than from date.</span>
 									</div>
 
 								</div>
@@ -208,7 +209,7 @@
 
 								<div class="sub_right">
 									<input name="submit" class="buttonsaveorder" value="Submit"
-										type="submit" id="submtbtn">
+										type="submit" id="submt_btn">
 								</div>
 								<div class="sub_right">
 									<c:if test="${msgListCount>0}">
@@ -224,12 +225,12 @@
 
 							</div>
 						</form>
-					<!-- </div> -->
+					
 					<input type="hidden" value="${custmDates}" id="custmDates">
 					<input type="hidden" value="${imagePath}" id="imgPath">
 					<div class="clr"></div>
 					
-					<ul>
+					<ul id="status_cnt">
 					<c:forEach items="${countDetails}" var="countDetails" varStatus="count">
 						<c:if test="${!empty countDetails.statusName}">
 					<li>
@@ -251,170 +252,21 @@
 							</div>
 						</li>
 						</c:if>
-						</c:forEach>
-						<!-- first li box -->
-							<%-- <li>
-							<div class="sale_one bg_one">
-								<div class="sale_l">
-									<i class="fa fa-inr" aria-hidden="true"></i>
-
-								</div>
-								<div class="sale_r">
-									<h3 class="sale_head">${typeTitle}&nbsp;Sales</h3>
-
-									<h1 class="price_sale">
-										Rs.
-										<fmt:formatNumber type="number" pattern="#"
-											value="${countDetails.saleAmt}" />
-									</h1>
-								</div>
-								<div class="clr"></div>
-							</div>
-						</li>
-
-						<!-- second li box -->
-						<li>
-							<div class="sale_one bg_two">
-								<div class="sale_l">
-									<i class="fa fa-inr" aria-hidden="true"></i>
-
-								</div>
-								<div class="sale_r">
-									<h3 class="sale_head">${typeTitle}&nbsp;Discount</h3>
-
-									<h5 class="price_sale">
-										Rs.
-										<fmt:formatNumber type="number" pattern="#"
-											value="${countDetails.discountAmt}" />
-									</h5>
-								</div>
-								<div class="clr"></div>
-							</div>
-						</li>
-
-						
-
-						<!-- fourth li box -->
-						<li>
-							<div class="sale_one bg_fourth">
-								<div class="sale_l">
-									<i class="fa fa-inr" aria-hidden="true"></i>
-
-								</div>
-								<div class="sale_r">
-									<h3 class="sale_head">${typeTitle}&nbsp;No.ofBill</h3>
-									<h5 class="price_sale">${countDetails.noOfBillGenerated}</h5>
-								</div>
-								<div class="clr"></div>
-							</div>
-						</li>
-
-						<!-- six li box -->
-						<li>
-							<div class="sale_one bg_sixth">
-								<div class="sale_l">
-									<i class="fa fa-inr" aria-hidden="true"></i>
-
-								</div>
-								<div class="sale_r">
-									<h3 class="sale_head">${typeTitle}&nbsp;AdvanceAmt</h3>
-									<h5 class="price_sale">
-										Rs.
-										<fmt:formatNumber type="number" pattern="#"
-											value="${countDetails.advanceAmt}" />
-									</h5>
-								</div>
-								<div class="clr"></div>
-							</div>
-						</li>
-
-						<li>
-							<div class="sale_one bg_one">
-								<div class="sale_l">
-									<i class="fa fa-inr" aria-hidden="true"></i>
-
-								</div>
-								<div class="sale_r">
-									<h3 class="sale_head">${typeTitle}&nbsp;Expenses</h3>
-									<h5 class="price_sale">
-										Rs.
-										<fmt:formatNumber type="number" pattern="#"
-											value="${countDetails.expenseAmt}" />
-									</h5>
-								</div>
-								<div class="clr"></div>
-							</div>
-						</li>
-
-						<!-- eighth li box -->
-						<li>
-							<div class="sale_one bg_three">
-								<div class="sale-list">
-									<div class="sale_epay">
-										EPAY <span>Rs.<fmt:formatNumber type="number"
-												pattern="#" value="${countDetails.epayAmt}" />
-										</span>
-									</div>
-									<div class="sale_epay">
-										Cash <span>Rs.<fmt:formatNumber type="number"
-												pattern="#" value="${countDetails.cashAmt}" />
-										</span>
-									</div>
-									<div class="sale_epay">
-										Card <span>Rs.<fmt:formatNumber type="number"
-												pattern="#" value="${countDetails.cardAmt}" />
-										</span>
-									</div>
-									<div class="clr"></div>
-								</div>
-							</div>
-						</li>
-
-						<li>
-							<div class="sale_one bg_two">
-								<div class="sale-list">
-									<div class="sale_epay" style="text-align: center;">Dairy
-										Mart Order</div>
-									<c:forEach items="${dailyList}" var="dailyList"
-										varStatus="count">
-										<div class="sale_epay">
-											${dailyList.orderDate} <span>Rs.<fmt:formatNumber
-													type="number" pattern="#" value="${dailyList.total}" />
-											</span>
-										</div>
-
-										<div class="clr"></div>
-									</c:forEach>
-								</div>
-							</div>
-						</li>
-
-					<li>
-							<div class="sale_one bg_three">
-								<div class="sale-list">
-									<div class="sale_epay" style="text-align: center;">
-										Advance Order</div>
-									<c:forEach items="${advOrderList}" var="advOrderList"
-										varStatus="count">
-										<div class="sale_epay">
-											${advOrderList.orderDate} <span>Rs.<fmt:formatNumber
-													type="number" pattern="#" value="${advOrderList.total}" />
-											</span>
-										</div>
-
-										<div class="clr"></div>
-									</c:forEach>
-								</div>
-							</div>
-						</li> --%>
-
-						<!-- nine li box -->
-
+						</c:forEach>						
 					</ul>
 					<div class="clr"></div>
 				</div>
+						<div align="center" id="loader" style="display: none;">
 
-				<div class="sales_list">
+							<span>
+								<h4>
+									<font color="#343690">Loading... Please Wait</font>
+								</h4>
+							</span> <span class="l-1"></span> <span class="l-2"></span> <span
+								class="l-3"></span> <span class="l-4"></span> <span class="l-5"></span>
+							<span class="l-6"></span>
+						</div>
+						<div class="sales_list">
 
 
 					<h3 class="bx_title">Orders By Status</h3>
@@ -459,43 +311,40 @@
 				<div id="donutchart"></div>
 				<!-- style="width: 900px; height: 500px;" -->
 			</div>
-			<div class="chart_r">
-				<h3 class="bx_title">Top Products</h3>
-				<div class="right_btns">
-					<input name="submit" class="sub_btn" value="All" type="submit"
-						onclick="itemSellBillCal2(0)" id="submtbtn">
-					<button type="reset" class="sub_btn" value="Reset"
-						onclick="itemSellBillCal2(2)">
-						<i class="fa fa-arrow-down" aria-hidden="true"></i>
-					</button>
-					<button type="reset" class="sub_btn" value="Reset"
-						onclick="itemSellBillCal2(1)">
-						<i class="fa fa-arrow-up" aria-hidden="true"></i>
-					</button>
+						<div class="chart_r">
+							<h3 class="bx_title">Top Products</h3>
+
+							<div align="center" id="loader_tbl" style="display: none;">
+
+								<span>
+									<h4>
+										<font color="#343690">Loading... Please Wait</font>
+									</h4>
+								</span> <span class="l-1"></span> <span class="l-2"></span> <span
+									class="l-3"></span> <span class="l-4"></span> <span class="l-5"></span>
+								<span class="l-6"></span>
+							</div>
 
 
 
-				</div>
 
+							<div class="scrollbars" id="scrollbarsmodaldiv">
+								<table id="custCreditTable">
 
+									<thead>
+										<tr>
+											<th style="text-align: center;">Sr</th>
+											<th style="text-align: center;">Item Name</th>
+											<th style="text-align: center;">Amount</th>
+										</tr>
+									</thead>
+									<tbody>
 
-				<div class="scrollbars" id="scrollbarsmodaldiv">
-					<table id="custCreditTable">
-
-						<thead>
-							<tr>
-								<th style="text-align: center;">Sr</th>
-								<th style="text-align: center;">Item Name</th>
-								<th style="text-align: center;">Amount</th>
-							</tr>
-						</thead>
-						<tbody>
-
-						</tbody>
-					</table>
-				</div>
-			</div>
-			<div class="clr"></div>
+									</tbody>
+								</table>
+							</div>
+						</div>
+						<div class="clr"></div>
 		</div>
 		
 		<div id="overlay2">
@@ -727,6 +576,7 @@
 
 	<script type="text/javascript">
 		function itemSellBillCal(id) {
+			$('#loader_tbl').show();
 			var frmd = document.getElementById("fromdatepicker").value;
 			var tod = document.getElementById("todatepicker").value;
 			var flag = 1;
@@ -737,7 +587,7 @@
 				flag : flag,
 				ajax : 'true'
 			}, function(data) {
-
+				$('#loader_tbl').hide();
 				//alert(JSON.stringify(data));
 				$('#custCreditTable td').remove();
 
@@ -1316,7 +1166,77 @@
 			<br>
 		</div>
 	</div>
+<script type="text/javascript">
+$(document).ready(function(){
+    $("#submt_btn").click(function(){ 
+    	var isError = false;
+    	var fromDate = document.getElementById("fromdatepicker").value;
+		var toDate = document.getElementById("todatepicker").value;
+		isError=(valdateDate(fromDate, toDate))
+		if(isError){
+			$("#error_from").hide();
+			$("#error_to").hide();
+			$("#submitInsert").submit(); // Submit the form
+			
+		}else{
+			$("#error_from").show();
+			$("#error_to").show();
+			return false;
+		}
+       
+    });
+});
+/* $(document).ready(function($) {
+	$("#submitInsert").submit(function(e) {
+		var isError = false;
+		var errMsg = "";
 
+		var fromDate = document.getElementById("fromdatepicker").value;
+		var toDate = document.getElementById("todatepicker").value;
+		alert(fromDate)
+		alert(valdateDate(fromDate, toDate))
+		
+		/* if (!$("#area_code").val()) {
+			isError = true;
+			$("#error_area_code").show()
+		} else {
+			$("#error_area_code").hide()
+		}
+		if (!isError) {
+			var x = true;
+			if (x == true) {
+				document.getElementById("submtbtn").disabled = true;
+				return true;
+			}
+		} */
+
+		//return false;
+
+	/* });
+}); */ 
+
+
+function valdateDate(fromDate, toDate) {
+	var from_date = fromDate;
+	var to_date = toDate;
+	var x = 0;
+
+	var fromdate = from_date.split('-');
+	from_date = new Date();
+	from_date.setFullYear(fromdate[2], fromdate[1] - 1, fromdate[0]);
+	var todate = to_date.split('-');
+	to_date = new Date();
+	to_date.setFullYear(todate[2], todate[1] - 1, todate[0]);
+	if (to_date < from_date)
+	{
+		return false;
+
+	} else { 
+		
+		return true;
+	}
+}
+</script>
 	<!-- **************************************************************** -->
 	<script type="text/javascript">
 		$(document).ready(function() {
@@ -1922,8 +1842,10 @@
 	</script>
 	<script>
 	function getBillStatusDetail(statusId){ 
-		document.getElementById("overlay2").style.display = "block";
+		$('#loader').show();
 		
+		document.getElementById('status_cnt').style.pointerEvents = 'none';
+		document.getElementById("overlay2").style.display = "block";		
 		$('#order_table td').remove();
 		
 			var fromDate = $("#fromdatepicker").val();
@@ -1939,11 +1861,13 @@
 								ajax : 'true'
 							},
 							function(data) {
-							//	$('#loader').hide();
+								$('#loader').hide();
+								document.getElementById('status_cnt').style.pointerEvents = 'auto';
+								document.getElementById("overlay2").style.display = "none";
 								if (data == null) {
 									alert("No Data Found!");									
 								}
-								document.getElementById("overlay2").style.display = "none";
+								
 								
 								var orderTtlAmt = 0;
 								$
@@ -2251,7 +2175,59 @@
 		}
 	</script>
 
+<script type="text/javascript">
+$(document).ready(function($) {
 
+	$("#submitInsert").submit(function(e) {
+		var isError = false;
+		var errMsg = "";
+
+		var fromDate = $("#fromdatepicker").val();
+		var toDate = $("#todatepicker").val();
+		
+		alert(valdateDate(fromDate, toDate))
+		
+		/* if (!$("#area_code").val()) {
+			isError = true;
+			$("#error_area_code").show()
+		} else {
+			$("#error_area_code").hide()
+		}
+		if (!isError) {
+			var x = true;
+			if (x == true) {
+				document.getElementById("submtbtn").disabled = true;
+				return true;
+			}
+		} */
+
+		//return false;
+
+	});
+});
+
+
+function valdateDate(fromDate, toDate) {
+	var from_date = fromDate;
+	var to_date = toDate;
+	var x = 0;
+
+	var fromdate = from_date.split('-');
+	from_date = new Date();
+	from_date.setFullYear(fromdate[2], fromdate[1] - 1, fromdate[0]);
+	var todate = to_date.split('-');
+	to_date = new Date();
+	to_date.setFullYear(todate[2], todate[1] - 1, todate[0]);
+	if (to_date < from_date)
+	{
+		return false;
+
+	} else { 
+		
+		return true;
+	}
+}
+</script>
 
 	<!-- **************************************************************** -->
 </body>
