@@ -241,7 +241,7 @@
 
 								</div>
 								<div class="sale_r">
-									<h3 class="sale_head">${countDetails.statusName}-${countDetails.orderStatus}</h3>
+									<h3 class="sale_head">${countDetails.statusName}</h3>
 
 									<h1 class="price_sale">										
 										<fmt:formatNumber type="number" pattern="#"
