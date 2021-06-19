@@ -236,7 +236,7 @@ public class HomeController {
 			model.addObject("countDetails", dashDataList);
 			
 			model.addObject("divType", type);
-			model.addObject("imagePath", Constant.FR_IMAGE_URL);
+			model.addObject("imagePath", Constant.PROD_IMG_VIEW_URL);
 		
 		} catch (Exception e) {
 			e.printStackTrace();

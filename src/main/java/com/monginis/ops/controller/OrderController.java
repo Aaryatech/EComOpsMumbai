@@ -72,7 +72,7 @@ public class OrderController {
 			statusList = new ArrayList<Status>(Arrays.asList(statusArr));
 			mav.addObject("statusList", statusList);
 			
-			mav.addObject("imagePath", Constant.FR_IMAGE_URL);
+			mav.addObject("imagePath", Constant.PROD_IMG_VIEW_URL);
 
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -241,7 +241,7 @@
 
 								</div>
 								<div class="sale_r">
-									<h3 class="sale_head">${countDetails.statusName}</h3>
+									<h3 class="sale_head">${countDetails.statusName}-${countDetails.orderStatus}</h3>
 
 									<h1 class="price_sale">										
 										<fmt:formatNumber type="number" pattern="#"
@@ -1072,7 +1072,7 @@
 			</div>
 			</div>
 			
-			<div class="row">
+			<!-- <div class="row">
 				<div id="table-scroll" class="table-scroll" style="width: 100%">
 					<div class="table-responsive"
 						style="max-height: none; min-height: none;">
@@ -1096,7 +1096,7 @@
 						</table>
 					</div>
 				</div>
-			</div>
+			</div> -->
 			<br>
 			<div class="row"
 				style="margin-left: 15px; margin-right: 15px; background: #fff; display: none;"
@@ -1186,35 +1186,6 @@ $(document).ready(function(){
        
     });
 });
-/* $(document).ready(function($) {
-	$("#submitInsert").submit(function(e) {
-		var isError = false;
-		var errMsg = "";
-
-		var fromDate = document.getElementById("fromdatepicker").value;
-		var toDate = document.getElementById("todatepicker").value;
-		alert(fromDate)
-		alert(valdateDate(fromDate, toDate))
-		
-		/* if (!$("#area_code").val()) {
-			isError = true;
-			$("#error_area_code").show()
-		} else {
-			$("#error_area_code").hide()
-		}
-		if (!isError) {
-			var x = true;
-			if (x == true) {
-				document.getElementById("submtbtn").disabled = true;
-				return true;
-			}
-		} */
-
-		//return false;
-
-	/* });
-}); */ 
-
 
 function valdateDate(fromDate, toDate) {
 	var from_date = fromDate;
@@ -1297,9 +1268,9 @@ function valdateDate(fromDate, toDate) {
 											}
 
 											if (data[i].paymentMethod == 1) {
-												paymentMode = "Cash";
+												paymentMode = "Cash On Delivery";
 											} else if (data[i].paymentMethod == 2) {
-												paymentMode = "Card";
+												paymentMode = "Online";
 											} else if (data[i].paymentMethod == 3) {
 												paymentMode = "E-Pay";
 											} else {
@@ -1381,14 +1352,14 @@ function valdateDate(fromDate, toDate) {
 																		.append($(
 																				'<td style="padding: 12px; line-height:0; border-top: 1px solid #ddd;""></td>')
 																				.html(
-																						itm.qty));
+																						itm.exFloat3));
 
 																tr
 																		.append($(
 																				'<td style="padding: 12px; line-height:0; border-top: 1px solid #ddd;""></td>')
 																				.html(
 																						itm.mrp
-																								* itm.qty));
+																								* itm.exFloat3));
 
 																$(
 																		'#order_dtl_table tbody')
@@ -1518,7 +1489,13 @@ function valdateDate(fromDate, toDate) {
 													+ "','7','"
 													+ data[i].uuidNo
 													+ "')>RETURN</button>&nbsp;&nbsp;";
-													
+											
+											var printGenBill = "&nbsp;&nbsp;<button class=' hold_btn' style='width:20%; height:33px; line-height:0px; transition: all ease 0.5s;'  id=billBtn onclick=printGeneratedBill('"
+												+ data[i].orderId
+												+ "',1,'"
+												+ data[i].uuidNo
+												+ "')> PRINT BILL &nbsp;<i class='fa fa-print ' aria-hidden='true' style='font-size: 18px;' ></i></button>&nbsp;&nbsp;";
+
 													
 													if (data[i].orderStatus == 1) {														
 														document.getElementById("buttonDiv").innerHTML = acceptBtn
@@ -1551,12 +1528,11 @@ function valdateDate(fromDate, toDate) {
 														document.getElementById("buttonDiv").innerHTML = billBtn
 																+ "" + billBtnWithPrint;
 
-													} else if (data[i].orderStatus == 4) {
+													} else if (data[i].orderStatus == 4) {														
 
-														document.getElementById("statusDiv").innerHTML = delPending;
-
-														document.getElementById("buttonDiv").innerHTML = deliveredBtn
+														document.getElementById("buttonDiv").innerHTML = printGenBill+ "" +deliveredBtn
 																+ "" + returnBtn;
+														//document.getElementById("statusDiv").innerHTML = delPending;
 
 														document.getElementById("enterRemarkDiv").style.display = "block";
 														document.getElementById("remarkLbl").innerHTML = "Return";
@@ -1806,6 +1782,35 @@ function valdateDate(fromDate, toDate) {
 
 		}
 		
+		//PRINT BILL - ---------------------
+
+		function printGeneratedBill(orderId, print, uuidNo) {	
+			
+									if (orderId != null) {
+
+										closeBillPopup();
+
+										if (print == 1) {										
+											var url = "${pageContext.request.contextPath}/printGSTBill/"
+													+ orderId;
+
+											$("<iframe>").hide().attr("src",
+													url).appendTo("body");
+										}else{
+											
+											window.location.reload();
+										}
+
+									}
+
+									document.getElementById("overlay2").style.display = "none";
+
+							
+
+			
+
+		}
+		
 		function setDeliveryBoyDropdownData(frId, delId) {
 
 			$.getJSON('${getDeliveryBoyList}', {
@@ -1942,7 +1947,7 @@ function valdateDate(fromDate, toDate) {
 															.append($(
 																	'<td style="text-align: center;"></td>')
 																	.html(
-																			order.deliveryTimeDisplay));
+																			order.deliveryDateDisplay+" "+order.deliveryTimeDisplay));
 
 													tr
 															.append($(
@@ -2174,60 +2179,6 @@ function valdateDate(fromDate, toDate) {
 
 		}
 	</script>
-
-<script type="text/javascript">
-$(document).ready(function($) {
-
-	$("#submitInsert").submit(function(e) {
-		var isError = false;
-		var errMsg = "";
-
-		var fromDate = $("#fromdatepicker").val();
-		var toDate = $("#todatepicker").val();
-		
-		alert(valdateDate(fromDate, toDate))
-		
-		/* if (!$("#area_code").val()) {
-			isError = true;
-			$("#error_area_code").show()
-		} else {
-			$("#error_area_code").hide()
-		}
-		if (!isError) {
-			var x = true;
-			if (x == true) {
-				document.getElementById("submtbtn").disabled = true;
-				return true;
-			}
-		} */
-
-		//return false;
-
-	});
-});
-
-
-function valdateDate(fromDate, toDate) {
-	var from_date = fromDate;
-	var to_date = toDate;
-	var x = 0;
-
-	var fromdate = from_date.split('-');
-	from_date = new Date();
-	from_date.setFullYear(fromdate[2], fromdate[1] - 1, fromdate[0]);
-	var todate = to_date.split('-');
-	to_date = new Date();
-	to_date.setFullYear(todate[2], todate[1] - 1, todate[0]);
-	if (to_date < from_date)
-	{
-		return false;
-
-	} else { 
-		
-		return true;
-	}
-}
-</script>
 
 	<!-- **************************************************************** -->
 </body>
