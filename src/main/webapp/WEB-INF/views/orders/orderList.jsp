@@ -135,32 +135,26 @@ table, th, td {
 								style="margin-left: 75px;">Search</button>
 						</div>
 					</div>
-				</div>
+				
 				<!--tabNavigation-->
 				<div class="row">
 					<div class="col-md-12">
-						<div class="clearfix"></div>
-
-						<div id="table-scroll" class="table-scroll">
+						
+						<div id="table-scroll" class="table-scroll marg_bx">
 							<div class="table-wrap"
 								style="max-height: none; min-height: none; z-index: 0;">
 								<table id="order_table" class="main-table">
 									<thead>
 										<tr class="bgpink">
-											<th class="col-md-1" style="text-align: center;">Sr No</th>
-											<th class="col-md-2" style="text-align: center;">Order
-												No.</th>
-											<th class="col-md-2" style="text-align: center;">Delivery
-												Date</th>
-											<th class="col-md-2" style="text-align: center;">Customer</th>
-											<th class="col-md-2" style="text-align: center;">Time
-												Slot</th>
-											<th class="col-md-1" style="text-align: center;">Order
-												Status</th>
-											<th class="col-sm-1" style="text-align: center;">Payment
-												Mode</th>
-											<th class="col-md-2" style="text-align: center;">Total</th>
-											<th class="col-md-1" style="text-align: center;">Action</th>
+											<th style="text-align: center;">Sr No</th>
+											<th style="text-align: center;">Order No.</th>
+											<th style="text-align: center;">Delivery Date</th>
+											<th style="text-align: center;">Customer</th>
+											<th style="text-align: center;">Time Slot</th>
+											<th style="text-align: center;">Order Status</th>
+											<th style="text-align: center;">Payment Mode</th>
+											<th style="text-align: center;">Total</th>
+											<th style="text-align: center;">Action</th>
 
 										</tr>
 									</thead>
@@ -170,6 +164,7 @@ table, th, td {
 								</table>
 							</div>
 						</div>
+						
 
 						<br /> 
 					</div>
@@ -180,7 +175,7 @@ table, th, td {
 				<br> <br>
 
 
-
+		</div>
 			</div>
 			<!--tabNavigation-->
 
@@ -256,7 +251,7 @@ table, th, td {
 					<div class="add_frm" style="padding: 0px; border-bottom: 0px">
 						<div class="add_frm_one" style="margin: 0;">
 							<div class="add_customer_one"
-								style="font-size: 14px; width: 100%">Customer :</div>
+								style="font-size: 14px; width: 100%">Customer Name :</div>
 						</div>
 
 					</div>
@@ -389,18 +384,18 @@ table, th, td {
 				</div>
 				
 				
-				<div class="col-lg-3" style="padding-left: 15px;">
-					<div class="add_frm"
-						style="padding: 0px 0px 0px 15px; border-bottom: 0px">
-						<div class="add_frm_one" style="margin: 0;">
-							<div class="add_customer_one"
-								style="font-size: 14px; width: 100%">Total :</div>
-						</div>
+<!-- 				<div class="col-lg-3" style="padding-left: 15px;"> -->
+<!-- 					<div class="add_frm" -->
+<!-- 						style="padding: 0px 0px 0px 15px; border-bottom: 0px"> -->
+<!-- 						<div class="add_frm_one" style="margin: 0;"> -->
+<!-- 							<div class="add_customer_one" -->
+<!-- 								style="font-size: 14px; width: 100%">Total :</div> -->
+<!-- 						</div> -->
 
-					</div>
-				</div>
+<!-- 					</div> -->
+<!-- 				</div> -->
 
-				<div class="col-lg-3" style="padding-left: 15px;">
+				<!-- <div class="col-lg-3" style="padding-left: 15px;">
 					<div class="add_frm" style="padding: 0px; border-bottom: 0px">
 						<div class="add_frm_one" style="margin: 0;">
 							<div class="add_customer_one"
@@ -408,29 +403,23 @@ table, th, td {
 						</div>
 
 					</div>
-				</div>
+				</div> -->
 			</div>
 			<br>
 
-			<div class="row">
+			<div><!-- class="row" -->
 				<div id="table-scroll" class="table-scroll" style="width: 100%">
 					<div class="table-responsive"
 						style="max-height: none; min-height: none;">
 						<table id="order_dtl_table" class="main-table">
 							<thead>
 								<tr class="bgpink">
-									<th class="col-md-1"
-										style="text-align: center; padding: 0 !important; font-size: 14px;">SR</th>
-									<th class="col-md-2"
-										style="text-align: center; padding: 0 !important; font-size: 14px;">Items Name</th>
-									<th class="col-md-1"
-										style="text-align: center; padding: 0 !important; font-size: 14px;">Product Image</th>
-									<th class="col-sm-1"
-										style="text-align: center; padding: 0 !important; font-size: 14px;">Rate</th>
-									<th class="col-md-1"
-										style="text-align: center; padding: 0 !important; font-size: 14px;">Quantity</th>
-									<th class="col-md-1"
-										style="text-align: center; padding: 0 !important; font-size: 14px;">Total</th>
+									<th style="text-align: center; padding: 0 !important; font-size: 14px;">SR</th>
+									<th style="text-align: center; padding: 0 !important; font-size: 14px;">Items Name</th>
+									<th style="text-align: center; padding: 0 !important; font-size: 14px;">Product Image</th>
+									<th style="text-align: center; padding: 0 !important; font-size: 14px;">Price</th>
+									<th style="text-align: center; padding: 0 !important; font-size: 14px;">Quantity</th>
+									<th style="text-align: center; padding: 0 !important; font-size: 14px;">Total Price</th>
 
 								</tr>
 							</thead>
@@ -544,7 +533,7 @@ table, th, td {
 						style="padding: 0px 0px 0px 15px; border-bottom: 0px">
 						<div class="add_frm_one" style="margin: 0;">
 							<div class="add_customer_one"
-								style="font-size: 14px; width: 100%">Total :</div>
+								style="font-size: 14px; width: 100%">Total Amt:</div>
 						</div>
 
 					</div>
@@ -562,21 +551,17 @@ table, th, td {
 			</div>
 			</div>
 			
-			<div class="row">
-				<div id="table-scroll" class="table-scroll" style="width: 100%">
+			<div ><!-- class="row" -->
+				<div id="table-scroll" class="table-scroll" style="width: 100%; display:none;">
 					<div class="table-responsive"
 						style="max-height: none; min-height: none;">
 						<table id="order_trail_table" class="main-table">
 							<thead>
 								<tr class="bgpink">
-									<th class="col-md-1"
-										style="text-align: center; padding: 0 !important; font-size: 14px;">SR</th>
-									<th class="col-md-2"
-										style="text-align: center; padding: 0 !important; font-size: 14px;">Status</th>
-									<th class="col-md-1"
-										style="text-align: center; padding: 0 !important; font-size: 14px;">Action By</th>
-									<th class="col-sm-1"
-										style="text-align: center; padding: 0 !important; font-size: 14px;">Date Time</th>
+									<th style="text-align: center; padding: 0 !important; font-size: 14px;">SR</th>
+									<th style="text-align: center; padding: 0 !important; font-size: 14px;">Status</th>
+									<th style="text-align: center; padding: 0 !important; font-size: 14px;">Action By</th>
+									<th style="text-align: center; padding: 0 !important; font-size: 14px;">Date Time</th>
 
 								</tr>
 							</thead>
@@ -768,7 +753,7 @@ table, th, td {
 										document
 												.getElementById("orderType").innerHTML = orderType;
 										document.getElementById("payMode").innerHTML = paymentMode;
-										document.getElementById("ttlAmt").innerHTML = data[i].totalAmt;
+										//document.getElementById("ttlAmt").innerHTML = data[i].totalAmt;
 										
 										document
 										.getElementById("taxableAmt").innerHTML = data[i].taxableAmt;
@@ -792,35 +777,35 @@ table, th, td {
 															var tr = $('<tr style="background:##03a9f4;"></tr>');
 															tr
 															.append($(
-																	'<td style="padding: 2 !important; font-size: 14px;"></td>')
+																	'<td style="padding: 2 !important; font-size: 14px; text-align:center;"></td>')
 																	.html(key + 1));
 
 
 															tr
 																	.append($(
-																			'<td  style="padding: 12px; line-height:0; border-top: 1px solid #ddd;"></td>')
+																			'<td  style="padding: 12px; line-height:0; border-top: 1px solid #ddd; text-align:left;"></td>')
 																			.html(
 																					itm.itemName));
 															tr
 																	.append($(
-																			'<td style="padding: 12px; line-height:0; border-top: 1px solid #ddd;""></td>')
+																			'<td style="padding: 12px; line-height:0; border-top: 1px solid #ddd; text-align:center;"></td>')
 																			.html(itemPic));
 
 															tr
 																	.append($(
-																			'<td style="padding: 12px; line-height:0; border-top: 1px solid #ddd;""></td>')
+																			'<td style="padding: 12px; line-height:0; border-top: 1px solid #ddd; text-align:center;"></td>')
 																			.html(
 																					itm.mrp));
 
 															tr
 																	.append($(
-																			'<td style="padding: 12px; line-height:0; border-top: 1px solid #ddd;""></td>')
+																			'<td style="padding: 12px; line-height:0; border-top: 1px solid #ddd; text-align:center;"></td>')
 																			.html(
 																					itm.qty));
 
 															tr
 																	.append($(
-																			'<td style="padding: 12px; line-height:0; border-top: 1px solid #ddd;""></td>')
+																			'<td style="padding: 12px; line-height:0; border-top: 1px solid #ddd; text-align:center;"></td>')
 																			.html(
 																					itm.mrp
 																							* itm.qty));
@@ -1384,25 +1369,25 @@ table, th, td {
 
 													tr
 															.append($(
-																	'<td  style=""></td>')
+																	'<td  style="text-align:center;"></td>')
 																	.html(
 																			key + 1));
 
 													tr
 															.append($(
-																	'<td style=""></td>')
+																	'<td style="text-align:center;"></td>')
 																	.html(
 																			order.orderNo));
 
 													tr
 															.append($(
-																	'<td style=""></td>')
+																	'<td style="text-align:center;"></td>')
 																	.html(
 																			order.deliveryDateDisplay));
 
 													tr
 															.append($(
-																	'<td style=""></td>')
+																	'<td style="text-align:left;"></td>')
 																	.html(
 																			order.custName
 																					+ " - "
@@ -1410,19 +1395,19 @@ table, th, td {
 
 													tr
 															.append($(
-																	'<td style=""></td>')
+																	'<td style="text-align:left;"></td>')
 																	.html(
 																			order.deliveryTimeDisplay));
 
 													tr
 															.append($(
-																	'<td style=""></td>')
+																	'<td style="text-align:left;"></td>')
 																	.html(
 																			orderStatus));
 
 													tr
 															.append($(
-																	'<td style=""></td>')
+																	'<td style="text-align:center;"></td>')
 																	.html(
 																			paymentMode));
 
@@ -1430,13 +1415,13 @@ table, th, td {
 															+ order.totalAmt;
 													tr
 															.append($(
-																	'<td style=""></td>')
+																	'<td style="text-align:center;"></td>')
 																	.html(
 																			order.totalAmt));
 
 													tr
 															.append($(
-																	'<td style=""></td>')
+																	'<td style="text-align:center;"></td>')
 																	.html(acStr));
 
 													$('#order_table tbody')

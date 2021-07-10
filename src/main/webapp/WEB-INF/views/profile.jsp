@@ -652,15 +652,14 @@
 			<table class="pending_tab1" id="table_grid">
 				<thead>
 					<tr>
-						<th>Sr.No.</th>
-						<th>Employee Name</th>
-						<th>Designation</th>
-						<th>Contact No</th>
-						<th>Address</th>
-						<th>Joining Date</th>
-						<!-- <th>Code</th> -->
-						<th>Status</th>
-						<th>Action</th>
+						<th style="text-align: center;">Sr.No.</th>
+						<th style="text-align: center;">Employee Name</th>
+						<th style="text-align: center;">Designation</th>
+						<th style="text-align: center;">Contact No</th>
+						<th style="text-align: center;">Address</th>
+						<th style="text-align: center;">Joining Date</th>
+						<th style="text-align: center;">Status</th>
+						<th style="text-align: center;">Action</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -828,11 +827,11 @@
 													} */
 
 													var tr = $('<tr></tr>');
-													tr.append($('<td></td>')
+													tr.append($('<td style="text-align:center;"></td>')
 															.html(key + 1));
 													tr
 															.append($(
-																	'<td></td>')
+																	'<td style="text-align:left;"></td>')
 																	.html(
 																			emp.frEmpName));
 													var desig = '';
@@ -846,21 +845,21 @@
 														desig = 'Delivery Boy'
 													}
 
-													tr.append($('<td ></td>')
+													tr.append($('<td style="text-align:center;" ></td>')
 															.html(desig));
 													tr
 															.append($(
-																	'<td></td>')
+																	'<td style="text-align:center;"></td>')
 																	.html(
 																			emp.frEmpContact));
 													tr
 															.append($(
-																	'<td></td>')
+																	'<td style="text-align:left;"></td>')
 																	.html(
 																			emp.frEmpAddress));
 													tr
 															.append($(
-																	'<td></td>')
+																	'<td style="text-align:center;"></td>')
 																	.html(
 																			emp.frEmpJoiningDate));
 													var stat = '';
@@ -869,11 +868,11 @@
 													} else {
 														stat = 'In-Active'
 													}
-													tr.append($('<td ></td>')
+													tr.append($('<td style="text-align:center;"></td>')
 															.html(stat));
 													tr
 															.append($(
-																	'<td></td>')
+																	'<td style="text-align:center;"></td>')
 																	.html(
 																			"<a href='#' onclick=editFrEmp("
 																					+ emp.frEmpId

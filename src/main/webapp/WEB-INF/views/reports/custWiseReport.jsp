@@ -126,17 +126,17 @@ chosen-container {
 					<div class="col-md-12">
 						<div class="clearfix"></div>
 
-						<div class="table-responsive">
+						<div class="table-responsive marg_bx">
 								<div id="table-scroll" class="table-scroll responsive-table-one">							
 									<table id="order_table" class="responsive-table">
 									<thead>
 										<tr class="bgpink">
-											<th class="col-md-1" style="text-align: center;">Sr No</th>											
-											<th class="col-md-2" style="text-align: center;">Customer</th>
-											<th class="col-md-2" style="text-align: center;">Mobile No.</th>											
-											<th class="col-md-1" style="text-align: center;">Date Of Birth</th>											
-											<th class="col-md-2" style="text-align: center;">Total Purchase</th>
-											<th class="col-md-1" style="text-align: center;">Detail</th>
+											<th style="text-align: center;">Sr No</th>											
+											<th style="text-align: center;">Customer</th>
+											<th style="text-align: center;">Mobile No.</th>											
+											<th style="text-align: center;">Date Of Birth</th>											
+											<th style="text-align: center;">Total Purchase</th>
+											<th style="text-align: center;">Detail</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -207,13 +207,13 @@ chosen-container {
 
 													tr
 															.append($(
-																	'<td  style=""></td>')
+																	'<td  style="text-align:center;"></td>')
 																	.html(
 																			key + 1));
 
 													tr
 															.append($(
-																	'<td style="text-align: lsft;"></td>')
+																	'<td style="text-align:left;"></td>')
 																	.html(
 																			order.custName));
 
@@ -234,7 +234,7 @@ chosen-container {
 															+ order.grandTotal;
 													tr
 															.append($(
-																	'<td style="text-align: right;"></td>')
+																	'<td style="text-align:center;"></td>')
 																	.html(
 																			order.grandTotal));
 
@@ -280,25 +280,19 @@ chosen-container {
 
 		<div class="col-lg-12">	
 
-			<div class="row">
+			<div ><!-- class="row" -->
 				<div id="table-scroll" class="table-scroll" style="width: 100%">
 					<div class="table-responsive"
 						style="max-height: none; min-height: none;">
 						<table id="order_dtl_table" class="main-table">
 							<thead>
 								<tr class="bgpink">
-									<th class="col-md-1"
-										style="text-align: center; padding: 0 !important; font-size: 14px;">SR</th>
-									<th class="col-md-2"
-										style="text-align: center; padding: 0 !important; font-size: 14px;">Bill No.</th>
-									<th class="col-md-1"
-										style="text-align: center; padding: 0 !important; font-size: 14px;">Bill Date</th>
-									<th class="col-sm-1"
-										style="text-align: center; padding: 0 !important; font-size: 14px;">Bill Amt.</th>
-									<th class="col-md-1"
-										style="text-align: center; padding: 0 !important; font-size: 14px;">Payment Mode</th>
-									<th class="col-md-1"
-										style="text-align: center; padding: 0 !important; font-size: 14px;">Delivery Boy</th>
+									<th style="text-align: center; padding: 0 !important; font-size: 14px;">SR</th>
+									<th style="text-align: center; padding: 0 !important; font-size: 14px;">Bill No.</th>
+									<th style="text-align: center; padding: 0 !important; font-size: 14px;">Bill Date</th>
+									<th style="text-align: center; padding: 0 !important; font-size: 14px;">Bill Amt.</th>
+									<th style="text-align: center; padding: 0 !important; font-size: 14px;">Payment Mode</th>
+									<th style="text-align: center; padding: 0 !important; font-size: 14px;">Delivery Boy</th>
 
 								</tr>
 							</thead>
@@ -368,7 +362,7 @@ chosen-container {
 											var tr = $('<tr style="background:##03a9f4;"></tr>');
 											tr
 											.append($(
-													'<td style="padding: 2 !important; font-size: 14px;"></td>')
+													'<td style="padding: 2 !important; font-size: 14px; text-align:center;"></td>')
 													.html(key + 1));
 	
 
@@ -387,18 +381,18 @@ chosen-container {
 											
 											tr
 											.append($(
-													'<td  style="padding: 12px; line-height:0; border-top: 1px solid #ddd; text-align: right; "></td>')
+													'<td  style="padding: 12px; line-height:0; border-top: 1px solid #ddd;  text-align:center; "></td>')
 													.html(
 															itm.grandTotal));
 											
 											tr
 													.append($(
-															'<td style="padding: 12px; line-height:0; border-top: 1px solid #ddd; text-align: center; "></td>')
+															'<td style="padding: 12px; line-height:0; border-top: 1px solid #ddd;  text-align:center; "></td>')
 															.html(itm.paymentMode == 1 ? 'Cash' : itm.paymentMode == 2 ? 'Card' : 'E-Pay' ));
 
 											tr
 													.append($(
-															'<td style="padding: 12px; line-height:0; border-top: 1px solid #ddd; text-align: left; "></td>')
+															'<td style="padding: 12px; line-height:0; border-top: 1px solid #ddd; text-align: right; "></td>')
 															.html(
 																	itm.delvrBoyName));
 											

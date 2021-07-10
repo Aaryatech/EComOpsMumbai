@@ -115,6 +115,17 @@
 											<input type="radio" name="type" value="3" class="radio-align"
 												onclick="showDiv(this.value)"> Month
 										</div>
+										
+										<div class="col-md-1 radio_align_1">
+											<input type="radio" name="type" value="5" class="radio-align"
+												onclick="showDiv(this.value)">3 Month
+										</div>
+										
+										<div class="col-md-1 radio_align_1">
+											<input type="radio" name="type" value="6" class="radio-align"
+												onclick="showDiv(this.value)">6 Month
+										</div>
+										
 										<div class="col-md-1 radio_align_1">
 											<input type="radio" name="type" value="4" class="radio-align"
 												onclick="showDiv(this.value)"> Custom
@@ -133,6 +144,17 @@
 											<input type="radio" name="type" value="3" class="radio-align"
 												onclick="showDiv(this.value)"> Month
 										</div>
+										
+										<div class="col-md-1 radio_align_1">
+											<input type="radio" name="type" value="5" class="radio-align"
+												onclick="showDiv(this.value)">3 Month
+										</div>
+										
+										<div class="col-md-1 radio_align_1">
+											<input type="radio" name="type" value="6" class="radio-align"
+												onclick="showDiv(this.value)">6 Month
+										</div>
+										
 										<div class="col-md-1 radio_align_1">
 											<input type="radio" name="type" value="4" class="radio-align"
 												onclick="showDiv(this.value)"> Custom
@@ -152,6 +174,17 @@
 											<input type="radio" name="type" value="3" class="radio-align"
 												checked onclick="showDiv(this.value)"> Month
 										</div>
+										
+										<div class="col-md-1 radio_align_1">
+											<input type="radio" name="type" value="5" class="radio-align"
+												onclick="showDiv(this.value)">3 Month
+										</div>
+										
+										<div class="col-md-1 radio_align_1">
+											<input type="radio" name="type" value="6" class="radio-align"
+												onclick="showDiv(this.value)">6 Month
+										</div>
+										
 										<div class="col-md-1 radio_align_1">
 											<input type="radio" name="type" value="4" class="radio-align"
 												onclick="showDiv(this.value)"> Custom
@@ -171,6 +204,17 @@
 											<input type="radio" name="type" value="3" class="radio-align"
 												onclick="showDiv(this.value)"> Month
 										</div>
+										
+											<div class="col-md-1 radio_align_1">
+											<input type="radio" name="type" value="5" class="radio-align"
+												onclick="showDiv(this.value)">3 Month
+										</div>
+										
+										<div class="col-md-1 radio_align_1">
+											<input type="radio" name="type" value="6" class="radio-align"
+												onclick="showDiv(this.value)">6 Month
+										</div>
+										
 										<div class="col-md-1 radio_align_1">
 											<input type="radio" name="type" value="4" class="radio-align"
 												checked onclick="showDiv(this.value)"> Custom
