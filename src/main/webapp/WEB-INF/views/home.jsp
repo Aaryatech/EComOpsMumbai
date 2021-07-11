@@ -991,7 +991,7 @@
 							<tbody>
 
 							</tbody>
-						</table>
+						</table>						
 					</div>
 				</div>
 			</div>
@@ -1208,6 +1208,31 @@
 				<div class="col-md-12" id="buttonDiv"></div>
 			</div>
 			<br>
+			<div class="row" style="display: none;" id="griev_div">
+				<table id="order_griev_table" class="main-table">
+					<thead>
+						<tr class="bgpink">
+							<th class="col-md-1"
+								style="text-align: center; padding: 0 !important; font-size: 14px;">SR</th>
+							<th class="col-md-2"
+								style="text-align: center; padding: 0 !important; font-size: 14px;">Grievances</th>
+							<th class="col-md-1"
+								style="text-align: center; padding: 0 !important; font-size: 14px;">Product
+								Image1</th>
+							<th class="col-sm-1"
+								style="text-align: center; padding: 0 !important; font-size: 14px;">Product
+								Image2</th>
+							<th class="col-md-1"
+								style="text-align: center; padding: 0 !important; font-size: 14px;">Product
+								Image3</th>
+
+						</tr>
+					</thead>
+					<tbody>
+
+					</tbody>
+				</table>
+			</div>
 		</div>
 	</div>
 <script type="text/javascript">
@@ -1266,6 +1291,7 @@ function valdateDate(fromDate, toDate) {
 	<script type="text/javascript">
 		function openBillPopup(orderId) {
 			//alert(orderId)
+			document.getElementById("griev_div").style.display = "none";
 			$('#order_dtl_table td').remove();	
 			var imgPath = $("#imgPath").val();
 			if (orderId > 0) {
@@ -1552,7 +1578,7 @@ function valdateDate(fromDate, toDate) {
 														document.getElementById("remarkLbl").innerHTML = "Reject";
 														document.getElementById("enterRemark").value = "";
 
-														getRemarkList(6);
+													//	getRemarkList(6);
 
 													} else if (data[i].orderStatus == 2) {
 			
@@ -1563,7 +1589,7 @@ function valdateDate(fromDate, toDate) {
 														document.getElementById("remarkLbl").innerHTML = "Reject";
 														document.getElementById("enterRemark").value = ""; 
 
-														getRemarkList(6);
+													//	getRemarkList(6);
 
 													} else if (data[i].orderStatus == 3) {
 
@@ -1582,7 +1608,7 @@ function valdateDate(fromDate, toDate) {
 														document.getElementById("remarkLbl").innerHTML = "Return";
 														document.getElementById("enterRemark").value = ""; 
 
-														getRemarkList(7);
+													//	getRemarkList(7);
 
 													} else if (data[i].orderStatus == 5) {
 														
@@ -1600,7 +1626,8 @@ function valdateDate(fromDate, toDate) {
 
 														document.getElementById("buttonDiv").innerHTML = "";
 
-													}
+													}												
+													
 													 setDeliveryBoyDropdownData(data[i].frId, data[i].orderDeliveredBy);
 											break;
 
@@ -1929,6 +1956,9 @@ function valdateDate(fromDate, toDate) {
 
 													var acStr = '<a href="javascript:void(0)" class="list-icons-item text-primary-600" data-popup="tooltip" title="" data-original-title="Order Detail" onclick="openBillPopup('
 														+ order.orderId
+														+ ')"><i class="fa fa-list"></i></a> &nbsp;&nbsp;'+
+														'<a href="javascript:void(0)" class="list-icons-item text-primary-600" data-popup="tooltip" title="Order Detail & Grievances" onclick="openOrderGrievPopup('
+														+ order.orderId
 														+ ')"><i class="fa fa-list"></i></a>'
 
 													if (order.paymentMethod == 1) {
@@ -2026,7 +2056,7 @@ function valdateDate(fromDate, toDate) {
 								var tr = "<tr>";
                                 var td1 = "<td colspan='7'>&nbsp;&nbsp;&nbsp;<b> Total</b></td>";
                                 var td2 = "<td><b><b>"
-                                        + addCommas((orderTtlAmt).toFixed(2));
+                                        + orderTtlAmt.toFixed(2);
                                 +"</b></td>";   
                                 var trclosed = "</tr>";
                                 
@@ -2038,6 +2068,406 @@ function valdateDate(fromDate, toDate) {
 							});
 					document.getElementById("overlay2").style.display = "none";
 		}
+	
+	function openOrderGrievPopup(orderId){	
+		
+		document.getElementById("griev_div").style.display = "block";
+		//openBillPopup(orderId)
+
+		$('#order_dtl_table td').remove();	
+		var imgPath = $("#imgPath").val();
+		if (orderId > 0) {
+
+			$
+					.getJSON(
+							'${getOrderDashDetailByFrId}',
+							{
+
+								ajax : 'true'
+
+							},
+							function(data) {
+							//	alert("Hi----------"+JSON.stringify(data[0].deliveryDateDisplay))
+								$('#billPopup').popup('show');
+								for (var i = 0; i < data.length; i++) {
+
+									if (data[i].orderId == orderId) {
+										
+										var orderStatus = null;
+										var paymentMode = null;
+										var pamentStatus = null;
+										var orderType = null;
+										var trailStatus = null;
+
+										if (data[i].orderStatus == 0) {
+											orderStatus = "Park Order";
+										} else if (data[i].orderStatus == 1) {
+											orderStatus = "Shop Confirmation Pending";
+										} else if (data[i].orderStatus == 2) {
+											orderStatus = "Accept";
+										} else if (data[i].orderStatus == 3) {
+											orderStatus = "Processing";
+										} else if (data[i].orderStatus == 4) {
+											orderStatus = "Delivery Pending";
+										} else if (data[i].orderStatus == 5) {
+											orderStatus = "Delivered";
+										} else if (data[i].orderStatus == 6) {
+											status = "Rejected by Shop";
+										} else if (data[i].orderStatus == 7) {
+											orderStatus = "Return Order";
+										} else if (data[i].orderStatus == 8) {
+											orderStatus = "Cancelled Order";
+										}
+
+										if (data[i].paymentMethod == 1) {
+											paymentMode = "Cash On Delivery";
+										} else if (data[i].paymentMethod == 2) {
+											paymentMode = "Online";
+										} else if (data[i].paymentMethod == 3) {
+											paymentMode = "E-Pay";
+										} else {
+											paymentMode = "";
+										}
+
+										if (data[i].orderPlatform == 1) {
+											orderType = "Executive";
+										} else if (data[i].orderPlatform == 2) {
+											orderType = "Mobile App";
+										} else {
+											orderType = "Web Site";
+										}
+
+										if (data[i].paidStatus == 0) {
+											pamentStatus = "Pending";
+										} else {
+											pamentStatus = "Paid";
+										}
+										
+										document.getElementById("orderNo").innerHTML = data[i].orderNo;
+										document.getElementById("custName").innerHTML = data[i].custName;
+										document.getElementById("mobileDiv").innerHTML = data[i].custMobile;
+										document
+												.getElementById("orderStatus").innerHTML = orderStatus;
+										document
+												.getElementById("pamentStat").innerHTML = pamentStatus;
+										document.getElementById("dateTime").innerHTML = data[i].deliveryDateDisplay
+												+ " "
+												+ data[i].deliveryTimeDisplay;
+										document
+												.getElementById("orderType").innerHTML = orderType;
+										document.getElementById("payMode").innerHTML = paymentMode;
+										document.getElementById("ttlAmt").innerHTML = data[i].totalAmt;
+										
+										document
+										.getElementById("taxableAmt").innerHTML = data[i].taxableAmt;
+										
+										document.getElementById("taxAmt").innerHTML = data[i].taxAmt;
+										document.getElementById("discAmt").innerHTML = data[i].discAmt;
+										document
+												.getElementById("deliveryCharges").innerHTML = data[i].deliveryCharges;
+										document
+												.getElementById("totalOrderAmt").innerHTML = data[i].totalAmt;
+
+										
+										$
+												.each(
+														data[i].orderDetailList,
+														function(key, itm) {			
+															
+															var itemPic = '<img src="'+imgPath+itm.itemPic+'"  width="50" height="50" alt="Product Image">';
+																	
+																	
+															var tr = $('<tr style="background:##03a9f4;"></tr>');
+															tr
+															.append($(
+																	'<td style="padding: 2 !important; font-size: 14px;"></td>')
+																	.html(key + 1));
+
+
+															tr
+																	.append($(
+																			'<td  style="padding: 12px; line-height:0; border-top: 1px solid #ddd;"></td>')
+																			.html(
+																					itm.itemName));
+															tr
+																	.append($(
+																			'<td style="padding: 12px; line-height:0; border-top: 1px solid #ddd;""></td>')
+																			.html(itemPic));
+
+															tr
+																	.append($(
+																			'<td style="padding: 12px; line-height:0; border-top: 1px solid #ddd;""></td>')
+																			.html(
+																					itm.mrp));
+
+															tr
+																	.append($(
+																			'<td style="padding: 12px; line-height:0; border-top: 1px solid #ddd;""></td>')
+																			.html(
+																					itm.exFloat3));
+
+															tr
+																	.append($(
+																			'<td style="padding: 12px; line-height:0; border-top: 1px solid #ddd;""></td>')
+																			.html(
+																					itm.mrp
+																							* itm.exFloat3));
+
+															$(
+																	'#order_dtl_table tbody')
+																	.append(
+																			tr);
+
+														});
+
+										//***************************************Trail Table*****************************************//
+
+										$('#order_trail_table td').remove();
+
+										$
+												.each(
+														data[i].orderTrailList,
+														function(key, trail) {
+
+															if (trail.status == 0) {
+																trailStatus = "Park Orde";
+															} else if (trail.status == 1) {
+																trailStatus = "Shop Confirmation Pending";
+															} else if (trail.status == 2) {
+																trailStatus = "Accept";
+															} else if (trail.status == 3) {
+																trailStatus = "Processing";
+															} else if (trail.status == 4) {
+																trailStatus = "Delivery Pending";
+															} else if (trail.status == 5) {
+																trailStatus = "Delivered";
+															} else if (trail.status == 6) {
+																trailStatus = "Rejected by Shop";
+															} else if (trail.status == 7) {
+																trailStatus = "Return Order";
+															} else if (trail.status == 8) {
+																trailStatus = "Cancelled Order";
+															}
+
+															var tr = $('<tr style="background:##03a9f4;"></tr>');
+															tr
+															.append($(
+																	'<td style="padding: 2 !important; font-size: 14px;"></td>')
+																	.html(key + 1));
+
+
+															tr
+																	.append($(
+																			'<td  style="padding: 12px; line-height:0; border-top: 1px solid #ddd;"></td>')
+																			.html(
+																					trailStatus));
+															tr
+																	.append($(
+																			'<td style="padding: 12px; line-height:0; border-top: 1px solid #ddd;""></td>')
+																			.html(
+																					trail.userName));
+
+															tr
+																	.append($(
+																			'<td style="padding: 12px; line-height:0; border-top: 1px solid #ddd;""></td>')
+																			.html(
+																					trail.trailDate));
+
+															$(
+																	'#order_trail_table tbody')
+																	.append(
+																			tr);
+
+														});
+										
+										/* ----------BUTTON----------- */
+										
+										/* var acceptBtn = "&nbsp;&nbsp;<button class='pay_btn' style='width:20%; height:33px; line-height:0px; transition: all ease 0.5s;' id=acceptBtn onclick=changeOrderStatus('"
+												+ data[i].orderId
+												+ "','2','"
+												+ data[i].uuidNo
+												+ "')>ACCEPT</button>&nbsp;&nbsp;";
+
+										var acceptAndProcessBtn = "&nbsp;&nbsp;<button class='pay_btn' style='width:20%; height:33px; line-height:0px; transition: all ease 0.5s;' id=acceptBtn onclick=changeOrderStatus('"
+												+ data[i].orderId
+												+ "','23','"
+												+ data[i].uuidNo
+												+ "')>ACCEPT & PROCESS</button>&nbsp;&nbsp;";
+
+										var acceptAndProcessWithPrintBtn = "&nbsp;&nbsp;<button class='pay_btn' style='width:22%; height:33px; line-height:0px; transition: all ease 0.5s; display : none;' id=acceptBtn onclick=changeOrderStatus('"
+												+ data[i].orderId
+												+ "','233','"
+												+ data[i].uuidNo
+												+ "')>ACCEPT & PROCESS &nbsp;<i class='fa fa-print ' aria-hidden='true' style='font-size: 18px;' ></i></button>&nbsp;&nbsp;";
+
+										var rejectBtn = "&nbsp;&nbsp;<button class=' can_btn' style='width:20%; height:33px; line-height:0px; transition: all ease 0.5s;'  id=rejectBtn onclick=changeOrderStatus('"
+												+ data[i].orderId
+												+ "','6','"
+												+ data[i].uuidNo
+												+ "')>REJECT</button>&nbsp;&nbsp;";
+
+										var billBtn = "&nbsp;&nbsp;<button class=' hold_btn' style='width:20%; height:33px; line-height:0px; transition: all ease 0.5s;'  id=billBtn onclick=generateBill('"
+												+ data[i].orderId
+												+ "',0,'"
+												+ data[i].id
+												+ "')>BILL</button>&nbsp;&nbsp;";
+
+										var billBtnWithPrint = "&nbsp;&nbsp;<button class=' hold_btn' style='width:20%; height:33px; line-height:0px; transition: all ease 0.5s;'  id=billBtn onclick=generateBill('"
+												+ data[i].orderId
+												+ "',1,'"
+												+ data[i].uuidNo
+												+ "')>BILL AND PRINT &nbsp;<i class='fa fa-print ' aria-hidden='true' style='font-size: 18px;' ></i></button>&nbsp;&nbsp;";
+
+										var processBtn = "&nbsp;&nbsp;<button class=' pay_btn' style='width:20%; height:33px; line-height:0px; transition: all ease 0.5s;'  id=processBtn onclick=changeOrderStatus('"
+												+ data[i].orderId
+												+ "','3','"
+												+ data[i].uuidNo
+												+ "')>PROCESS</button>&nbsp;&nbsp;";
+
+										var processBtnWithPrint = "&nbsp;&nbsp;<button class=' pay_btn' style='width:20%; height:33px; line-height:0px; transition: all ease 0.5s; display:none;'  id=processBtn onclick=changeOrderStatus('"
+												+ data[i].orderId
+												+ "','33','"
+												+ data[i].uuidNo
+												+ "')>PROCESS(KOT) &nbsp;<i class='fa fa-print ' aria-hidden='true' style='font-size: 18px;' ></i></button>&nbsp;&nbsp;";
+
+										var deliveredBtn = "&nbsp;&nbsp;<button  style='width:20%; height:33px; line-height:0px; transition: all ease 0.5s;' id=acceptBtn onclick=changeOrderStatus('"
+												+ data[i].orderId
+												+ "','5','"
+												+ data[i].uuidNo
+												+ "')>DELIVERED</button>&nbsp;&nbsp;";
+
+										var returnBtn = "&nbsp;&nbsp;<button class=' can_btn' style='width:20%; height:33px; line-height:0px; transition: all ease 0.5s;'  id=rejectBtn onclick=changeOrderStatus('"
+												+ data[i].orderId
+												+ "','7','"
+												+ data[i].uuidNo
+												+ "')>RETURN</button>&nbsp;&nbsp;";
+										
+										var printGenBill = "&nbsp;&nbsp;<button class=' hold_btn' style='width:20%; height:33px; line-height:0px; transition: all ease 0.5s;'  id=billBtn onclick=printGeneratedBill('"
+											+ data[i].orderId
+											+ "',1,'"
+											+ data[i].uuidNo
+											+ "')> PRINT BILL &nbsp;<i class='fa fa-print ' aria-hidden='true' style='font-size: 18px;' ></i></button>&nbsp;&nbsp;";
+
+											 */	
+												/* if (data[i].orderStatus == 1) {														
+													document.getElementById("buttonDiv").innerHTML = acceptBtn
+															+ ""
+															+ acceptAndProcessBtn
+															+ ""
+															+ acceptAndProcessWithPrintBtn + "" + rejectBtn;
+
+													document.getElementById("enterRemarkDiv").style.display = "block";
+													document.getElementById("remarkLbl").innerHTML = "Reject";
+													document.getElementById("enterRemark").value = "";
+
+												//	getRemarkList(6);
+
+												} else if (data[i].orderStatus == 2) {
+		
+													document.getElementById("buttonDiv").innerHTML = processBtn
+															+ "" + processBtnWithPrint + "" + rejectBtn;
+
+													document.getElementById("enterRemarkDiv").style.display = "block";
+													document.getElementById("remarkLbl").innerHTML = "Reject";
+													document.getElementById("enterRemark").value = ""; 
+
+												//	getRemarkList(6);
+
+												} else if (data[i].orderStatus == 3) {
+
+													document.getElementById("deliveryDiv").style.display = "block";
+
+													document.getElementById("buttonDiv").innerHTML = billBtn
+															+ "" + billBtnWithPrint;
+
+												} else if (data[i].orderStatus == 4) {														
+
+													document.getElementById("buttonDiv").innerHTML = printGenBill+ "" +deliveredBtn
+															+ "" + returnBtn;
+													//document.getElementById("statusDiv").innerHTML = delPending;
+
+													document.getElementById("enterRemarkDiv").style.display = "block";
+													document.getElementById("remarkLbl").innerHTML = "Return";
+													document.getElementById("enterRemark").value = ""; 
+
+												//	getRemarkList(7);
+
+												} else if (data[i].orderStatus == 5) {
+													
+													document.getElementById("buttonDiv").innerHTML = "";
+
+												} else if (table[i].orderStatus == 6) {
+
+													document.getElementById("buttonDiv").innerHTML = "";
+
+												} else if (data[i].orderStatus == 7) {
+													
+													document.getElementById("buttonDiv").innerHTML = "";
+
+												} else if (data[i].orderStatus == 8) {
+
+													document.getElementById("buttonDiv").innerHTML = "";
+
+												} */
+												
+												
+												
+												/*********************************Grievances*********************** */
+												
+												$('#order_griev_table td').remove();
+
+												$
+														.each(
+																data[i].grievances,
+																function(key, griev) {
+																	if (griev.dDate == orderId) {
+
+																	var tr = $('<tr style="background:##03a9f4;"></tr>');
+																	tr
+																	.append($(
+																			'<td style="padding: 2 !important; font-size: 14px;"></td>')
+																			.html(key + 1));
+
+
+																	tr
+																			.append($(
+																					'<td  style="padding: 12px; line-height:0; border-top: 1px solid #ddd;"></td>')
+																					.html(
+																							griev.deliveryReason));
+																	tr
+																			.append($(
+																					'<td style="padding: 12px; line-height:0; border-top: 1px solid #ddd;""></td>')
+																					.html(
+																							'<img src="'+imgPath+griev.proImg1+'"  width="50" height="50" alt="Product Image">'));
+
+																	tr
+																			.append($(
+																					'<td style="padding: 12px; line-height:0; border-top: 1px solid #ddd;""></td>')
+																					.html(
+																							'<img src="'+imgPath+griev.proImg2+'"  width="50" height="50" alt="Product Image">'));
+																	tr
+																	.append($(
+																			'<td style="padding: 12px; line-height:0; border-top: 1px solid #ddd;""></td>')
+																			.html(
+																					'<img src="'+imgPath+griev.proImg3+'"  width="50" height="50" alt="Product Image">'));
+
+																	$(
+																			'#order_griev_table tbody')
+																			.append(
+																					tr);
+																	}
+																});
+												 setDeliveryBoyDropdownData(data[i].frId, data[i].orderDeliveredBy);
+										break;
+
+									}
+								}
+
+							});
+		}
+
+	}
+	
 	</script>
 
 

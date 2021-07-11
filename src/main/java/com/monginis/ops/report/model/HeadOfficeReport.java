@@ -1,5 +1,9 @@
 package com.monginis.ops.report.model;
 
+import java.util.List;
+
+import com.monginis.ops.model.Grievances;
+
 public class HeadOfficeReport {
 
 	private String id;
@@ -36,6 +40,8 @@ public class HeadOfficeReport {
 	private float sgstAmt; 
 	private float cgstAmt; 
 	private float igstAmt; 
+	
+	List<Grievances> grievances;
 	
 	public String getId() {
 		return id;
@@ -235,6 +241,12 @@ public class HeadOfficeReport {
 	public void setIgstAmt(float igstAmt) {
 		this.igstAmt = igstAmt;
 	}
+	public List<Grievances> getGrievances() {
+		return grievances;
+	}
+	public void setGrievances(List<Grievances> grievances) {
+		this.grievances = grievances;
+	}
 	@Override
 	public String toString() {
 		return "HeadOfficeReport [id=" + id + ", orderId=" + orderId + ", deliveryDate=" + deliveryDate + ", orderDate="
@@ -246,7 +258,7 @@ public class HeadOfficeReport {
 				+ ", custName=" + custName + ", frCode=" + frCode + ", frName=" + frName + ", frAddress=" + frAddress
 				+ ", pincode=" + pincode + ", couponCode=" + couponCode + ", payRefNo=" + payRefNo
 				+ ", deliveryCharges=" + deliveryCharges + ", hsnCode=" + hsnCode + ", mrp=" + mrp + ", sgstAmt="
-				+ sgstAmt + ", cgstAmt=" + cgstAmt + ", igstAmt=" + igstAmt + "]";
+				+ sgstAmt + ", cgstAmt=" + cgstAmt + ", igstAmt=" + igstAmt + ", grievances=" + grievances + "]";
 	}
-	
+		
 }

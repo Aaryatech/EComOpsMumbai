@@ -83,6 +83,7 @@ public class GetOrderHeaderDisplay {
 
 	List<GetOrderDetailDisplay> orderDetailList;
 	List<GetOrderTrailDisplay> orderTrailList;
+	List<Grievances> grievances;
 	
 	public int getOrderId() {
 		return orderId;
@@ -691,6 +692,14 @@ public class GetOrderHeaderDisplay {
 		this.uuidNo = uuidNo;
 	}
 
+	public List<Grievances> getGrievances() {
+		return grievances;
+	}
+
+	public void setGrievances(List<Grievances> grievances) {
+		this.grievances = grievances;
+	}
+
 	@Override
 	public String toString() {
 		return "GetOrderHeaderDisplay [id=" + id + ", orderId=" + orderId + ", orderNo=" + orderNo + ", orderDate="
@@ -716,8 +725,8 @@ public class GetOrderHeaderDisplay {
 				+ offerName + ", offerDesc=" + offerDesc + ", deliveryMonth=" + deliveryMonth + ", deliveryYear="
 				+ deliveryYear + ", deliveryDateDisplay=" + deliveryDateDisplay + ", orderDateDisplay="
 				+ orderDateDisplay + ", deliveryTimeDisplay=" + deliveryTimeDisplay + ", monthName=" + monthName
-				+ ", orderDetailList=" + orderDetailList + ", orderTrailList=" + orderTrailList + "]";
+				+ ", orderDetailList=" + orderDetailList + ", orderTrailList=" + orderTrailList + ", grievances="
+				+ grievances + "]";
 	}
 
-	
 }

@@ -67,7 +67,7 @@ chosen-container {
  	<c:url value="/getCatWiseTtlSaleChartDataByFr" var="getCatWiseTtlSaleChartDataByFr" />	
  	<c:url value="/getSubCatWiseQtyChartDataByFr" var="getSubCatWiseQtyChartDataByFr" />
 	<c:url value="/getSubCatWiseItemChartDataByFr" var="getSubCatWiseItemChartDataByFr" />	
-
+<c:url value="/getOrderListByStatusAjax" var="getOrderListByStatusAjax"></c:url>
 	<!--topLeft-nav-->
 	<div class="sidebarOuter"></div>
 	<!--topLeft-nav-->
@@ -170,6 +170,16 @@ chosen-container {
 									</button></a>
 						</div>
 					
+					<div align="center" id="loader" style="display: none;">
+
+							<span>
+								<h4>
+									<font color="#343690">Loading... Please Wait</font>
+								</h4>
+							</span> <span class="l-1"></span> <span class="l-2"></span> <span
+								class="l-3"></span> <span class="l-4"></span> <span class="l-5"></span>
+							<span class="l-6"></span>
+						</div>
 					</div>
 				<!-- </div> --><!--  -->
 				<div class="clearfix"></div>
@@ -199,6 +209,7 @@ chosen-container {
 											<th style="text-align: center;">Cuopun Code</th>
 											<th style="text-align: center;">Discount Amount</th>
 											<th style="text-align: center;">Total Bill Amount</th>
+											<th style="text-align: center;">Action</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -350,7 +361,498 @@ chosen-container {
 
 
 	<!--wrapper-end-->
+<!-- *********************************************************************** -->
+	<div id="billPopup" class="add_customer" style="width: 60%;">
+		<button class="addcust_close close_popup" onclick="closeBillPopup()">
+			<i class="fa fa-times" aria-hidden="true"></i>
+		</button>
+		<h3 class="pop_head">
+			<div class="row" style="margin-right: 25px;">
 
+				<div class="col-lg-3" style="margin-top: 5px;">Order Detail</div>
+				<div class="col-lg-9" id="statusDiv"></div>
+
+			</div>
+		</h3>
+
+		<div class="col-lg-12">
+
+			<div class="row" style="margin-left: 15px; margin-right: 15px;">
+
+				<div class="col-lg-2" style="padding-left: 15px;">
+					<div class="add_frm" style="padding: 0px; border-bottom: 0px">
+						<div class="add_frm_one" style="margin: 0;">
+							<div class="add_customer_one"
+								style="font-size: 14px; width: 100%">Order No :</div>
+						</div>
+
+					</div>
+				</div>
+				<div class="col-lg-4">
+					<div class="add_frm"
+						style="padding: 0px 0px 0px 15px; border-bottom: 0px">
+						<div class="add_frm_one" style="margin: 0">
+							<div class="add_customer_one"
+								style="font-size: 14px; width: 100%;" id="orderNo"></div>
+						</div>
+
+					</div>
+				</div>
+
+				<div class="col-lg-3" style="padding-left: 15px;">
+					<div class="add_frm"
+						style="padding: 0px 0px 0px 15px; border-bottom: 0px">
+						<div class="add_frm_one" style="margin: 0;">
+							<div class="add_customer_one"
+								style="font-size: 14px; width: 100%">Delivery Date :</div>
+						</div>
+
+					</div>
+				</div>
+
+				<div class="col-lg-3" style="padding-left: 15px;">
+					<div class="add_frm" style="padding: 0px; border-bottom: 0px">
+						<div class="add_frm_one" style="margin: 0;">
+							<div class="add_customer_one"
+								style="font-size: 14px; width: 100%;" id="dateTime"></div>
+						</div>
+
+					</div>
+				</div>
+
+			</div>
+
+			<div class="row" style="margin-left: 15px; margin-right: 15px;">
+
+				<div class="col-lg-2" style="padding-left: 15px;">
+					<div class="add_frm" style="padding: 0px; border-bottom: 0px">
+						<div class="add_frm_one" style="margin: 0;">
+							<div class="add_customer_one"
+								style="font-size: 14px; width: 100%">Customer :</div>
+						</div>
+
+					</div>
+				</div>
+				<div class="col-lg-4">
+					<div class="add_frm"
+						style="padding: 0px 0px 0px 15px; border-bottom: 0px">
+						<div class="add_frm_one" style="margin: 0">
+							<div class="add_customer_one"
+								style="font-size: 14px; width: 100%;" id="custName"></div>
+						</div>
+
+					</div>
+				</div>
+
+				<div class="col-lg-3" style="padding-left: 15px;">
+					<div class="add_frm"
+						style="padding: 0px 0px 0px 15px; border-bottom: 0px">
+						<div class="add_frm_one" style="margin: 0;">
+							<div class="add_customer_one"
+								style="font-size: 14px; width: 100%">Mobile Number :</div>
+						</div>
+
+					</div>
+				</div>
+
+				<div class="col-lg-3" style="padding-left: 15px;">
+					<div class="add_frm" style="padding: 0px; border-bottom: 0px">
+						<div class="add_frm_one" style="margin: 0;">
+							<div class="add_customer_one"
+								style="font-size: 14px; width: 100%;" id="mobileDiv"></div>
+						</div>
+
+					</div>
+				</div>
+
+			</div>
+
+
+			<div class="row" style="margin-left: 15px; margin-right: 15px;">
+			
+				<div class="col-lg-2" style="padding-left: 15px;">
+					<div class="add_frm" style="padding: 0px; border-bottom: 0px">
+						<div class="add_frm_one" style="margin: 0;">
+							<div class="add_customer_one"
+								style="font-size: 14px; width: 100%">Order Type :</div>
+						</div>
+
+					</div>
+				</div>
+				<div class="col-lg-4">
+					<div class="add_frm"
+						style="padding: 0px 0px 0px 15px; border-bottom: 0px">
+						<div class="add_frm_one" style="margin: 0">
+							<div class="add_customer_one"
+								style="font-size: 14px; width: 100%;" id="orderType"></div>
+						</div>
+
+					</div>
+				</div>
+				
+				<div class="col-lg-3" style="padding-left: 15px;">
+					<div class="add_frm"
+						style="padding: 0px 0px 0px 15px; border-bottom: 0px">
+						<div class="add_frm_one" style="margin: 0;">
+							<div class="add_customer_one"
+								style="font-size: 14px; width: 100%">Order Status :</div>
+						</div>
+
+					</div>
+				</div>
+
+				<div class="col-lg-3" style="padding-left: 15px;">
+					<div class="add_frm" style="padding: 0px; border-bottom: 0px">
+						<div class="add_frm_one" style="margin: 0;">
+							<div class="add_customer_one"
+								style="font-size: 14px; width: 100%;" id="orderStatus"></div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+
+
+			<div class="row" style="margin-left: 15px; margin-right: 15px;">
+			<div class="col-lg-2" style="padding-left: 15px;">
+					<div class="add_frm" style="padding: 0px; border-bottom: 0px">
+						<div class="add_frm_one" style="margin: 0;">
+							<div class="add_customer_one"
+								style="font-size: 14px; width: 100%">Payment Mode :</div>
+						</div>
+
+					</div>
+				</div>
+				<div class="col-lg-4">
+					<div class="add_frm"
+						style="padding: 0px 0px 0px 15px; border-bottom: 0px">
+						<div class="add_frm_one" style="margin: 0">
+							<div class="add_customer_one"
+								style="font-size: 14px; width: 100%;" id="payMode"></div>
+						</div>
+
+					</div>
+				</div>
+				
+				<div class="col-lg-3" style="padding-left: 15px;">
+					<div class="add_frm"
+						style="padding: 0px 0px 0px 15px; border-bottom: 0px">
+						<div class="add_frm_one" style="margin: 0;">
+							<div class="add_customer_one"
+								style="font-size: 14px; width: 100%">Payment Status :</div>
+						</div>
+
+					</div>
+				</div>
+
+				<div class="col-lg-3" style="padding-left: 15px;">
+					<div class="add_frm" style="padding: 0px; border-bottom: 0px">
+						<div class="add_frm_one" style="margin: 0;">
+							<div class="add_customer_one"
+								style="font-size: 14px; width: 100%;" id="pamentStat"></div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+			
+			<div class="row" style="margin-left: 15px; margin-right: 15px;">
+				<div class="col-lg-6">					
+				</div>
+				
+				
+				<div class="col-lg-3" style="padding-left: 15px;">
+					<div class="add_frm"
+						style="padding: 0px 0px 0px 15px; border-bottom: 0px">
+						<div class="add_frm_one" style="margin: 0;">
+							<div class="add_customer_one"
+								style="font-size: 14px; width: 100%">Total :</div>
+						</div>
+
+					</div>
+				</div>
+
+				<div class="col-lg-3" style="padding-left: 15px;">
+					<div class="add_frm" style="padding: 0px; border-bottom: 0px">
+						<div class="add_frm_one" style="margin: 0;">
+							<div class="add_customer_one"
+								style="font-size: 14px; width: 100%;" id="ttlAmt"></div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+			<br>
+
+			<div class="row">
+				<div id="table-scroll" class="table-scroll" style="width: 100%">
+					<div class="table-responsive"
+						style="max-height: none; min-height: none;">
+						<table id="order_dtl_table" class="main-table">
+							<thead>
+								<tr class="bgpink">
+									<th class="col-md-1"
+										style="text-align: center; padding: 0 !important; font-size: 14px;">SR</th>
+									<th class="col-md-2"
+										style="text-align: center; padding: 0 !important; font-size: 14px;">Items Name</th>
+									<th class="col-md-1"
+										style="text-align: center; padding: 0 !important; font-size: 14px;">Product Image</th>
+									<th class="col-sm-1"
+										style="text-align: center; padding: 0 !important; font-size: 14px;">Rate</th>
+									<th class="col-md-1"
+										style="text-align: center; padding: 0 !important; font-size: 14px;">Quantity</th>
+									<th class="col-md-1"
+										style="text-align: center; padding: 0 !important; font-size: 14px;">Total</th>
+
+								</tr>
+							</thead>
+							<tbody>
+
+							</tbody>
+						</table>						
+					</div>
+				</div>
+			</div>
+			
+			<div class="col-lg-12">
+
+			<div class="row" style="margin-left: 15px; margin-right: 15px;">
+
+				
+				<div class="col-lg-6"> </div>
+
+				<div class="col-lg-3" style="padding-left: 15px;">
+					<div class="add_frm"
+						style="padding: 0px 0px 0px 15px; border-bottom: 0px">
+						<div class="add_frm_one" style="margin: 0;">
+							<div class="add_customer_one"
+								style="font-size: 14px; width: 100%">Product Total :</div>
+						</div>
+
+					</div>
+				</div>
+
+				<div class="col-lg-3" style="padding-left: 15px;">
+					<div class="add_frm" style="padding: 0px; border-bottom: 0px">
+						<div class="add_frm_one" style="margin: 0;">
+							<div class="add_customer_one"
+								style="font-size: 16px; width: 100%; margin-left: 109px;" id="taxableAmt"></div>
+						</div>
+					</div>
+				</div>
+				
+				<div class="col-lg-6"> </div>
+
+				<div class="col-lg-3" style="padding-left: 15px;">
+					<div class="add_frm"
+						style="padding: 0px 0px 0px 15px; border-bottom: 0px">
+						<div class="add_frm_one" style="margin: 0;">
+							<div class="add_customer_one"
+								style="font-size: 14px; width: 100%">Tax :</div>
+						</div>
+
+					</div>
+				</div>
+
+				<div class="col-lg-3" style="padding-left: 15px;">
+					<div class="add_frm" style="padding: 0px; border-bottom: 0px">
+						<div class="add_frm_one" style="margin: 0;">
+							<div class="add_customer_one"
+								style="font-size: 16px; width: 100%; margin-left: 109px;" id="taxAmt"></div>
+						</div>
+					</div>
+				</div>
+				
+				<div class="col-lg-6"> </div>
+
+				<div class="col-lg-3" style="padding-left: 15px;">
+					<div class="add_frm"
+						style="padding: 0px 0px 0px 15px; border-bottom: 0px">
+						<div class="add_frm_one" style="margin: 0;">
+							<div class="add_customer_one"
+								style="font-size: 14px; width: 100%">Offer Discount :</div>
+						</div>
+
+					</div>
+				</div>
+
+				<div class="col-lg-3" style="padding-left: 15px;">
+					<div class="add_frm" style="padding: 0px; border-bottom: 0px">
+						<div class="add_frm_one" style="margin: 0;">
+							<div class="add_customer_one"
+								style="font-size: 16px; width: 100%; margin-left: 109px;" id="discAmt"></div>
+						</div>
+					</div>
+				</div>
+				
+				<div class="col-lg-6"> </div>
+
+				<div class="col-lg-3" style="padding-left: 15px;">
+					<div class="add_frm"
+						style="padding: 0px 0px 0px 15px; border-bottom: 0px">
+						<div class="add_frm_one" style="margin: 0;">
+							<div class="add_customer_one"
+								style="font-size: 14px; width: 100%">Delivery Charges :</div>
+						</div>
+
+					</div>
+				</div>
+
+				<div class="col-lg-3" style="padding-left: 15px;">
+					<div class="add_frm" style="padding: 0px; border-bottom: 0px">
+						<div class="add_frm_one" style="margin: 0;">
+							<div class="add_customer_one"
+								style="font-size: 16px; width: 65%; margin-left: 109px;
+								 border-bottom: solid;  border-width: thin" id="deliveryCharges"></div>
+						</div>
+					</div>
+				</div>
+				
+				
+				<div class="col-lg-6"> </div>
+
+				<div class="col-lg-3" style="padding-left: 15px;">
+					<div class="add_frm"
+						style="padding: 0px 0px 0px 15px; border-bottom: 0px">
+						<div class="add_frm_one" style="margin: 0;">
+							<div class="add_customer_one"
+								style="font-size: 14px; width: 100%">Total :</div>
+						</div>
+
+					</div>
+				</div>
+
+				<div class="col-lg-3" style="padding-left: 15px;">
+					<div class="add_frm" style="padding: 0px; border-bottom: 0px">
+						<div class="add_frm_one" style="margin: 0;">
+							<div class="add_customer_one"
+								style="font-size: 16px; width: 100%; margin-left: 109px;  border-bottom: none;" id="totalOrderAmt"></div>
+						</div>
+					</div>
+				</div>
+
+			</div>
+			</div>
+			
+			<!-- <div class="row">
+				<div id="table-scroll" class="table-scroll" style="width: 100%">
+					<div class="table-responsive"
+						style="max-height: none; min-height: none;">
+						<table id="order_trail_table" class="main-table">
+							<thead>
+								<tr class="bgpink">
+									<th class="col-md-1"
+										style="text-align: center; padding: 0 !important; font-size: 14px;">SR</th>
+									<th class="col-md-2"
+										style="text-align: center; padding: 0 !important; font-size: 14px;">Status</th>
+									<th class="col-md-1"
+										style="text-align: center; padding: 0 !important; font-size: 14px;">Action By</th>
+									<th class="col-sm-1"
+										style="text-align: center; padding: 0 !important; font-size: 14px;">Date Time</th>
+
+								</tr>
+							</thead>
+							<tbody>
+
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div> -->
+			<br>
+			<div class="row"
+				style="margin-left: 15px; margin-right: 15px; background: #fff; display: none;"
+				id="deliveryDiv">
+
+				<div class="col-lg-3" style="padding-left: 15px;">
+					<div class="add_frm" style="padding: 0px; border-bottom: 0px">
+						<div class="add_frm_one" style="margin: 0;">
+							<div class="add_customer_one"
+								style="font-size: 14px; width: 100%" id="deliveryLabel">Delivery
+								Boy :</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-9">
+					<div class="add_frm"
+						style="padding: 0px 0px 0px 15px; border-bottom: 0px">
+						<div class="add_frm_one" style="margin: 0">
+							<Select id="deliveryBoy" name="deliveryBoy" style="width: 100%"
+								class="chosen-select">
+								<%-- <c:forEach items="${deliveryBoyList}" var="delBoy">
+										<option value="${delBoy.frEmpId}">${delBoy.frEmpName}
+											- ${delBoy.frEmpContact}</option>
+									</c:forEach> --%>
+							</Select>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="row"
+				style="margin-left: 15px; margin-right: 15px; background: #fff; display: none;"
+				id="enterRemarkDiv">
+
+				<div class="col-lg-3" style="padding-left: 15px;">
+					<div class="add_frm" style="padding: 0px; border-bottom: 0px">
+						<div class="add_frm_one" style="margin: 0;">
+							<div class="add_customer_one"
+								style="font-size: 14px; width: 100%" id="deliveryLabel">
+								<span id="remarkLbl"></span> Remark <span style="color: red;">*</span>
+								:
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-lg-9">
+					<div class="add_frm"
+						style="padding: 0px 0px 0px 15px; border-bottom: 0px">
+						<div class="add_frm_one" style="margin: 0">
+							<input type="text" list="templates" id="enterRemark"
+								name="enterRemark" class="form-control chosen"
+								style="width: 100%; text-align: left;" autocomplete="off">
+							<datalist id="templates">
+								<!-- <option value='Remark 1'>Remark 1</option>
+								<option value='Remark 2'>Remark 2</option> -->
+							</datalist>
+						</div>
+					</div>
+				</div>
+			</div>
+			<br>
+			<div class="row"
+				style="margin-left: 15px; margin-right: 15px; display: flex; text-align: center;">
+				<div class="col-md-12" id="buttonDiv"></div>
+			</div>
+			<br>
+			<div class="row" id="griev_div">
+				<table id="order_griev_table" class="main-table">
+					<thead>
+						<tr class="bgpink">
+							<th class="col-md-1"
+								style="text-align: center; padding: 0 !important; font-size: 14px;">SR</th>
+							<th class="col-md-2"
+								style="text-align: center; padding: 0 !important; font-size: 14px;">Grievances</th>
+							<th class="col-md-1"
+								style="text-align: center; padding: 0 !important; font-size: 14px;">Product
+								Image1</th>
+							<th class="col-sm-1"
+								style="text-align: center; padding: 0 !important; font-size: 14px;">Product
+								Image2</th>
+							<th class="col-md-1"
+								style="text-align: center; padding: 0 !important; font-size: 14px;">Product
+								Image3</th>
+
+						</tr>
+					</thead>
+					<tbody>
+
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
 <script type="text/javascript">
   document.addEventListener("DOMContentLoaded", function(event) {
       // - Code to execute when all DOM content is loaded. 
@@ -447,7 +949,7 @@ $("#submtbtn")
 							},
 							function(data) {
 								
-									alert(JSON.stringify(data));
+								//	alert(JSON.stringify(data));
 								$("#submtbtn").attr("disabled", false);
 																				
 								$('#loader').hide();
@@ -464,9 +966,9 @@ $("#submtbtn")
 												function(key,
 														order) {
 
-													var acStr = '<a href="javascript:void(0)" class="list-icons-item text-primary-600" data-popup="tooltip" title="" data-original-title="Order Detail" onclick="getOrderDetail(\''
+													/* var acStr = '<a href="javascript:void(0)" class="list-icons-item text-primary-600" data-popup="tooltip" title="" data-original-title="Order Detail" onclick="getOrderDetail(\''
 															+ order.orderId
-															+ '\')"><i class="fa fa-list"></i></a>'
+															+ '\')"><i class="fa fa-list"></i></a>' */
 
 													var orderStatus = null;
 													var paymentMode = null;
@@ -498,9 +1000,11 @@ $("#submtbtn")
 													} else {
 														paymentMode = "E-Pay";
 													}
-																	
+													var acStr = '<a href="javascript:void(0)" class="list-icons-item text-primary-600" data-popup="tooltip" title="Order Detail & Grievances" id="btn_griev_'+order.orderId+'" onclick="openOrderGrievPopup('
+														+ order.orderId
+														+ ')"><i class="fa fa-list"></i></a>'
 													var tr = $('<tr></tr>');	
-													var key=0;
+													
 													tr
 													.append($(
 																'<td></td>')
@@ -590,7 +1094,11 @@ $("#submtbtn")
 																'<td></td>')
 																.html(
 																		order.totalAmt.toFixed(2)));
-														
+													tr
+													.append($(
+																'<td></td>')
+																.html(acStr));
+													
 
 													$('#order_table tbody').append(tr);
 
@@ -599,16 +1107,423 @@ $("#submtbtn")
 		}
 		});
 </script>
+<script type="text/javascript">
+	function openOrderGrievPopup(orderId){		
+		$('#order_dtl_table td').remove();	
+		document.getElementById('btn_griev_'+orderId).style.pointerEvents = 'none';
+		//$("#btn_griev_"+orderId).attr("disabled", true);		
+		
+		var imgPath = $("#imgPath").val();
+		
+		var fromDate = $("#fromdatepicker").val();		
+		var toDate = $("#todatepicker").val();
+		var status = $("#statusId").val();	
+		
+		if (orderId > 0) {
+		$("#loader").show();
+			$
+					.getJSON(
+							'${getOrderListByStatusAjax}',
+							{
+								fromDate : fromDate,
+								toDate : toDate,
+								statusId : JSON.stringify(status),								
+								ajax : 'true'
+
+							},
+							function(data) {	
+							$("#loader").hide();
+							document.getElementById('btn_griev_'+orderId).style.pointerEvents = 'auto';
+							
+								$('#billPopup').popup('show');
+								for (var i = 0; i < data.length; i++) {
+
+									if (data[i].orderId == orderId) {
+										
+										var orderStatus = null;
+										var paymentMode = null;
+										var pamentStatus = null;
+										var orderType = null;
+										var trailStatus = null;
+
+										if (data[i].orderStatus == 0) {
+											orderStatus = "Park Order";
+										} else if (data[i].orderStatus == 1) {
+											orderStatus = "Shop Confirmation Pending";
+										} else if (data[i].orderStatus == 2) {
+											orderStatus = "Accept";
+										} else if (data[i].orderStatus == 3) {
+											orderStatus = "Processing";
+										} else if (data[i].orderStatus == 4) {
+											orderStatus = "Delivery Pending";
+										} else if (data[i].orderStatus == 5) {
+											orderStatus = "Delivered";
+										} else if (data[i].orderStatus == 6) {
+											status = "Rejected by Shop";
+										} else if (data[i].orderStatus == 7) {
+											orderStatus = "Return Order";
+										} else if (data[i].orderStatus == 8) {
+											orderStatus = "Cancelled Order";
+										}
+
+										if (data[i].paymentMethod == 1) {
+											paymentMode = "Cash On Delivery";
+										} else if (data[i].paymentMethod == 2) {
+											paymentMode = "Online";
+										} else if (data[i].paymentMethod == 3) {
+											paymentMode = "E-Pay";
+										} else {
+											paymentMode = "";
+										}
+
+										if (data[i].orderPlatform == 1) {
+											orderType = "Executive";
+										} else if (data[i].orderPlatform == 2) {
+											orderType = "Mobile App";
+										} else {
+											orderType = "Web Site";
+										}
+
+										if (data[i].paidStatus == 0) {
+											pamentStatus = "Pending";
+										} else {
+											pamentStatus = "Paid";
+										}
+										
+										document.getElementById("orderNo").innerHTML = data[i].orderNo;
+										document.getElementById("custName").innerHTML = data[i].custName;
+										document.getElementById("mobileDiv").innerHTML = data[i].custMobile;
+										document
+												.getElementById("orderStatus").innerHTML = orderStatus;
+										document
+												.getElementById("pamentStat").innerHTML = pamentStatus;
+										document.getElementById("dateTime").innerHTML = data[i].deliveryDateDisplay
+												+ " "
+												+ data[i].deliveryTimeDisplay;
+										document
+												.getElementById("orderType").innerHTML = orderType;
+										document.getElementById("payMode").innerHTML = paymentMode;
+										document.getElementById("ttlAmt").innerHTML = data[i].totalAmt;
+										
+										document
+										.getElementById("taxableAmt").innerHTML = data[i].taxableAmt;
+										
+										document.getElementById("taxAmt").innerHTML = data[i].taxAmt;
+										document.getElementById("discAmt").innerHTML = data[i].discAmt;
+										document
+												.getElementById("deliveryCharges").innerHTML = data[i].deliveryCharges;
+										document
+												.getElementById("totalOrderAmt").innerHTML = data[i].totalAmt;
+
+										
+										$
+												.each(
+														data[i].orderDetailList,
+														function(key, itm) {			
+															
+															var itemPic = '<img src="'+imgPath+itm.itemPic+'"  width="50" height="50" alt="Product Image">';
+																	
+																	
+															var tr = $('<tr style="background:##03a9f4;"></tr>');
+															tr
+															.append($(
+																	'<td style="padding: 2 !important; font-size: 14px;"></td>')
+																	.html(key + 1));
+
+
+															tr
+																	.append($(
+																			'<td  style="padding: 12px; line-height:0; border-top: 1px solid #ddd;"></td>')
+																			.html(
+																					itm.itemName));
+															tr
+																	.append($(
+																			'<td style="padding: 12px; line-height:0; border-top: 1px solid #ddd;""></td>')
+																			.html(itemPic));
+
+															tr
+																	.append($(
+																			'<td style="padding: 12px; line-height:0; border-top: 1px solid #ddd;""></td>')
+																			.html(
+																					itm.mrp));
+
+															tr
+																	.append($(
+																			'<td style="padding: 12px; line-height:0; border-top: 1px solid #ddd;""></td>')
+																			.html(
+																					itm.exFloat3));
+
+															tr
+																	.append($(
+																			'<td style="padding: 12px; line-height:0; border-top: 1px solid #ddd;""></td>')
+																			.html(
+																					itm.mrp
+																							* itm.exFloat3));
+
+															$(
+																	'#order_dtl_table tbody')
+																	.append(
+																			tr);
+
+														});
+
+										//***************************************Trail Table*****************************************//
+
+										$('#order_trail_table td').remove();
+
+										$
+												.each(
+														data[i].orderTrailList,
+														function(key, trail) {
+
+															if (trail.status == 0) {
+																trailStatus = "Park Orde";
+															} else if (trail.status == 1) {
+																trailStatus = "Shop Confirmation Pending";
+															} else if (trail.status == 2) {
+																trailStatus = "Accept";
+															} else if (trail.status == 3) {
+																trailStatus = "Processing";
+															} else if (trail.status == 4) {
+																trailStatus = "Delivery Pending";
+															} else if (trail.status == 5) {
+																trailStatus = "Delivered";
+															} else if (trail.status == 6) {
+																trailStatus = "Rejected by Shop";
+															} else if (trail.status == 7) {
+																trailStatus = "Return Order";
+															} else if (trail.status == 8) {
+																trailStatus = "Cancelled Order";
+															}
+
+															var tr = $('<tr style="background:##03a9f4;"></tr>');
+															tr
+															.append($(
+																	'<td style="padding: 2 !important; font-size: 14px;"></td>')
+																	.html(key + 1));
+
+
+															tr
+																	.append($(
+																			'<td  style="padding: 12px; line-height:0; border-top: 1px solid #ddd;"></td>')
+																			.html(
+																					trailStatus));
+															tr
+																	.append($(
+																			'<td style="padding: 12px; line-height:0; border-top: 1px solid #ddd;""></td>')
+																			.html(
+																					trail.userName));
+
+															tr
+																	.append($(
+																			'<td style="padding: 12px; line-height:0; border-top: 1px solid #ddd;""></td>')
+																			.html(
+																					trail.trailDate));
+
+															$(
+																	'#order_trail_table tbody')
+																	.append(
+																			tr);
+
+														});
+										
+										/* ----------BUTTON----------- */
+										
+										/* var acceptBtn = "&nbsp;&nbsp;<button class='pay_btn' style='width:20%; height:33px; line-height:0px; transition: all ease 0.5s;' id=acceptBtn onclick=changeOrderStatus('"
+												+ data[i].orderId
+												+ "','2','"
+												+ data[i].uuidNo
+												+ "')>ACCEPT</button>&nbsp;&nbsp;";
+
+										var acceptAndProcessBtn = "&nbsp;&nbsp;<button class='pay_btn' style='width:20%; height:33px; line-height:0px; transition: all ease 0.5s;' id=acceptBtn onclick=changeOrderStatus('"
+												+ data[i].orderId
+												+ "','23','"
+												+ data[i].uuidNo
+												+ "')>ACCEPT & PROCESS</button>&nbsp;&nbsp;";
+
+										var acceptAndProcessWithPrintBtn = "&nbsp;&nbsp;<button class='pay_btn' style='width:22%; height:33px; line-height:0px; transition: all ease 0.5s; display : none;' id=acceptBtn onclick=changeOrderStatus('"
+												+ data[i].orderId
+												+ "','233','"
+												+ data[i].uuidNo
+												+ "')>ACCEPT & PROCESS &nbsp;<i class='fa fa-print ' aria-hidden='true' style='font-size: 18px;' ></i></button>&nbsp;&nbsp;";
+
+										var rejectBtn = "&nbsp;&nbsp;<button class=' can_btn' style='width:20%; height:33px; line-height:0px; transition: all ease 0.5s;'  id=rejectBtn onclick=changeOrderStatus('"
+												+ data[i].orderId
+												+ "','6','"
+												+ data[i].uuidNo
+												+ "')>REJECT</button>&nbsp;&nbsp;";
+
+										var billBtn = "&nbsp;&nbsp;<button class=' hold_btn' style='width:20%; height:33px; line-height:0px; transition: all ease 0.5s;'  id=billBtn onclick=generateBill('"
+												+ data[i].orderId
+												+ "',0,'"
+												+ data[i].id
+												+ "')>BILL</button>&nbsp;&nbsp;";
+
+										var billBtnWithPrint = "&nbsp;&nbsp;<button class=' hold_btn' style='width:20%; height:33px; line-height:0px; transition: all ease 0.5s;'  id=billBtn onclick=generateBill('"
+												+ data[i].orderId
+												+ "',1,'"
+												+ data[i].uuidNo
+												+ "')>BILL AND PRINT &nbsp;<i class='fa fa-print ' aria-hidden='true' style='font-size: 18px;' ></i></button>&nbsp;&nbsp;";
+
+										var processBtn = "&nbsp;&nbsp;<button class=' pay_btn' style='width:20%; height:33px; line-height:0px; transition: all ease 0.5s;'  id=processBtn onclick=changeOrderStatus('"
+												+ data[i].orderId
+												+ "','3','"
+												+ data[i].uuidNo
+												+ "')>PROCESS</button>&nbsp;&nbsp;";
+
+										var processBtnWithPrint = "&nbsp;&nbsp;<button class=' pay_btn' style='width:20%; height:33px; line-height:0px; transition: all ease 0.5s; display:none;'  id=processBtn onclick=changeOrderStatus('"
+												+ data[i].orderId
+												+ "','33','"
+												+ data[i].uuidNo
+												+ "')>PROCESS(KOT) &nbsp;<i class='fa fa-print ' aria-hidden='true' style='font-size: 18px;' ></i></button>&nbsp;&nbsp;";
+
+										var deliveredBtn = "&nbsp;&nbsp;<button  style='width:20%; height:33px; line-height:0px; transition: all ease 0.5s;' id=acceptBtn onclick=changeOrderStatus('"
+												+ data[i].orderId
+												+ "','5','"
+												+ data[i].uuidNo
+												+ "')>DELIVERED</button>&nbsp;&nbsp;";
+
+										var returnBtn = "&nbsp;&nbsp;<button class=' can_btn' style='width:20%; height:33px; line-height:0px; transition: all ease 0.5s;'  id=rejectBtn onclick=changeOrderStatus('"
+												+ data[i].orderId
+												+ "','7','"
+												+ data[i].uuidNo
+												+ "')>RETURN</button>&nbsp;&nbsp;";
+										
+										var printGenBill = "&nbsp;&nbsp;<button class=' hold_btn' style='width:20%; height:33px; line-height:0px; transition: all ease 0.5s;'  id=billBtn onclick=printGeneratedBill('"
+											+ data[i].orderId
+											+ "',1,'"
+											+ data[i].uuidNo
+											+ "')> PRINT BILL &nbsp;<i class='fa fa-print ' aria-hidden='true' style='font-size: 18px;' ></i></button>&nbsp;&nbsp;";
+
+												 */
+												/* if (data[i].orderStatus == 1) {														
+													document.getElementById("buttonDiv").innerHTML = acceptBtn
+															+ ""
+															+ acceptAndProcessBtn
+															+ ""
+															+ acceptAndProcessWithPrintBtn + "" + rejectBtn;
+
+													document.getElementById("enterRemarkDiv").style.display = "block";
+													document.getElementById("remarkLbl").innerHTML = "Reject";
+													document.getElementById("enterRemark").value = "";
+
+												//	getRemarkList(6);
+
+												} else if (data[i].orderStatus == 2) {
+		
+													document.getElementById("buttonDiv").innerHTML = processBtn
+															+ "" + processBtnWithPrint + "" + rejectBtn;
+
+													document.getElementById("enterRemarkDiv").style.display = "block";
+													document.getElementById("remarkLbl").innerHTML = "Reject";
+													document.getElementById("enterRemark").value = ""; 
+
+												//	getRemarkList(6);
+
+												} else if (data[i].orderStatus == 3) {
+
+													document.getElementById("deliveryDiv").style.display = "block";
+
+													document.getElementById("buttonDiv").innerHTML = billBtn
+															+ "" + billBtnWithPrint;
+
+												} else if (data[i].orderStatus == 4) {														
+
+													document.getElementById("buttonDiv").innerHTML = printGenBill+ "" +deliveredBtn
+															+ "" + returnBtn;
+													//document.getElementById("statusDiv").innerHTML = delPending;
+
+													document.getElementById("enterRemarkDiv").style.display = "block";
+													document.getElementById("remarkLbl").innerHTML = "Return";
+													document.getElementById("enterRemark").value = ""; 
+
+												//	getRemarkList(7);
+
+												} else if (data[i].orderStatus == 5) {
+													
+													document.getElementById("buttonDiv").innerHTML = "";
+
+												} else if (table[i].orderStatus == 6) {
+
+													document.getElementById("buttonDiv").innerHTML = "";
+
+												} else if (data[i].orderStatus == 7) {
+													
+													document.getElementById("buttonDiv").innerHTML = "";
+
+												} else if (data[i].orderStatus == 8) {
+
+													document.getElementById("buttonDiv").innerHTML = "";
+
+												} */
+												
+												
+												
+												/*********************************Grievances*********************** */
+												
+												$('#order_griev_table td').remove();
+
+												$
+														.each(
+																data[i].grievances,
+																function(key, griev) {
+																	
+
+																	var tr = $('<tr style="background:##03a9f4;"></tr>');
+																	tr
+																	.append($(
+																			'<td style="padding: 2 !important; font-size: 14px;"></td>')
+																			.html(key + 1));
+
+
+																	tr
+																			.append($(
+																					'<td  style="padding: 12px; line-height:0; border-top: 1px solid #ddd;"></td>')
+																					.html(
+																							griev.deliveryReason));
+																	tr
+																			.append($(
+																					'<td style="padding: 12px; line-height:0; border-top: 1px solid #ddd;""></td>')
+																					.html(
+																							'<img src="'+imgPath+griev.proImg1+'"  width="50" height="50" alt="Product Image">'));
+
+																	tr
+																			.append($(
+																					'<td style="padding: 12px; line-height:0; border-top: 1px solid #ddd;""></td>')
+																					.html(
+																							'<img src="'+imgPath+griev.proImg2+'"  width="50" height="50" alt="Product Image">'));
+																	tr
+																	.append($(
+																			'<td style="padding: 12px; line-height:0; border-top: 1px solid #ddd;""></td>')
+																			.html(
+																					'<img src="'+imgPath+griev.proImg3+'"  width="50" height="50" alt="Product Image">'));
+
+																	$(
+																			'#order_griev_table tbody')
+																			.append(
+																					tr);
+
+																});
+												
+										break;
+
+									}
+								}
+
+							});
+		}
+
+	}
+	function closeBillPopup() {
+		$('#billPopup').popup('hide');
+		document.getElementById("deliveryDiv").style.display = "none";
+		document.getElementById("enterRemarkDiv").style.display = "none";
+		document.getElementById("remarkLbl").innerHTML = "";
+		document.getElementById("enterRemark").value = "";
+	}
+	</script>
 
 	<script type="text/javascript">
-	
-	
-	
-
-	
-	
-		
-
 		function selectOpt(opt) {
 
 			if (opt == -1) {
