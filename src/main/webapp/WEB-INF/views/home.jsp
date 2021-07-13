@@ -2032,25 +2032,25 @@ function valdateDate(fromDate, toDate) {
 														paymentMode = "E-Pay";
 													}
 
-													if (order.orderStatus == 0) {
-														orderStatus = "Park Order";
-													} else if (order.orderStatus == 1) {
-														orderStatus = "Shop Confirmation Pending";
-													} else if (order.orderStatus == 2) {
-														orderStatus = "Accept";
-													} else if (order.orderStatus == 3) {
-														orderStatus = "Processing";
-													} else if (order.orderStatus == 4) {
-														orderStatus = "Bill Generated";
-													} else if (order.orderStatus == 5) {
-														orderStatus = "Delivered";
-													} else if (order.orderStatus == 6) {
-														orderStatus = "Rejected by Shop";
-													} else if (order.orderStatus == 7) {
-														orderStatus = "Return Order";
-													} else if (order.orderStatus == 8) {
-														orderStatus = "Cancelled Order";
-													}
+// 													if (order.orderStatus == 0) {
+// 														orderStatus = "Park Order";
+// 													} else if (order.orderStatus == 1) {
+// 														orderStatus = "Shop Confirmation Pending";
+// 													} else if (order.orderStatus == 2) {
+// 														orderStatus = "Accept";
+// 													} else if (order.orderStatus == 3) {
+// 														orderStatus = "Processing";
+// 													} else if (order.orderStatus == 4) {
+// 														orderStatus = "Bill Generated";
+// 													} else if (order.orderStatus == 5) {
+// 														orderStatus = "Delivered";
+// 													} else if (order.orderStatus == 6) {
+// 														orderStatus = "Rejected by Shop";
+// 													} else if (order.orderStatus == 7) {
+// 														orderStatus = "Return Order";
+// 													} else if (order.orderStatus == 8) {
+// 														orderStatus = "Cancelled Order";
+// 													}
 
 													var tr = $('<tr style="background:##03a9f4;"></tr>');
 
@@ -2090,7 +2090,7 @@ function valdateDate(fromDate, toDate) {
 															.append($(
 																	'<td style="text-align: center;"></td>')
 																	.html(
-																			orderStatus));
+																			order.orderStatus));
 
 													tr
 															.append($(
@@ -2162,25 +2162,25 @@ function valdateDate(fromDate, toDate) {
 										var orderType = null;
 										var trailStatus = null;
 
-										if (data[i].orderStatus == 0) {
-											orderStatus = "Park Order";
-										} else if (data[i].orderStatus == 1) {
-											orderStatus = "Shop Confirmation Pending";
-										} else if (data[i].orderStatus == 2) {
-											orderStatus = "Accept";
-										} else if (data[i].orderStatus == 3) {
-											orderStatus = "Processing";
-										} else if (data[i].orderStatus == 4) {
-											orderStatus = "Delivery Pending";
-										} else if (data[i].orderStatus == 5) {
-											orderStatus = "Delivered";
-										} else if (data[i].orderStatus == 6) {
-											status = "Rejected by Shop";
-										} else if (data[i].orderStatus == 7) {
-											orderStatus = "Return Order";
-										} else if (data[i].orderStatus == 8) {
-											orderStatus = "Cancelled Order";
-										}
+// 										if (data[i].orderStatus == 0) {
+// 											orderStatus = "Park Order";
+// 										} else if (data[i].orderStatus == 1) {
+// 											orderStatus = "Shop Confirmation Pending";
+// 										} else if (data[i].orderStatus == 2) {
+// 											orderStatus = "Accept";
+// 										} else if (data[i].orderStatus == 3) {
+// 											orderStatus = "Processing";
+// 										} else if (data[i].orderStatus == 4) {
+// 											orderStatus = "Delivery Pending";
+// 										} else if (data[i].orderStatus == 5) {
+// 											orderStatus = "Delivered";
+// 										} else if (data[i].orderStatus == 6) {
+// 											status = "Rejected by Shop";
+// 										} else if (data[i].orderStatus == 7) {
+// 											orderStatus = "Return Order";
+// 										} else if (data[i].orderStatus == 8) {
+// 											orderStatus = "Cancelled Order";
+// 										}
 
 										if (data[i].paymentMethod == 1) {
 											paymentMode = "Cash On Delivery";
@@ -2210,7 +2210,7 @@ function valdateDate(fromDate, toDate) {
 										document.getElementById("custName").innerHTML = data[i].custName;
 										document.getElementById("mobileDiv").innerHTML = data[i].custMobile;
 										document
-												.getElementById("orderStatus").innerHTML = orderStatus;
+												.getElementById("orderStatus").innerHTML = data[i].orderStatus;
 										
 										document
 												.getElementById("pamentStat").innerHTML = pamentStatus;
@@ -2486,8 +2486,9 @@ function valdateDate(fromDate, toDate) {
 														.each(
 																data[i].grievances,
 																function(key, griev) {
+																
 																	if (griev.dDate == orderId) {
-
+                                                                          
 																	var tr = $('<tr style="background:##03a9f4;"></tr>');
 																	tr
 																	.append($(

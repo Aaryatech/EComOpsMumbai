@@ -881,7 +881,7 @@ chosen-container {
 				<div class="col-md-12" id="buttonDiv"></div>
 			</div>
 			<br>
-			<div class="row" id="griev_div" style="display:none">
+			<div class="row" id="griev_div" >
 				<table id="order_griev_table" class="main-table" style="width:96%; margin:0 auto;">
 					<thead>
 						<tr class="bgpink">
@@ -2365,7 +2365,7 @@ $("#submtbtn")
 // 					}
 					
 					function exportToExcel1() {
-						alert("hi");
+					
 												window.open("${pageContext.request.contextPath}/exportToExcel");
 												document.getElementById("expExcel").disabled = true;
 											}
