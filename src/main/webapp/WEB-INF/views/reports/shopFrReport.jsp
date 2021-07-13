@@ -53,6 +53,11 @@ chosen-container {
 </script>
 
 <link rel="stylesheet" type="text/css" href="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/css/jquery.dataTables.css">
+
+<style type="text/css">
+.dataTables_length,.dataTables_filter{display: none;}
+</style>
+ 
 </head>
 <body>
 
@@ -105,10 +110,10 @@ chosen-container {
 
 						<div class="row">
 
-						<div class="col-md-2" style="float: none;">
+						<div class="col-md-2">
 							<h4 class="pull-left">From Date:-</h4>
 						</div>
-						<div class="col-md-4">
+						<div class="col-md-4 marg_btm">
 							<input id="fromdatepicker" class="texboxitemcode texboxcal"
 								autocomplete="off" placeholder="DD-MM-YYYY" name="fromDate"
 								type="text" value="${todaysDate}">
@@ -116,7 +121,7 @@ chosen-container {
 						<div class="col-md-2">
 							<h4 class="pull-left">To Date:-</h4>
 						</div>
-						<div class="col-md-4">
+						<div class="col-md-4 marg_btm">
 							<input id="todatepicker" class="texboxitemcode texboxcal"
 								autocomplete="off" placeholder="DD-MM-YYYY" name="toDate"
 								type="text" value="${todaysDate}">
@@ -128,10 +133,10 @@ chosen-container {
 					
 
 					<div class="row">
-						<div class="col-md-2" style="float: none;">
+						<div class="col-md-2" >
 							<h4 class="pull-left">Order Status:-</h4>
 						</div>
-						<div class="col-md-7">
+						<div class="col-md-10 marg_btm">
 							<select class="chosen-select" name="statusId" id="statusId"
 								multiple="multiple" onchange="selectOpt(this.value)">
 								<option value="-1" style="text-align: left;">All</option>
@@ -146,10 +151,10 @@ chosen-container {
 					<div class="row">
 
 			
-									<div class="col-md-2" style="float: none;">
+									<div class="col-md-2">
 							<h4 class="pull-left">Payment Mode:-</h4>
 						</div>
-									<div class="col-lg-4">
+									<div class="col-lg-3 marg_btm">
 										<select class="form-control select-search" data-fouc
 											data-placeholder="Select" name="paymentMethod" id="paymentMethod">
 											<option value="1">Cash</option>
@@ -160,7 +165,7 @@ chosen-container {
 											field is required.</span>
 									</div>	
 									
-									<div class="col-md-3">
+									<div class="col-md-7" style="text-align: left;">
 						<button type="button" class="btn btn-primary" id="submtbtn" >
 										Search <i class="icon-paperplane ml-2"></i>
 									</button>
@@ -187,8 +192,46 @@ chosen-container {
 				<div class="row">
 					<div class="col-md-12">
 						<div class="clearfix"></div>
+						
+						
+						
+						
+						
+						
+						<!-- new table start -->
+						<div class="tableFixHead">
+							<table id="order_table" class="responsive-table">         
+								<thead style="background-color: #f3b5db;">
+									<tr class="bgpink">
+											<th style="text-align: center;">Sr No</th>
+											<th style="text-align: center;">Order No.</th>
+											<th style="text-align: center;">Order Date</th>
+											<th style="text-align: center;">Delivery Date</th>
+											<th style="text-align: center;">Category/Subcategory</th>
+											<th style="text-align: center;">Product Name</th>
+<!-- 										<th style="text-align: center;">Product Short Name</th>											 -->
+											<th style="text-align: center;">Qty</th>											
+											<th style="text-align: center;">Customer Name</th>
+											<th style="text-align: center;">Time Slot</th>
+											<th style="text-align: center;">Order Status</th>
+											<th style="text-align: center;">Payment Mode</th>
+											<th style="text-align: center;">Payment Ref No</th>
+											<th style="text-align: center;">Cuopun Code</th>
+											<th style="text-align: center;">Discount Amount</th>
+											<th style="text-align: center;">Total Bill Amount</th>
+											<th style="text-align: center;">Action</th>
+										</tr>
+								</thead>
+								
+								<tbody>
+									</tbody>
+									
+							</table>
+						</div>
+						
+						<!-- new-table-close -->
 
-						<div class="table-responsive marg_bx">
+						<!-- <div class="table-responsive marg_bx">
 								<div id="table-scroll" class="table-scroll responsive-table-one">							
 									<table id="order_table" class="responsive-table">
 									<thead>
@@ -199,7 +242,7 @@ chosen-container {
 											<th style="text-align: center;">Delivery Date</th>
 											<th style="text-align: center;">Category/Subcategory</th>
 											<th style="text-align: center;">Product Name</th>
-<!-- 											<th style="text-align: center;">Product Short Name</th>											 -->
+											<th style="text-align: center;">Product Short Name</th>											
 											<th style="text-align: center;">Qty</th>											
 											<th style="text-align: center;">Customer Name</th>
 											<th style="text-align: center;">Time Slot</th>
@@ -219,7 +262,7 @@ chosen-container {
 								
 								
 							</div>
-						</div>
+						</div> -->
 					</div>
 				</div>
 				<div class="clearfix"></div>
@@ -231,10 +274,25 @@ chosen-container {
 									value="EXPORT TO Excel" onclick="exportToExcel();"
 									disabled="disabled"> -->
 									
-									<button type="button" class="btn btn-primary" id="pdf_btn" disabled="disabled"
-							data-toggle="modal" data-target="#modal_theme_primary" onclick="getHeaders()">
-								Pdf/Excel <i class="fas fa-file-pdf"></i>
+<!-- 									<button type="button" class="btn btn-primary" id="pdf_btn" disabled="disabled" -->
+<!-- 							data-toggle="modal" data-target="#modal_theme_primary" onclick="getHeaders()"> -->
+<!-- 								Pdf/Excel <i class="fas fa-file-pdf"></i> -->
+<!-- 							</button> -->
+
+                                       <button type="button" class="btn btn-primary" id="pdf_btn" disabled="disabled"
+							data-toggle="modal" data-target="#modal_theme_primary" onclick="genPdf()">
+								Pdf <i class="fas fa-file-pdf"></i>
 							</button>
+							
+<!-- 							<input type="button" id="expExcel" class="buttonsaveorder" -->
+<!-- 										value="EXPORT TO Excel" onclick="exportToExcel1();" -->
+<!-- 										disabled="disabled"> -->
+
+							<button type="button" class="btn btn-primary"  
+							data-toggle="modal" data-target="#modal_theme_primary" onclick="exportToExcel1()">
+								EXPORT TO Excel <i class="fas fa-file-pdf"></i>
+							</button>
+							    
 							</div>
 				<div class="row" style="text-align: left; margin: 15px 0;">
 						<div class="form-group" style="display: none;" id="range">
@@ -362,7 +420,7 @@ chosen-container {
 
 	<!--wrapper-end-->
 <!-- *********************************************************************** -->
-	<div id="billPopup" class="add_customer" style="width: 60%;">
+	<div id="billPopup" class="add_customer" style="width: 65%;">
 		<button class="addcust_close close_popup" onclick="closeBillPopup()">
 			<i class="fa fa-times" aria-hidden="true"></i>
 		</button>
@@ -377,9 +435,9 @@ chosen-container {
 
 		<div class="col-lg-12">
 
-			<div class="row" style="margin-left: 15px; margin-right: 15px;">
+			<div class="row">
 
-				<div class="col-lg-2" style="padding-left: 15px;">
+				<div class="col-lg-2">
 					<div class="add_frm" style="padding: 0px; border-bottom: 0px">
 						<div class="add_frm_one" style="margin: 0;">
 							<div class="add_customer_one"
@@ -390,7 +448,7 @@ chosen-container {
 				</div>
 				<div class="col-lg-4">
 					<div class="add_frm"
-						style="padding: 0px 0px 0px 15px; border-bottom: 0px">
+						style="padding: 0px ; border-bottom: 0px">
 						<div class="add_frm_one" style="margin: 0">
 							<div class="add_customer_one"
 								style="font-size: 14px; width: 100%;" id="orderNo"></div>
@@ -399,9 +457,9 @@ chosen-container {
 					</div>
 				</div>
 
-				<div class="col-lg-3" style="padding-left: 15px;">
+				<div class="col-lg-2" >
 					<div class="add_frm"
-						style="padding: 0px 0px 0px 15px; border-bottom: 0px">
+						style="padding: 0px; border-bottom: 0px">
 						<div class="add_frm_one" style="margin: 0;">
 							<div class="add_customer_one"
 								style="font-size: 14px; width: 100%">Delivery Date :</div>
@@ -410,7 +468,7 @@ chosen-container {
 					</div>
 				</div>
 
-				<div class="col-lg-3" style="padding-left: 15px;">
+				<div class="col-lg-4" >
 					<div class="add_frm" style="padding: 0px; border-bottom: 0px">
 						<div class="add_frm_one" style="margin: 0;">
 							<div class="add_customer_one"
@@ -422,9 +480,9 @@ chosen-container {
 
 			</div>
 
-			<div class="row" style="margin-left: 15px; margin-right: 15px;">
+			<div class="row">
 
-				<div class="col-lg-2" style="padding-left: 15px;">
+				<div class="col-lg-2">
 					<div class="add_frm" style="padding: 0px; border-bottom: 0px">
 						<div class="add_frm_one" style="margin: 0;">
 							<div class="add_customer_one"
@@ -435,7 +493,7 @@ chosen-container {
 				</div>
 				<div class="col-lg-4">
 					<div class="add_frm"
-						style="padding: 0px 0px 0px 15px; border-bottom: 0px">
+						style="padding: 0px; border-bottom: 0px">
 						<div class="add_frm_one" style="margin: 0">
 							<div class="add_customer_one"
 								style="font-size: 14px; width: 100%;" id="custName"></div>
@@ -444,9 +502,9 @@ chosen-container {
 					</div>
 				</div>
 
-				<div class="col-lg-3" style="padding-left: 15px;">
+				<div class="col-lg-2">
 					<div class="add_frm"
-						style="padding: 0px 0px 0px 15px; border-bottom: 0px">
+						style="padding: 0px ; border-bottom: 0px">
 						<div class="add_frm_one" style="margin: 0;">
 							<div class="add_customer_one"
 								style="font-size: 14px; width: 100%">Mobile Number :</div>
@@ -455,7 +513,7 @@ chosen-container {
 					</div>
 				</div>
 
-				<div class="col-lg-3" style="padding-left: 15px;">
+				<div class="col-lg-4" >
 					<div class="add_frm" style="padding: 0px; border-bottom: 0px">
 						<div class="add_frm_one" style="margin: 0;">
 							<div class="add_customer_one"
@@ -468,9 +526,9 @@ chosen-container {
 			</div>
 
 
-			<div class="row" style="margin-left: 15px; margin-right: 15px;">
+			<div class="row">
 			
-				<div class="col-lg-2" style="padding-left: 15px;">
+				<div class="col-lg-2" >
 					<div class="add_frm" style="padding: 0px; border-bottom: 0px">
 						<div class="add_frm_one" style="margin: 0;">
 							<div class="add_customer_one"
@@ -480,8 +538,7 @@ chosen-container {
 					</div>
 				</div>
 				<div class="col-lg-4">
-					<div class="add_frm"
-						style="padding: 0px 0px 0px 15px; border-bottom: 0px">
+					<div class="add_frm" style="padding: 0px; border-bottom: 0px">
 						<div class="add_frm_one" style="margin: 0">
 							<div class="add_customer_one"
 								style="font-size: 14px; width: 100%;" id="orderType"></div>
@@ -490,9 +547,9 @@ chosen-container {
 					</div>
 				</div>
 				
-				<div class="col-lg-3" style="padding-left: 15px;">
+				<div class="col-lg-2" >
 					<div class="add_frm"
-						style="padding: 0px 0px 0px 15px; border-bottom: 0px">
+						style="padding: 0px; border-bottom: 0px">
 						<div class="add_frm_one" style="margin: 0;">
 							<div class="add_customer_one"
 								style="font-size: 14px; width: 100%">Order Status :</div>
@@ -501,7 +558,7 @@ chosen-container {
 					</div>
 				</div>
 
-				<div class="col-lg-3" style="padding-left: 15px;">
+				<div class="col-lg-4">
 					<div class="add_frm" style="padding: 0px; border-bottom: 0px">
 						<div class="add_frm_one" style="margin: 0;">
 							<div class="add_customer_one"
@@ -513,8 +570,8 @@ chosen-container {
 			</div>
 
 
-			<div class="row" style="margin-left: 15px; margin-right: 15px;">
-			<div class="col-lg-2" style="padding-left: 15px;">
+			<div class="row">
+			<div class="col-lg-2" >
 					<div class="add_frm" style="padding: 0px; border-bottom: 0px">
 						<div class="add_frm_one" style="margin: 0;">
 							<div class="add_customer_one"
@@ -525,7 +582,7 @@ chosen-container {
 				</div>
 				<div class="col-lg-4">
 					<div class="add_frm"
-						style="padding: 0px 0px 0px 15px; border-bottom: 0px">
+						style="padding: 0px; border-bottom: 0px">
 						<div class="add_frm_one" style="margin: 0">
 							<div class="add_customer_one"
 								style="font-size: 14px; width: 100%;" id="payMode"></div>
@@ -534,9 +591,9 @@ chosen-container {
 					</div>
 				</div>
 				
-				<div class="col-lg-3" style="padding-left: 15px;">
+				<div class="col-lg-2" >
 					<div class="add_frm"
-						style="padding: 0px 0px 0px 15px; border-bottom: 0px">
+						style="padding: 0px ; border-bottom: 0px">
 						<div class="add_frm_one" style="margin: 0;">
 							<div class="add_customer_one"
 								style="font-size: 14px; width: 100%">Payment Status :</div>
@@ -545,7 +602,7 @@ chosen-container {
 					</div>
 				</div>
 
-				<div class="col-lg-3" style="padding-left: 15px;">
+				<div class="col-lg-4">
 					<div class="add_frm" style="padding: 0px; border-bottom: 0px">
 						<div class="add_frm_one" style="margin: 0;">
 							<div class="add_customer_one"
@@ -556,14 +613,12 @@ chosen-container {
 				</div>
 			</div>
 			
-			<div class="row" style="margin-left: 15px; margin-right: 15px;">
-				<div class="col-lg-6">					
-				</div>
+			<div class="row">
 				
 				
-				<div class="col-lg-3" style="padding-left: 15px;">
+				<div class="col-lg-2" >
 					<div class="add_frm"
-						style="padding: 0px 0px 0px 15px; border-bottom: 0px">
+						style="padding: 0px; border-bottom: 0px">
 						<div class="add_frm_one" style="margin: 0;">
 							<div class="add_customer_one"
 								style="font-size: 14px; width: 100%">Total :</div>
@@ -572,7 +627,7 @@ chosen-container {
 					</div>
 				</div>
 
-				<div class="col-lg-3" style="padding-left: 15px;">
+				<div class="col-lg-4" >
 					<div class="add_frm" style="padding: 0px; border-bottom: 0px">
 						<div class="add_frm_one" style="margin: 0;">
 							<div class="add_customer_one"
@@ -588,7 +643,7 @@ chosen-container {
 				<div id="table-scroll" class="table-scroll" style="width: 100%">
 					<div class="table-responsive"
 						style="max-height: none; min-height: none;">
-						<table id="order_dtl_table" class="main-table">
+						<table id="order_dtl_table" class="main-table" style="width:96%;"> 
 							<thead>
 								<tr class="bgpink">
 									<th class="col-md-1"
@@ -827,7 +882,7 @@ chosen-container {
 			</div>
 			<br>
 			<div class="row" id="griev_div">
-				<table id="order_griev_table" class="main-table">
+				<table id="order_griev_table" class="main-table" style="width:96%; margin:0 auto;">
 					<thead>
 						<tr class="bgpink">
 							<th class="col-md-1"
@@ -869,7 +924,7 @@ chosen-container {
 		});
 	</script>
 	
-  <script type="text/javascript" charset="utf8" src="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/jquery.dataTables.min.js"></script>	
+   <script type="text/javascript" charset="utf8" src="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/jquery.dataTables.min.js"></script>	
 	
 <script type="text/javascript">
 
@@ -973,25 +1028,25 @@ $("#submtbtn")
 													var orderStatus = null;
 													var paymentMode = null;
 
-													if (order.orderStatus == 0) {
-														orderStatus = "Park Order";
-													} else if (order.orderStatus == 1) {
-														orderStatus = "Shop Confirmation Pending";
-													} else if (order.orderStatus == 2) {
-														orderStatus = "Accept";
-													} else if (order.orderStatus == 3) {
-														orderStatus = "Processing";
-													} else if (order.orderStatus == 4) {
-														orderStatus = "Delivery Pending";
-													} else if (order.orderStatus == 5) {
-														orderStatus = "Delivered";
-													} else if (order.orderStatus == 6) {
-														orderStatus = "Rejected by Shop";
-													} else if (order.orderStatus == 7) {
-														orderStatus = "Return Order";
-													} else if (order.orderStatus == 8) {
-														orderStatus = "Cancelled Order";
-													}
+// 													if (order.orderStatus == 0) {
+// 														orderStatus = "Park Order";
+// 													} else if (order.orderStatus == 1) {
+// 														orderStatus = "Shop Confirmation Pending";
+// 													} else if (order.orderStatus == 2) {
+// 														orderStatus = "Accept";
+// 													} else if (order.orderStatus == 3) {
+// 														orderStatus = "Processing";
+// 													} else if (order.orderStatus == 4) {
+// 														orderStatus = "Delivery Pending";
+// 													} else if (order.orderStatus == 5) {
+// 														orderStatus = "Delivered";
+// 													} else if (order.orderStatus == 6) {
+// 														orderStatus = "Rejected by Shop";
+// 													} else if (order.orderStatus == 7) {
+// 														orderStatus = "Return Order";
+// 													} else if (order.orderStatus == 8) {
+// 														orderStatus = "Cancelled Order";
+// 													}
 
 													if (order.paymentMethod == 1) {
 														paymentMode = "Cash";
@@ -1033,7 +1088,7 @@ $("#submtbtn")
 													.append($(
 																'<td></td>')
 																.html(
-																		order.catName + "" +order.subCatName));
+																		order.catName + "-" +order.subCatName));
 													
 													tr
 													.append($(
@@ -1063,13 +1118,13 @@ $("#submtbtn")
 													.append($(
 																'<td></td>')
 																.html(
-																		orderStatus));
+																		order.orderStatus));
 													
 													tr
 													.append($(
 																'<td></td>')
 																.html(
-																		paymentMethod));
+																		paymentMode));
 													
 													tr
 													.append($(
@@ -1959,7 +2014,7 @@ $("#submtbtn")
 							ajax : 'true'
 						},
 						function(data) {
-							alert("table"+JSON.stringify(data))
+// 							alert("table"+JSON.stringify(data))
 							if(data!=''){
 								$("#qtyItems").css("display", "block");
 							}
@@ -1970,19 +2025,47 @@ $("#submtbtn")
 									data,
 									function(key,
 											order) {
+										
 										total = total+order.qty;
-							dataTable.row.add(	alert("table"+JSON.stringify(data))
-									[key + 1,
-										+order.productName,
-										order.qty]).draw();
+										
+										var a=1;
+										var tr = $('<tr style="background:##03a9f4;"></tr>');
+										
+										tr
+										.append($(
+												'<td  style="padding: 12px; line-height:0; border-top: 1px solid #ddd;"></td>')
+												.html(
+														key+1));
+										
+										tr
+										.append($(
+												'<td  style="padding: 12px; line-height:0; border-top: 1px solid #ddd;"></td>')
+												.html(
+														order.productName));
+										
+										tr
+										.append($(
+												'<td  style="padding: 12px; line-height:0; border-top: 1px solid #ddd;"></td>')
+												.html(
+														order.qty));
+										
+										$('#qtyItems tbody').append(tr);
+// 										alert("table"+JSON.stringify(data))
+// 							dataTable.row.add(	)
+// 									[key + 1,
+// 										+order.productName,
+// 										order.qty]).draw();
 									});
+									});
+// 									};
 							
-							dataTable.row.add(['','Total Qty',total]).draw();
-						});
+// 							dataTable.row.add(['','Total Qty',total]).draw();
+// 						);
 		
 	
 		document.getElementById("subCatId").value = subCatId;
 	}
+	
 	
 	
 	
@@ -2272,7 +2355,44 @@ $("#submtbtn")
 														}
 													}); 
 									
-					}		
+					}	
+				  
+				  
+// 					function exportToExcel() {
+// alert("hi");
+// 						window.open("${pageContext.request.contextPath}/exportToExcel");
+// 						document.getElementById("expExcel").disabled = true;
+// 					}
+					
+					function exportToExcel1() {
+						alert("hi");
+												window.open("${pageContext.request.contextPath}/exportToExcel");
+												document.getElementById("expExcel").disabled = true;
+											}
+					
+					function genPdf() {
+						var fromDate = $("#fromdatepicker").val();
+						
+						var toDate = $("#todatepicker").val();
+						var status = $("#statusId").val();
+						var datetype = $("#datetype").val();
+						var companyId = $("#companyId").val();
+						var payment = $("#paymentMethod").val();
+						var frId = $("#frId").val();
+						
+						 window
+							.open('${pageContext.request.contextPath}/pdfReport?url=pdf/getFrShopReportPdf/'
+// 									+toDate
+// 									+ '/'
+// 									+ toDate
+// 									+ '/'
+// 									+ status
+// 									+'/'
+// 									+datetype+'/'+companyId+'/'+payment+'/'+frId
+);
+			
+
+					}
 				</script>
 
 	

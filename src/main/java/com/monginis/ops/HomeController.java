@@ -44,6 +44,7 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+
 import com.monginis.ops.common.Common;
 import com.monginis.ops.common.DateConvertor;
 import com.monginis.ops.constant.Constant;
@@ -199,7 +200,50 @@ public class HomeController {
 				
 				model.addObject("fromDate", DateConvertor.convertToDMY(fromDate));
 				model.addObject("toDate", DateConvertor.convertToDMY(toDate));
-			} else {
+				System.out.println("from"+fromDate);
+				System.out.println("to"+toDate);
+			}
+			 else if(type == 5) {
+					Date begining, end;
+					
+					end = date;
+					
+					Calendar c = Calendar.getInstance(); 
+					c.setTime(end); 
+					c.add(Calendar.MONTH, -3);
+					begining = c.getTime();		//3 month before date		
+					
+					fromDate = (sf.format(begining));
+					toDate = (sf.format(end));		
+					
+					model.addObject("fromDate", DateConvertor.convertToDMY(fromDate));
+					model.addObject("toDate", DateConvertor.convertToDMY(toDate));
+					
+				System.out.println("from"+fromDate);
+				System.out.println("to"+toDate);
+				}
+			else if(type == 6) {
+				System.out.println("In 6");
+				Date begining, end;
+				
+				end = date;
+				
+				Calendar c = Calendar.getInstance(); 
+				c.setTime(end); 
+				c.add(Calendar.MONTH, -6);
+				begining = c.getTime();		//6 month before date		
+				
+				fromDate = (sf.format(begining));
+				toDate = (sf.format(end));			
+				
+				model.addObject("fromDate", DateConvertor.convertToDMY(fromDate));
+				model.addObject("toDate", DateConvertor.convertToDMY(toDate));
+				System.out.println("from"+fromDate);
+				System.out.println("to"+toDate);
+				
+				
+			}
+			else {
 
 				Date begining, end;
 
@@ -223,7 +267,8 @@ public class HomeController {
 				model.addObject("toDate", DateConvertor.convertToDMY(toDate));
 			}
 			System.err.println(" Dates---------"+fromDate+" to "+toDate);
-			
+			System.out.println("from1"+fromDate);
+			System.out.println("to1"+toDate);
 			map.add("frId", frDetails.getFrId());
 			map.add("fromDate", fromDate);
 			map.add("toDate", toDate);

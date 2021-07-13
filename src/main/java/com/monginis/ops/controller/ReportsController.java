@@ -41,6 +41,8 @@ import org.zefer.pd4ml.PD4Constants;
 import org.zefer.pd4ml.PD4ML;
 import org.zefer.pd4ml.PD4PageMark;
 
+
+import com.monginis.ops.constant.Constant;
 import com.monginis.ops.common.DateConvertor;
 import com.monginis.ops.constant.Constant;
 import com.monginis.ops.model.ExportToExcel;
@@ -79,7 +81,8 @@ public class ReportsController {
 			DateTimeFormatter formatters = DateTimeFormatter.ofPattern("d-MM-uuuu");
 			todaysDate = date.format(formatters);
 			model.addObject("todaysDate", todaysDate);
-
+			
+			model.addObject("imagePath", Constant.PROD_IMG_VIEW_URL);
 			Status[] statusArr = Constant.getRestTemplate().getForObject(Constant.URL + "getAllStatus", Status[].class);
 
 			statusList = new ArrayList<Status>(Arrays.asList(statusArr));
@@ -149,7 +152,7 @@ public class ReportsController {
 					.postForObject(Constant.URL + "/getOrderHeaderListByFrId", map, GetOrderHeaderDisplay[].class);
 
 			orderList = new ArrayList<GetOrderHeaderDisplay>(Arrays.asList(orderRepArr));
-			
+			System.out.println("orderList in get sale Report hsn Wise " + orderList);
 		} catch (
 
 		Exception e) {
@@ -184,18 +187,19 @@ public class ReportsController {
 			rowData.add(orderList.get(i).getOrderNo());
 			rowData.add(" " + orderList.get(i).getDeliveryDateDisplay());
 			rowData.add(" " + orderList.get(i).getCustName());
-			String status = orderList.get(i).getOrderStatus() == 0 ? "Park Order"
-					: orderList.get(i).getOrderStatus() == 1 ? "Shop Confirmation Pending"
-							: orderList.get(i).getOrderStatus() == 2 ? "Accept"
-									: orderList.get(i).getOrderStatus() == 3 ? "Processing"
-											: orderList.get(i).getOrderStatus() == 4 ? "Delivery Pending"
-													: orderList.get(i).getOrderStatus() == 5 ? "Delivered"
-															: orderList.get(i).getOrderStatus() == 6
-																	? "Rejected by Shop"
-																	: orderList.get(i).getOrderStatus() == 7
-																			? "Return Order"
-																			: "Cancelled Order";
-			rowData.add(" " + status);
+			rowData.add(" " + orderList.get(i).getOrderStatus());
+//			String status = orderList.get(i).getOrderStatus() == 0 ? "Park Order"
+//					: orderList.get(i).getOrderStatus() == 1 ? "Shop Confirmation Pending"
+//							: orderList.get(i).getOrderStatus() == 2 ? "Accept"
+//									: orderList.get(i).getOrderStatus() == 3 ? "Processing"
+//											: orderList.get(i).getOrderStatus() == 4 ? "Delivery Pending"
+//													: orderList.get(i).getOrderStatus() == 5 ? "Delivered"
+//															: orderList.get(i).getOrderStatus() == 6
+//																	? "Rejected by Shop"
+//																	: orderList.get(i).getOrderStatus() == 7
+//																			? "Return Order"
+//																			: "Cancelled Order";
+//			rowData.add(" " + status);
 			rowData.add(" " + roundUp(orderList.get(i).getTotalAmt()));
 
 			grandTotal = grandTotal + roundUp(orderList.get(i).getTotalAmt());

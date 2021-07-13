@@ -95,18 +95,18 @@ chosen-container {
 
 					<div class="row">
 
-						<div class="col-md-2" style="float: none;">
+						<div class="col-md-2">
 							<h4 class="pull-left">From Date:-</h4>
 						</div>
-						<div class="col-md-4">
+						<div class="col-md-4 marg_btm">
 							<input id="fromdatepicker" class="texboxitemcode texboxcal"
 								autocomplete="off" placeholder="DD-MM-YYYY" name="fromDate"
 								type="text" value="${todaysDate}">
 						</div>
-						<div class="col-md-2"  >
+						<div class="col-md-2">
 							<h4 class="pull-left">To Date:-</h4>
 						</div>
-						<div class="col-md-4">
+						<div class="col-md-4 marg_btm">
 							<input id="todatepicker" class="texboxitemcode texboxcal"
 								autocomplete="off" placeholder="DD-MM-YYYY" name="toDate"
 								type="text" value="${todaysDate}">
@@ -116,10 +116,10 @@ chosen-container {
 					</div>
 
 					<div class="row">
-						<div class="col-md-2" style="float: none;">
+						<div class="col-md-2">
 							<h4 class="pull-left">Order Status:-</h4>
 						</div>
-						<div class="col-md-7">
+						<div class="col-md-8 marg_btm">
 							<select class="chosen-select" name="status" id="statusId"
 								multiple="multiple" onchange="selectOpt(this.value)">
 								<option value="-1" style="text-align: left;">All</option>
@@ -128,7 +128,7 @@ chosen-container {
 								</c:forEach>
 							</select>
 						</div>
-						<div class="col-md-3">
+						<div class="col-md-2" style="text-align: left">
 							<button class="buttonsaveorder" onclick="getOrderDate()" >Search</button>
 							<!--style="margin-left: 17px;"  -->
 							
@@ -142,8 +142,30 @@ chosen-container {
 				<div class="row">
 					<div class="col-md-12">
 						<div class="clearfix"></div>
+						
+						<div class="tableFixHead">
+							<table id="order_table">
+									<thead>
+										<tr class="bgpink">
+											<th style="text-align: center;">Sr No</th>
+											<th style="text-align: center;">Order No.</th>
+											<th style="text-align: center;">Delivery Date</th>
+											<th style="text-align: center;">Customer</th>											
+											<th style="text-align: center;">Order Status</th>											
+											<th style="text-align: center;">Total</th>
+											<th style="text-align: center;">Detail</th>
+										</tr>
+									</thead>
+									<tbody>
+									</tbody>
 
-						<div class="table-responsive marg_bx">
+								</table>
+						
+						</div>
+						
+						
+
+						<!-- <div class="table-responsive marg_bx">
 								<div id="table-scroll" class="table-scroll responsive-table-one">							
 									<table id="order_table" class="responsive-table">
 									<thead>
@@ -162,7 +184,7 @@ chosen-container {
 
 								</table>
 							</div>
-						</div>
+						</div> -->
 					</div>
 				</div>
 				<div class="clearfix"></div>
@@ -204,6 +226,7 @@ chosen-container {
 								ajax : 'true'
 							},
 							function(data) {
+								
 								//	$('#loader').hide();
 								if (data == null) {
 									alert("No Data Found!");
@@ -232,25 +255,7 @@ chosen-container {
 														paymentMode = "E-Pay";
 													}
 
-													if (order.orderStatus == 0) {
-														orderStatus = "Park Order";
-													} else if (order.orderStatus == 1) {
-														orderStatus = "Shop Confirmation Pending";
-													} else if (order.orderStatus == 2) {
-														orderStatus = "Accept";
-													} else if (order.orderStatus == 3) {
-														orderStatus = "Processing";
-													} else if (order.orderStatus == 4) {
-														orderStatus = "Delivery Pending";
-													} else if (order.orderStatus == 5) {
-														orderStatus = "Delivered";
-													} else if (order.orderStatus == 6) {
-														orderStatus = "Rejected by Shop";
-													} else if (order.orderStatus == 7) {
-														orderStatus = "Return Order";
-													} else if (order.orderStatus == 8) {
-														orderStatus = "Cancelled Order";
-													}
+
 
 													var tr = $('<tr style="background:##03a9f4;"></tr>');
 
@@ -285,7 +290,7 @@ chosen-container {
 															.append($(
 																	'<td  style="text-align:left;"></td>')
 																	.html(
-																			orderStatus));
+																			order.orderStatus));
 
 													orderTtlAmt = orderTtlAmt
 															+ order.totalAmt;
@@ -322,14 +327,14 @@ chosen-container {
 		</script>
 
 <!-- Bill PopUp -->
-		<div id="billPopup" class="add_customer" style="width: 60%;">
+		<div id="billPopup" class="add_customer" style="width: 65%;">
 		<button class="addcust_close close_popup" onclick="closeBillPopup()">
 			<i class="fa fa-times" aria-hidden="true"></i>
 		</button>
 		<h3 class="pop_head">
 			<div class="row" style="margin-right: 25px;">
 
-				<div class="col-lg-3" style="margin-top: 5px;">Order Detail</div>
+				<div class="col-lg-3" style="margin-top: 5px;">Order Detail </div>
 				<div class="col-lg-9" id="statusDiv"></div>
 
 			</div>
@@ -337,21 +342,19 @@ chosen-container {
 
 		<div class="col-lg-12">
 
-			<div class="row" style="margin-left: 15px; margin-right: 15px;">
-
-				<div class="col-lg-2" style="padding-left: 15px;">
+			<div class="row">
+				<div class="col-lg-2" >
 					<div class="add_frm" style="padding: 0px; border-bottom: 0px">
 						<div class="add_frm_one" style="margin: 0;">
 							<div class="add_customer_one"
-								style="font-size: 14px; width: 100%">Order No :</div>
+								style="font-size: 14px; width: 100%">Order No : </div>
 						</div>
 
 					</div>
 				</div>
 				<div class="col-lg-4">
-					<div class="add_frm"
-						style="padding: 0px 0px 0px 15px; border-bottom: 0px">
-						<div class="add_frm_one" style="margin: 0">
+					<div class="add_frm" style="padding: 0px; border-bottom: 0px">
+						<div class="add_frm_one" style="margin: 0; border-bottom: 0px">
 							<div class="add_customer_one"
 								style="font-size: 14px; width: 100%;" id="orderNo"></div>
 						</div>
@@ -359,9 +362,9 @@ chosen-container {
 					</div>
 				</div>
 
-				<div class="col-lg-3" style="padding-left: 15px;">
+				<div class="col-lg-2" >
 					<div class="add_frm"
-						style="padding: 0px 0px 0px 15px; border-bottom: 0px">
+						style="padding: 0px; border-bottom: 0px">
 						<div class="add_frm_one" style="margin: 0;">
 							<div class="add_customer_one"
 								style="font-size: 14px; width: 100%">Delivery Date :</div>
@@ -370,7 +373,7 @@ chosen-container {
 					</div>
 				</div>
 
-				<div class="col-lg-3" style="padding-left: 15px;">
+				<div class="col-lg-4" >
 					<div class="add_frm" style="padding: 0px; border-bottom: 0px">
 						<div class="add_frm_one" style="margin: 0;">
 							<div class="add_customer_one"
@@ -382,20 +385,20 @@ chosen-container {
 
 			</div>
 
-			<div class="row" style="margin-left: 15px; margin-right: 15px;">
+			<div class="row" >
 
-				<div class="col-lg-2" style="padding-left: 15px;">
+				<div class="col-lg-2" >
 					<div class="add_frm" style="padding: 0px; border-bottom: 0px">
 						<div class="add_frm_one" style="margin: 0;">
 							<div class="add_customer_one"
-								style="font-size: 14px; width: 100%">Customer Name :</div>
+								style="font-size: 14px; width: 100%">Customer Name : </div>
 						</div>
 
 					</div>
 				</div>
 				<div class="col-lg-4">
 					<div class="add_frm"
-						style="padding: 0px 0px 0px 15px; border-bottom: 0px">
+						style="padding: 0px; border-bottom: 0px">
 						<div class="add_frm_one" style="margin: 0">
 							<div class="add_customer_one"
 								style="font-size: 14px; width: 100%;" id="custName"></div>
@@ -404,9 +407,9 @@ chosen-container {
 					</div>
 				</div>
 
-				<div class="col-lg-3" style="padding-left: 15px;">
+				<div class="col-lg-2">
 					<div class="add_frm"
-						style="padding: 0px 0px 0px 15px; border-bottom: 0px">
+						style="padding: 0px ; border-bottom: 0px">
 						<div class="add_frm_one" style="margin: 0;">
 							<div class="add_customer_one"
 								style="font-size: 14px; width: 100%">Mobile Number :</div>
@@ -415,7 +418,7 @@ chosen-container {
 					</div>
 				</div>
 
-				<div class="col-lg-3" style="padding-left: 15px;">
+				<div class="col-lg-3" >
 					<div class="add_frm" style="padding: 0px; border-bottom: 0px">
 						<div class="add_frm_one" style="margin: 0;">
 							<div class="add_customer_one"
@@ -428,31 +431,31 @@ chosen-container {
 			</div>
 
 
-			<div class="row" style="margin-left: 15px; margin-right: 15px;">
+			<div class="row">
 			
-				<div class="col-lg-2" style="padding-left: 15px;">
-					<div class="add_frm" style="padding: 0px; border-bottom: 0px">
-						<div class="add_frm_one" style="margin: 0;">
-							<div class="add_customer_one"
-								style="font-size: 14px; width: 100%">Order Type :</div>
-						</div>
+<!-- 				<div class="col-lg-2" style="padding-left: 15px;"> -->
+<!-- 					<div class="add_frm" style="padding: 0px; border-bottom: 0px"> -->
+<!-- 						<div class="add_frm_one" style="margin: 0;"> -->
+<!-- 							<div class="add_customer_one" -->
+<!-- 								style="font-size: 14px; width: 100%">Order Type :</div> -->
+<!-- 						</div> -->
 
-					</div>
-				</div>
-				<div class="col-lg-4">
-					<div class="add_frm"
-						style="padding: 0px 0px 0px 15px; border-bottom: 0px">
-						<div class="add_frm_one" style="margin: 0">
-							<div class="add_customer_one"
-								style="font-size: 14px; width: 100%;" id="orderType"></div>
-						</div>
+<!-- 					</div> -->
+<!-- 				</div> -->
+<!-- 				<div class="col-lg-4"> -->
+<!-- 					<div class="add_frm" -->
+<!-- 						style="padding: 0px 0px 0px 15px; border-bottom: 0px"> -->
+<!-- 						<div class="add_frm_one" style="margin: 0"> -->
+<!-- 							<div class="add_customer_one" -->
+<!-- 								style="font-size: 14px; width: 100%;" id="orderType"></div> -->
+<!-- 						</div> -->
 
-					</div>
-				</div>
+<!-- 					</div> -->
+<!-- 				</div> -->
 				
-				<div class="col-lg-3" style="padding-left: 15px;">
+				<div class="col-lg-2" >
 					<div class="add_frm"
-						style="padding: 0px 0px 0px 15px; border-bottom: 0px">
+						style="padding: 0px; border-bottom: 0px">
 						<div class="add_frm_one" style="margin: 0;">
 							<div class="add_customer_one"
 								style="font-size: 14px; width: 100%">Order Status :</div>
@@ -461,7 +464,7 @@ chosen-container {
 					</div>
 				</div>
 
-				<div class="col-lg-3" style="padding-left: 15px;">
+				<div class="col-lg-4" >
 					<div class="add_frm" style="padding: 0px; border-bottom: 0px">
 						<div class="add_frm_one" style="margin: 0;">
 							<div class="add_customer_one"
@@ -470,11 +473,8 @@ chosen-container {
 
 					</div>
 				</div>
-			</div>
-
-
-			<div class="row" style="margin-left: 15px; margin-right: 15px;">
-			<div class="col-lg-2" style="padding-left: 15px;">
+				
+				<div class="col-lg-2">
 					<div class="add_frm" style="padding: 0px; border-bottom: 0px">
 						<div class="add_frm_one" style="margin: 0;">
 							<div class="add_customer_one"
@@ -485,7 +485,7 @@ chosen-container {
 				</div>
 				<div class="col-lg-4">
 					<div class="add_frm"
-						style="padding: 0px 0px 0px 15px; border-bottom: 0px">
+						style="padding: 0px ; border-bottom: 0px">
 						<div class="add_frm_one" style="margin: 0">
 							<div class="add_customer_one"
 								style="font-size: 14px; width: 100%;" id="payMode"></div>
@@ -493,10 +493,15 @@ chosen-container {
 
 					</div>
 				</div>
+			</div>
+
+
+			<div class="row">
+			
 				
-				<div class="col-lg-3" style="padding-left: 15px;">
+				<div class="col-lg-2" >
 					<div class="add_frm"
-						style="padding: 0px 0px 0px 15px; border-bottom: 0px">
+						style="padding: 0px; border-bottom: 0px">
 						<div class="add_frm_one" style="margin: 0;">
 							<div class="add_customer_one"
 								style="font-size: 14px; width: 100%">Payment Status :</div>
@@ -505,7 +510,7 @@ chosen-container {
 					</div>
 				</div>
 
-				<div class="col-lg-3" style="padding-left: 15px;">
+				<div class="col-lg-4">
 					<div class="add_frm" style="padding: 0px; border-bottom: 0px">
 						<div class="add_frm_one" style="margin: 0;">
 							<div class="add_customer_one"
@@ -725,7 +730,7 @@ chosen-container {
 		
 		<input type="hidden" value="${frId}" id="frId"> 
 		<input type="hidden" value="${compId}" id="compId">
-	
+	<input type="hidden" value="${imagePath}" id="imgPath">
 
 	</div>
 	<!--wrapper-end-->
@@ -766,25 +771,25 @@ chosen-container {
 										var orderType = null;
 										var trailStatus = null;
 
-										if (data[i].orderStatus == 0) {
-											orderStatus = "Park Order";
-										} else if (data[i].orderStatus == 1) {
-											orderStatus = "Shop Confirmation Pending";
-										} else if (data[i].orderStatus == 2) {
-											orderStatus = "Accept";
-										} else if (data[i].orderStatus == 3) {
-											orderStatus = "Processing";
-										} else if (data[i].orderStatus == 4) {
-											orderStatus = "Delivery Pending";
-										} else if (data[i].orderStatus == 5) {
-											orderStatus = "Delivered";
-										} else if (data[i].orderStatus == 6) {
-											status = "Rejected by Shop";
-										} else if (data[i].orderStatus == 7) {
-											orderStatus = "Return Order";
-										} else if (data[i].orderStatus == 8) {
-											orderStatus = "Cancelled Order";
-										}
+// 										if (data[i].orderStatus == 0) {
+// 											orderStatus = "Park Order";
+// 										} else if (data[i].orderStatus == 1) {
+// 											orderStatus = "Shop Confirmation Pending";
+// 										} else if (data[i].orderStatus == 2) {
+// 											orderStatus = "Accept";
+// 										} else if (data[i].orderStatus == 3) {
+// 											orderStatus = "Processing";
+// 										} else if (data[i].orderStatus == 4) {
+// 											orderStatus = "Delivery Pending";
+// 										} else if (data[i].orderStatus == 5) {
+// 											orderStatus = "Delivered";
+// 										} else if (data[i].orderStatus == 6) {
+// 											status = "Rejected by Shop";
+// 										} else if (data[i].orderStatus == 7) {
+// 											orderStatus = "Return Order";
+// 										} else if (data[i].orderStatus == 8) {
+// 											orderStatus = "Cancelled Order";
+// 										}
 
 										if (data[i].paymentMethod == 1) {
 											paymentMode = "Cash";
@@ -814,14 +819,13 @@ chosen-container {
 										document.getElementById("custName").innerHTML = data[i].custName;
 										document.getElementById("mobileDiv").innerHTML = data[i].custMobile;
 										document
-												.getElementById("orderStatus").innerHTML = orderStatus;
+												.getElementById("orderStatus").innerHTML = data[i].orderStatus;
 										document
 												.getElementById("pamentStat").innerHTML = pamentStatus;
 										document.getElementById("dateTime").innerHTML = data[i].deliveryDateDisplay
 												+ " "
 												+ data[i].deliveryTimeDisplay;
-										document
-												.getElementById("orderType").innerHTML = orderType;
+										//document.getElementById("orderType").innerHTML = orderType;
 										document.getElementById("payMode").innerHTML = paymentMode;
 // 										document.getElementById("ttlAmt").innerHTML = data[i].totalAmt;
 										
@@ -842,7 +846,7 @@ chosen-container {
 														function(key, itm) {			
 															
 															var itemPic = '<img src="'+imgPath+itm.itemPic+'"  width="50" height="50" alt="Product Image">';
-																	
+															//alert(itemPic);		
 																	
 															var tr = $('<tr style="background:##03a9f4;"></tr>');
 															tr

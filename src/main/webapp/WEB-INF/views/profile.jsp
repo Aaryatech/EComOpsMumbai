@@ -648,8 +648,9 @@
 		<button class="slide_close">
 			<i class="fa fa-times" aria-hidden="true"></i>
 		</button>
-		<div style="overflow-x: auto; height: 90%;">
-			<table class="pending_tab1" id="table_grid">
+		
+		<div class="tableFixHead">
+			<table id="table_grid">
 				<thead>
 					<tr>
 						<th style="text-align: center;">Sr.No.</th>
@@ -667,6 +668,27 @@
 				</tbody>
 			</table>
 		</div>
+		
+		
+		<!-- <div style="overflow-x: auto; height: 90%;">
+			<table class="pending_tab1" id="table_grid">
+				<thead>
+					<tr>
+						<th style="text-align: center;">Sr.No.</th>
+						<th style="text-align: center;">Employee Name</th>
+						<th style="text-align: center;">Designation</th>
+						<th style="text-align: center;">Contact No</th>
+						<th style="text-align: center;">Address</th>
+						<th style="text-align: center;">Joining Date</th>
+						<th style="text-align: center;">Status</th>
+						<th style="text-align: center;">Action</th>
+					</tr>
+				</thead>
+				<tbody>
+
+				</tbody>
+			</table>
+		</div> -->
 	</div>
 	
 	<!-- <script type="text/javascript">

@@ -140,8 +140,8 @@ chosen-container {
 											<th style="text-align: center;">No. Of Bills</th>											
 											<th style="text-align: center;">Total Amt</th>											
 											<th style="text-align: center;">COD</th>
-											<th style="text-align: center;">Card</th>
-											<th style="text-align: center;">E-Pay</th>
+											<!-- <th style="text-align: center;">Card</th> -->
+											<th style="text-align: center;">Online</th>
 											<th style="text-align: center;">Detail</th>
 										</tr>
 									</thead>
@@ -249,11 +249,11 @@ chosen-container {
 															.html(
 																	order.cod));
 													
-													tr
+													/* tr
 													.append($(
 															'<td style="text-align: center;"></td>')
 															.html(
-																	order.card));
+																	order.card)); */
 													
 													tr
 													.append($(

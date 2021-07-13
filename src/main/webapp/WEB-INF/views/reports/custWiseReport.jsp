@@ -95,23 +95,23 @@ chosen-container {
 
 					<div class="row">
 
-						<div class="col-md-2" style="float: none;">
-							<h4 class="pull-left">From Date:-</h4>
+						<div class="col-md-1">
+							<h4 class="pull-left">From Date</h4>
 						</div>
-						<div class="col-md-3">
+						<div class="col-md-4 marg_btm">
 							<input id="fromdatepicker" class="texboxitemcode texboxcal"
 								autocomplete="off" placeholder="DD-MM-YYYY" name="fromDate"
 								type="text" value="${todaysDate}">
 						</div>
 						<div class="col-md-1">
-							<h4 class="pull-left">To Date:-</h4>
+							<h4 class="pull-left">To Date</h4>
 						</div>
-						<div class="col-md-3">
+						<div class="col-md-4 marg_btm">
 							<input id="todatepicker" class="texboxitemcode texboxcal"
 								autocomplete="off" placeholder="DD-MM-YYYY" name="toDate"
 								type="text" value="${todaysDate}">
 						</div>
-						<div class="col-md-3">
+						<div class="col-md-2" style="text-align: right;">
 							<button class="buttonsaveorder" onclick="getCustPurchaseRep()" >Search</button>							
 							
 							<button class="buttonsaveorder" value="PDF" id="PDFButton"
@@ -125,8 +125,25 @@ chosen-container {
 				<div class="row">
 					<div class="col-md-12">
 						<div class="clearfix"></div>
+						
+						<div class="tableFixHead">
+							<table id="order_table">
+								<thead>
+									<tr class="bgpink">
+										<th style="text-align: center;">Sr No</th>											
+										<th style="text-align: center;">Customer</th>
+										<th style="text-align: center;">Mobile No.</th>											
+										<th style="text-align: center;">Date Of Birth</th>											
+										<th style="text-align: center;">Total Purchase</th>
+										<th style="text-align: center;">Detail</th>
+									</tr>
+								</thead>
+								<tbody>
+								</tbody>
+							</table>
+						</div>
 
-						<div class="table-responsive marg_bx">
+						<!-- <div class="table-responsive marg_bx">
 								<div id="table-scroll" class="table-scroll responsive-table-one">							
 									<table id="order_table" class="responsive-table">
 									<thead>
@@ -144,7 +161,7 @@ chosen-container {
 
 								</table>
 							</div>
-						</div>
+						</div> -->
 					</div>
 				</div>
 				<div class="clearfix"></div>

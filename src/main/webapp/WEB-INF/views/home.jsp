@@ -45,7 +45,7 @@
 			</jsp:include>
 			<section class="main_container">
 				<!--page title-start-->
-				<div class="page_head">				
+				<div class="page_head">
 
 					<div class="page_title">Dashboard</div>
 
@@ -59,7 +59,7 @@
 						</ul>
 					</div> -->
 
-				<%-- 
+					<%-- 
 				<div class="quick_links">
 					<h3 class="bx_title">Quick Links</h3>
 					<ul>
@@ -90,8 +90,8 @@
 					</ul>
 				</div> --%>
 
-				<div class="sales_list">
-				
+					<div class="sales_list">
+
 						<form action="${pageContext.request.contextPath}/home"
 							method="get" id="submitInsert">
 
@@ -115,17 +115,17 @@
 											<input type="radio" name="type" value="3" class="radio-align"
 												onclick="showDiv(this.value)"> Month
 										</div>
-										
+
 										<div class="col-md-1 radio_align_1">
 											<input type="radio" name="type" value="5" class="radio-align"
 												onclick="showDiv(this.value)">3 Month
 										</div>
-										
+
 										<div class="col-md-1 radio_align_1">
 											<input type="radio" name="type" value="6" class="radio-align"
 												onclick="showDiv(this.value)">6 Month
 										</div>
-										
+
 										<div class="col-md-1 radio_align_1">
 											<input type="radio" name="type" value="4" class="radio-align"
 												onclick="showDiv(this.value)"> Custom
@@ -144,17 +144,17 @@
 											<input type="radio" name="type" value="3" class="radio-align"
 												onclick="showDiv(this.value)"> Month
 										</div>
-										
+
 										<div class="col-md-1 radio_align_1">
 											<input type="radio" name="type" value="5" class="radio-align"
 												onclick="showDiv(this.value)">3 Month
 										</div>
-										
+
 										<div class="col-md-1 radio_align_1">
 											<input type="radio" name="type" value="6" class="radio-align"
 												onclick="showDiv(this.value)">6 Month
 										</div>
-										
+
 										<div class="col-md-1 radio_align_1">
 											<input type="radio" name="type" value="4" class="radio-align"
 												onclick="showDiv(this.value)"> Custom
@@ -174,17 +174,17 @@
 											<input type="radio" name="type" value="3" class="radio-align"
 												checked onclick="showDiv(this.value)"> Month
 										</div>
-										
+
 										<div class="col-md-1 radio_align_1">
 											<input type="radio" name="type" value="5" class="radio-align"
 												onclick="showDiv(this.value)">3 Month
 										</div>
-										
+
 										<div class="col-md-1 radio_align_1">
 											<input type="radio" name="type" value="6" class="radio-align"
 												onclick="showDiv(this.value)">6 Month
 										</div>
-										
+
 										<div class="col-md-1 radio_align_1">
 											<input type="radio" name="type" value="4" class="radio-align"
 												onclick="showDiv(this.value)"> Custom
@@ -204,46 +204,111 @@
 											<input type="radio" name="type" value="3" class="radio-align"
 												onclick="showDiv(this.value)"> Month
 										</div>
-										
-											<div class="col-md-1 radio_align_1">
+
+										<div class="col-md-1 radio_align_1">
 											<input type="radio" name="type" value="5" class="radio-align"
 												onclick="showDiv(this.value)">3 Month
 										</div>
-										
+
 										<div class="col-md-1 radio_align_1">
 											<input type="radio" name="type" value="6" class="radio-align"
 												onclick="showDiv(this.value)">6 Month
 										</div>
-										
+
 										<div class="col-md-1 radio_align_1">
 											<input type="radio" name="type" value="4" class="radio-align"
 												checked onclick="showDiv(this.value)"> Custom
 										</div>
 									</c:when>
+
+									<c:when test="${type==5}">
+										<div class="col-md-1 radio_align_1">
+											<input type="radio" name="type" value="1" class="radio-align"
+												onclick="showDiv(this.value)">Today
+										</div>
+										<div class="col-md-1 radio_align_1">
+											<input type="radio" name="type" value="2" class="radio-align"
+												onclick="showDiv(this.value)"> Week
+										</div>
+										<div class="col-md-1 radio_align_1">
+											<input type="radio" name="type" value="3" class="radio-align"
+												onclick="showDiv(this.value)"> Month
+										</div>
+
+										<div class="col-md-1 radio_align_1">
+											<input type="radio" name="type" value="5" class="radio-align"
+												checked onclick="showDiv(this.value)">3 Month
+										</div>
+
+										<div class="col-md-1 radio_align_1">
+											<input type="radio" name="type" value="6" class="radio-align"
+												onclick="showDiv(this.value)">6 Month
+										</div>
+
+										<div class="col-md-1 radio_align_1">
+											<input type="radio" name="type" value="4" class="radio-align"
+												onclick="showDiv(this.value)"> Custom
+										</div>
+									</c:when>
+									<c:when test="${type==6}">
+										<div class="col-md-1 radio_align_1">
+											<input type="radio" name="type" value="1" class="radio-align"
+												onclick="showDiv(this.value)">Today
+										</div>
+										<div class="col-md-1 radio_align_1">
+											<input type="radio" name="type" value="2" class="radio-align"
+												onclick="showDiv(this.value)"> Week
+										</div>
+										<div class="col-md-1 radio_align_1">
+											<input type="radio" name="type" value="3" class="radio-align"
+												onclick="showDiv(this.value)"> Month
+										</div>
+
+										<div class="col-md-1 radio_align_1">
+											<input type="radio" name="type" value="5" class="radio-align"
+												onclick="showDiv(this.value)">3 Month
+										</div>
+
+										<div class="col-md-1 radio_align_1">
+											<input type="radio" name="type" value="6" class="radio-align"
+												checked onclick="showDiv(this.value)">6 Month
+										</div>
+
+										<div class="col-md-1 radio_align_1">
+											<input type="radio" name="type" value="4" class="radio-align"
+												onclick="showDiv(this.value)"> Custom
+										</div>
+									</c:when>
+
+
 								</c:choose>
 								<input type="hidden" value="${divType}" id="divType">
 
 
 
 								<div id="ihide" style="display: none;">
-									<div class="col-md-1">
-										<div class="col1title">From Date</div>
-									</div>
+									<!-- 									<div class="col-md-1"> -->
+									<!-- 										<div class="col1title"></div> -->
+									<!-- 									</div> -->
 									<div class="col-md-2">
 										<input id="fromdatepicker" class="texboxitemcode texboxcal"
 											required="required" placeholder="From Date" name="fromDate"
-											value="${fromDate}" autocomplete="off" type="text"><span class="validation-invalid-label text-danger" id="error_from"
-											style="display: none;">From date must be smaller than to date.</span>
+											value="${fromDate}" autocomplete="off" type="text"><span
+											class="validation-invalid-label text-danger" id="error_from"
+											style="display: none;">From date must be smaller than
+											to date.</span>
 
 									</div>
-									<div class="col-md-1">
-										<div class="col1title">To Date</div>
-									</div>
+									<!-- 									<div class="col-md-1"> -->
+									<!-- 										<div class="col1title"></div> -->
+									<!-- 									</div> -->
 									<div class="col-md-2">
 										<input id="todatepicker" class="texboxitemcode texboxcal"
 											required="required" placeholder="To Date" name="toDate"
-											value="${toDate}" autocomplete="off" type="text"> <span class="validation-invalid-label text-danger" id="error_to"
-											style="display: none;">To date must be greater than from date.</span>
+											value="${toDate}" autocomplete="off" type="text"> <span
+											class="validation-invalid-label text-danger" id="error_to"
+											style="display: none;">To date must be greater than
+											from date.</span>
 									</div>
 
 								</div>
@@ -269,38 +334,97 @@
 
 							</div>
 						</form>
-					
-					<input type="hidden" value="${custmDates}" id="custmDates">
-					<input type="hidden" value="${imagePath}" id="imgPath">
-					<div class="clr"></div>
-					
-					<ul id="status_cnt">
-					<c:forEach items="${countDetails}" var="countDetails" varStatus="count">
-						<c:if test="${!empty countDetails.statusName}">
-					<li>
-							<div class="sale_one bg_one"
-								onclick="getBillStatusDetail(${countDetails.orderStatus})">
-								<div class="sale_l">
-									<i class="fa fa-list" aria-hidden="true"></i>
 
-								</div>
-								<div class="sale_r">
-									<h3 class="sale_head">${countDetails.statusName}</h3>
+						<input type="hidden" value="${custmDates}" id="custmDates">
+						<input type="hidden" value="${imagePath}" id="imgPath">
+						<div class="clr"></div>
 
-									<h1 class="price_sale">										
-										<fmt:formatNumber type="number" pattern="#"
-											value="${countDetails.orderStatusCnt}" />
-									</h1>
-								</div>
-								<div class="clr"></div>
-							</div>
-						</li>
-						</c:if>
-						</c:forEach>						
-					</ul>
-					<div class="clr"></div>
+						<ul id="status_cnt">
+							<c:forEach items="${countDetails}" var="countDetails"
+								varStatus="count">
+								<c:if test="${!empty countDetails.statusName}">
+									<li>
+										<div class="sale_one bg_one"
+											onclick="getBillStatusDetail(${countDetails.orderStatus})">
+											<div class="sale_l">
+												<i class="fa fa-list" aria-hidden="true"></i>
+
+											</div>
+											<div class="sale_r">
+												<h3 class="sale_head">${countDetails.statusName}</h3>
+
+												<h1 class="price_sale">
+													<fmt:formatNumber type="number" pattern="#"
+														value="${countDetails.orderStatusCnt}" />
+												</h1>
+											</div>
+											<div class="clr"></div>
+										</div>
+									</li>
+								</c:if>
+							</c:forEach>
+						</ul>
+						<div class="clr"></div>
+					</div>
+					<div align="center" id="loader" style="display: none;">
+
+						<span>
+							<h4>
+								<font color="#343690">Loading... Please Wait</font>
+							</h4>
+						</span> <span class="l-1"></span> <span class="l-2"></span> <span
+							class="l-3"></span> <span class="l-4"></span> <span class="l-5"></span>
+						<span class="l-6"></span>
+					</div>
+					<div class="sales_list">
+
+
+						<h3 class="bx_title">Orders By Status</h3>
+
+						<div class="scrollbars" id="scrollbarsmodaldiv"
+							style="height: auto;">
+							<table id="order_table">
+
+								<thead>
+									<tr>
+
+										<th class="col-md-1" style="text-align: center;">Sr No</th>
+										<th class="col-md-2" style="text-align: center;">Order
+											No.</th>
+										<th class="col-md-2" style="text-align: center;">Delivery
+											Date</th>
+										<th class="col-md-2" style="text-align: center;">Customer</th>
+										<th class="col-md-2" style="text-align: center;">Time
+											Slot</th>
+										<th class="col-md-1" style="text-align: center;">Order
+											Status</th>
+										<th class="col-sm-1" style="text-align: center;">Payment
+											Mode</th>
+										<th class="col-md-2" style="text-align: center;">Total</th>
+										<th class="col-md-1" style="text-align: center;">Action</th>
+									</tr>
+								</thead>
+								<tbody>
+
+								</tbody>
+							</table>
+						</div>
+
+					</div>
 				</div>
-						<div align="center" id="loader" style="display: none;">
+
+				<div class="charts_bx">
+					<div class="chart_l">
+
+						<!-- <div class="a">Map Put Here</div>
+ -->
+						<div id="donutchart"></div>
+						<!-- style="width: 900px; height: 500px;" -->
+					</div>
+					<div class="chart_r">
+						<h3 class="bx_title">Top Products</h3>
+
+						<div align="center" id="loader_tbl" style="display: none;">
 
 							<span>
 								<h4>
@@ -310,111 +434,53 @@
 								class="l-3"></span> <span class="l-4"></span> <span class="l-5"></span>
 							<span class="l-6"></span>
 						</div>
-						<div class="sales_list">
 
 
-					<h3 class="bx_title">Orders By Status</h3>
 
-					<div class="scrollbars" id="scrollbarsmodaldiv"
-						style="height: auto;">
-						<table id="order_table">
 
-							<thead>
-								<tr>
+						<div class="scrollbars" id="scrollbarsmodaldiv">
+							<table id="custCreditTable">
 
-									<th class="col-md-1" style="text-align: center;">Sr No</th>
-											<th class="col-md-2" style="text-align: center;">Order
-												No.</th>
-											<th class="col-md-2" style="text-align: center;">Delivery
-												Date</th>
-											<th class="col-md-2" style="text-align: center;">Customer</th>
-											<th class="col-md-2" style="text-align: center;">Time
-												Slot</th>
-											<th class="col-md-1" style="text-align: center;">Order
-												Status</th>
-											<th class="col-sm-1" style="text-align: center;">Payment
-												Mode</th>
-											<th class="col-md-2" style="text-align: center;">Total</th>
-											<th class="col-md-1" style="text-align: center;">Action</th>
-								</tr>
-							</thead>
-							<tbody>
+								<thead>
+									<tr>
+										<th style="text-align: center;">Sr</th>
+										<th style="text-align: center;">Item Name</th>
+										<th style="text-align: center;">Amount</th>
+									</tr>
+								</thead>
+								<tbody>
 
-							</tbody>
-						</table>
+								</tbody>
+							</table>
+						</div>
+					</div>
+					<div class="clr"></div>
+				</div>
+
+				<div id="overlay2">
+					<div id="text2">
+						<img
+							src="${pageContext.request.contextPath}/resources/newpos/images/loader.gif"
+							alt="madhvi_logo">
+					</div>
+				</div>
+
+				<div class="charts_bx">
+					<div class="chart_l">
+
+						<!-- <div class="a">Map Put Here</div>
+ -->
+						<div id="chart_div"></div>
+						<!-- style="width: 900px; height: 500px;" -->
+
+
 					</div>
 
+					<div class="clr"></div>
+
+
 				</div>
-		</div>
-
-		<div class="charts_bx">
-			<div class="chart_l">
-
-				<!-- <div class="a">Map Put Here</div>
- -->
-				<div id="donutchart"></div>
-				<!-- style="width: 900px; height: 500px;" -->
-			</div>
-						<div class="chart_r">
-							<h3 class="bx_title">Top Products</h3>
-
-							<div align="center" id="loader_tbl" style="display: none;">
-
-								<span>
-									<h4>
-										<font color="#343690">Loading... Please Wait</font>
-									</h4>
-								</span> <span class="l-1"></span> <span class="l-2"></span> <span
-									class="l-3"></span> <span class="l-4"></span> <span class="l-5"></span>
-								<span class="l-6"></span>
-							</div>
-
-
-
-
-							<div class="scrollbars" id="scrollbarsmodaldiv">
-								<table id="custCreditTable">
-
-									<thead>
-										<tr>
-											<th style="text-align: center;">Sr</th>
-											<th style="text-align: center;">Item Name</th>
-											<th style="text-align: center;">Amount</th>
-										</tr>
-									</thead>
-									<tbody>
-
-									</tbody>
-								</table>
-							</div>
-						</div>
-						<div class="clr"></div>
-		</div>
-		
-		<div id="overlay2">
-			<div id="text2">
-				<img
-					src="${pageContext.request.contextPath}/resources/newpos/images/loader.gif"
-					alt="madhvi_logo">
-			</div>
-		</div>
-
-		<div class="charts_bx">
-			<div class="chart_l">
-
-				<!-- <div class="a">Map Put Here</div>
- -->
-				<div id="chart_div"></div>
-				<!-- style="width: 900px; height: 500px;" -->
-
-
-			</div>
-
-			<div class="clr"></div>
-
-
-		</div>
-		</section>
+			</section>
 		</div>
 		<!--wrapper-end-->
 	</form>
@@ -426,7 +492,7 @@
 	<!--  trial -->
 	<script type="text/javascript"
 		src="https://www.gstatic.com/charts/loader.js"></script>
-<script type="text/javascript">
+	<script type="text/javascript">
 		$(document).ready(function() {
 			//alert("hi");
 			//getPendingOrders();
@@ -744,7 +810,7 @@
 		});
 	</script>
 	<!-- *********************************************************************** -->
-	<div id="billPopup" class="add_customer" style="width: 60%;">
+	<div id="billPopup" class="add_customer" style="width: 65%;">
 		<button class="addcust_close close_popup" onclick="closeBillPopup()">
 			<i class="fa fa-times" aria-hidden="true"></i>
 		</button>
@@ -759,9 +825,9 @@
 
 		<div class="col-lg-12">
 
-			<div class="row" style="margin-left: 15px; margin-right: 15px;">
+			<div class="row">
 
-				<div class="col-lg-2" style="padding-left: 15px;">
+				<div class="col-lg-2">
 					<div class="add_frm" style="padding: 0px; border-bottom: 0px">
 						<div class="add_frm_one" style="margin: 0;">
 							<div class="add_customer_one"
@@ -771,8 +837,7 @@
 					</div>
 				</div>
 				<div class="col-lg-4">
-					<div class="add_frm"
-						style="padding: 0px 0px 0px 15px; border-bottom: 0px">
+					<div class="add_frm" style="padding: 0px; border-bottom: 0px">
 						<div class="add_frm_one" style="margin: 0">
 							<div class="add_customer_one"
 								style="font-size: 14px; width: 100%;" id="orderNo"></div>
@@ -781,9 +846,8 @@
 					</div>
 				</div>
 
-				<div class="col-lg-3" style="padding-left: 15px;">
-					<div class="add_frm"
-						style="padding: 0px 0px 0px 15px; border-bottom: 0px">
+				<div class="col-lg-2">
+					<div class="add_frm" style="padding: 0px; border-bottom: 0px">
 						<div class="add_frm_one" style="margin: 0;">
 							<div class="add_customer_one"
 								style="font-size: 14px; width: 100%">Delivery Date :</div>
@@ -792,7 +856,7 @@
 					</div>
 				</div>
 
-				<div class="col-lg-3" style="padding-left: 15px;">
+				<div class="col-lg-4">
 					<div class="add_frm" style="padding: 0px; border-bottom: 0px">
 						<div class="add_frm_one" style="margin: 0;">
 							<div class="add_customer_one"
@@ -804,9 +868,9 @@
 
 			</div>
 
-			<div class="row" style="margin-left: 15px; margin-right: 15px;">
+			<div class="row">
 
-				<div class="col-lg-2" style="padding-left: 15px;">
+				<div class="col-lg-2">
 					<div class="add_frm" style="padding: 0px; border-bottom: 0px">
 						<div class="add_frm_one" style="margin: 0;">
 							<div class="add_customer_one"
@@ -816,8 +880,7 @@
 					</div>
 				</div>
 				<div class="col-lg-4">
-					<div class="add_frm"
-						style="padding: 0px 0px 0px 15px; border-bottom: 0px">
+					<div class="add_frm" style="padding: 0px; border-bottom: 0px">
 						<div class="add_frm_one" style="margin: 0">
 							<div class="add_customer_one"
 								style="font-size: 14px; width: 100%;" id="custName"></div>
@@ -826,9 +889,8 @@
 					</div>
 				</div>
 
-				<div class="col-lg-3" style="padding-left: 15px;">
-					<div class="add_frm"
-						style="padding: 0px 0px 0px 15px; border-bottom: 0px">
+				<div class="col-lg-2">
+					<div class="add_frm" style="padding: 0px; border-bottom: 0px">
 						<div class="add_frm_one" style="margin: 0;">
 							<div class="add_customer_one"
 								style="font-size: 14px; width: 100%">Mobile Number :</div>
@@ -837,7 +899,7 @@
 					</div>
 				</div>
 
-				<div class="col-lg-3" style="padding-left: 15px;">
+				<div class="col-lg-4">
 					<div class="add_frm" style="padding: 0px; border-bottom: 0px">
 						<div class="add_frm_one" style="margin: 0;">
 							<div class="add_customer_one"
@@ -850,9 +912,9 @@
 			</div>
 
 
-			<div class="row" style="margin-left: 15px; margin-right: 15px;">
-			
-				<div class="col-lg-2" style="padding-left: 15px;">
+			<div class="row">
+
+				<!-- <div class="col-lg-2">
 					<div class="add_frm" style="padding: 0px; border-bottom: 0px">
 						<div class="add_frm_one" style="margin: 0;">
 							<div class="add_customer_one"
@@ -863,18 +925,17 @@
 				</div>
 				<div class="col-lg-4">
 					<div class="add_frm"
-						style="padding: 0px 0px 0px 15px; border-bottom: 0px">
+						style="padding: 0px; border-bottom: 0px">
 						<div class="add_frm_one" style="margin: 0">
 							<div class="add_customer_one"
 								style="font-size: 14px; width: 100%;" id="orderType"></div>
 						</div>
 
 					</div>
-				</div>
-				
-				<div class="col-lg-3" style="padding-left: 15px;">
-					<div class="add_frm"
-						style="padding: 0px 0px 0px 15px; border-bottom: 0px">
+				</div> -->
+
+				<div class="col-lg-2">
+					<div class="add_frm" style="padding: 0px; border-bottom: 0px">
 						<div class="add_frm_one" style="margin: 0;">
 							<div class="add_customer_one"
 								style="font-size: 14px; width: 100%">Order Status :</div>
@@ -883,7 +944,7 @@
 					</div>
 				</div>
 
-				<div class="col-lg-3" style="padding-left: 15px;">
+				<div class="col-lg-4">
 					<div class="add_frm" style="padding: 0px; border-bottom: 0px">
 						<div class="add_frm_one" style="margin: 0;">
 							<div class="add_customer_one"
@@ -892,11 +953,8 @@
 
 					</div>
 				</div>
-			</div>
 
-
-			<div class="row" style="margin-left: 15px; margin-right: 15px;">
-			<div class="col-lg-2" style="padding-left: 15px;">
+				<div class="col-lg-2">
 					<div class="add_frm" style="padding: 0px; border-bottom: 0px">
 						<div class="add_frm_one" style="margin: 0;">
 							<div class="add_customer_one"
@@ -906,8 +964,7 @@
 					</div>
 				</div>
 				<div class="col-lg-4">
-					<div class="add_frm"
-						style="padding: 0px 0px 0px 15px; border-bottom: 0px">
+					<div class="add_frm" style="padding: 0px; border-bottom: 0px">
 						<div class="add_frm_one" style="margin: 0">
 							<div class="add_customer_one"
 								style="font-size: 14px; width: 100%;" id="payMode"></div>
@@ -915,10 +972,15 @@
 
 					</div>
 				</div>
-				
-				<div class="col-lg-3" style="padding-left: 15px;">
-					<div class="add_frm"
-						style="padding: 0px 0px 0px 15px; border-bottom: 0px">
+
+			</div>
+
+
+			<div class="row">
+
+
+				<div class="col-lg-2">
+					<div class="add_frm" style="padding: 0px; border-bottom: 0px">
 						<div class="add_frm_one" style="margin: 0;">
 							<div class="add_customer_one"
 								style="font-size: 14px; width: 100%">Payment Status :</div>
@@ -927,7 +989,7 @@
 					</div>
 				</div>
 
-				<div class="col-lg-3" style="padding-left: 15px;">
+				<div class="col-lg-4">
 					<div class="add_frm" style="padding: 0px; border-bottom: 0px">
 						<div class="add_frm_one" style="margin: 0;">
 							<div class="add_customer_one"
@@ -936,16 +998,9 @@
 
 					</div>
 				</div>
-			</div>
-			
-			<div class="row" style="margin-left: 15px; margin-right: 15px;">
-				<div class="col-lg-6">					
-				</div>
-				
-				
-				<div class="col-lg-3" style="padding-left: 15px;">
-					<div class="add_frm"
-						style="padding: 0px 0px 0px 15px; border-bottom: 0px">
+
+				<div class="col-lg-2">
+					<div class="add_frm" style="padding: 0px; border-bottom: 0px">
 						<div class="add_frm_one" style="margin: 0;">
 							<div class="add_customer_one"
 								style="font-size: 14px; width: 100%">Total :</div>
@@ -954,7 +1009,7 @@
 					</div>
 				</div>
 
-				<div class="col-lg-3" style="padding-left: 15px;">
+				<div class="col-lg-4">
 					<div class="add_frm" style="padding: 0px; border-bottom: 0px">
 						<div class="add_frm_one" style="margin: 0;">
 							<div class="add_customer_one"
@@ -964,6 +1019,8 @@
 					</div>
 				</div>
 			</div>
+
+
 			<br>
 
 			<div class="row">
@@ -976,9 +1033,11 @@
 									<th class="col-md-1"
 										style="text-align: center; padding: 0 !important; font-size: 14px;">SR</th>
 									<th class="col-md-2"
-										style="text-align: center; padding: 0 !important; font-size: 14px;">Items Name</th>
+										style="text-align: center; padding: 0 !important; font-size: 14px;">Items
+										Name</th>
 									<th class="col-md-1"
-										style="text-align: center; padding: 0 !important; font-size: 14px;">Product Image</th>
+										style="text-align: center; padding: 0 !important; font-size: 14px;">Product
+										Image</th>
 									<th class="col-sm-1"
 										style="text-align: center; padding: 0 !important; font-size: 14px;">Rate</th>
 									<th class="col-md-1"
@@ -991,131 +1050,135 @@
 							<tbody>
 
 							</tbody>
-						</table>						
+						</table>
 					</div>
 				</div>
 			</div>
-			
+
 			<div class="col-lg-12">
 
-			<div class="row" style="margin-left: 15px; margin-right: 15px;">
+				<div class="row" style="margin-left: 15px; margin-right: 15px;">
 
-				
-				<div class="col-lg-6"> </div>
 
-				<div class="col-lg-3" style="padding-left: 15px;">
-					<div class="add_frm"
-						style="padding: 0px 0px 0px 15px; border-bottom: 0px">
-						<div class="add_frm_one" style="margin: 0;">
-							<div class="add_customer_one"
-								style="font-size: 14px; width: 100%">Product Total :</div>
-						</div>
+					<div class="col-lg-6"></div>
 
-					</div>
-				</div>
+					<div class="col-lg-3" style="padding-left: 15px;">
+						<div class="add_frm"
+							style="padding: 0px 0px 0px 15px; border-bottom: 0px">
+							<div class="add_frm_one" style="margin: 0;">
+								<div class="add_customer_one"
+									style="font-size: 14px; width: 100%">Product Total :</div>
+							</div>
 
-				<div class="col-lg-3" style="padding-left: 15px;">
-					<div class="add_frm" style="padding: 0px; border-bottom: 0px">
-						<div class="add_frm_one" style="margin: 0;">
-							<div class="add_customer_one"
-								style="font-size: 16px; width: 100%; margin-left: 109px;" id="taxableAmt"></div>
 						</div>
 					</div>
-				</div>
-				
-				<div class="col-lg-6"> </div>
 
-				<div class="col-lg-3" style="padding-left: 15px;">
-					<div class="add_frm"
-						style="padding: 0px 0px 0px 15px; border-bottom: 0px">
-						<div class="add_frm_one" style="margin: 0;">
-							<div class="add_customer_one"
-								style="font-size: 14px; width: 100%">Tax :</div>
-						</div>
-
-					</div>
-				</div>
-
-				<div class="col-lg-3" style="padding-left: 15px;">
-					<div class="add_frm" style="padding: 0px; border-bottom: 0px">
-						<div class="add_frm_one" style="margin: 0;">
-							<div class="add_customer_one"
-								style="font-size: 16px; width: 100%; margin-left: 109px;" id="taxAmt"></div>
+					<div class="col-lg-3" style="padding-left: 15px;">
+						<div class="add_frm" style="padding: 0px; border-bottom: 0px">
+							<div class="add_frm_one" style="margin: 0;">
+								<div class="add_customer_one"
+									style="font-size: 16px; width: 100%; margin-left: 109px;"
+									id="taxableAmt"></div>
+							</div>
 						</div>
 					</div>
-				</div>
-				
-				<div class="col-lg-6"> </div>
 
-				<div class="col-lg-3" style="padding-left: 15px;">
-					<div class="add_frm"
-						style="padding: 0px 0px 0px 15px; border-bottom: 0px">
-						<div class="add_frm_one" style="margin: 0;">
-							<div class="add_customer_one"
-								style="font-size: 14px; width: 100%">Offer Discount :</div>
-						</div>
+					<div class="col-lg-6"></div>
 
-					</div>
-				</div>
+					<div class="col-lg-3" style="padding-left: 15px;">
+						<div class="add_frm"
+							style="padding: 0px 0px 0px 15px; border-bottom: 0px">
+							<div class="add_frm_one" style="margin: 0;">
+								<div class="add_customer_one"
+									style="font-size: 14px; width: 100%">Tax :</div>
+							</div>
 
-				<div class="col-lg-3" style="padding-left: 15px;">
-					<div class="add_frm" style="padding: 0px; border-bottom: 0px">
-						<div class="add_frm_one" style="margin: 0;">
-							<div class="add_customer_one"
-								style="font-size: 16px; width: 100%; margin-left: 109px;" id="discAmt"></div>
 						</div>
 					</div>
-				</div>
-				
-				<div class="col-lg-6"> </div>
 
-				<div class="col-lg-3" style="padding-left: 15px;">
-					<div class="add_frm"
-						style="padding: 0px 0px 0px 15px; border-bottom: 0px">
-						<div class="add_frm_one" style="margin: 0;">
-							<div class="add_customer_one"
-								style="font-size: 14px; width: 100%">Delivery Charges :</div>
-						</div>
-
-					</div>
-				</div>
-
-				<div class="col-lg-3" style="padding-left: 15px;">
-					<div class="add_frm" style="padding: 0px; border-bottom: 0px">
-						<div class="add_frm_one" style="margin: 0;">
-							<div class="add_customer_one"
-								style="font-size: 16px; width: 65%; margin-left: 109px;
-								 border-bottom: solid;  border-width: thin" id="deliveryCharges"></div>
+					<div class="col-lg-3" style="padding-left: 15px;">
+						<div class="add_frm" style="padding: 0px; border-bottom: 0px">
+							<div class="add_frm_one" style="margin: 0;">
+								<div class="add_customer_one"
+									style="font-size: 16px; width: 100%; margin-left: 109px;"
+									id="taxAmt"></div>
+							</div>
 						</div>
 					</div>
-				</div>
-				
-				
-				<div class="col-lg-6"> </div>
 
-				<div class="col-lg-3" style="padding-left: 15px;">
-					<div class="add_frm"
-						style="padding: 0px 0px 0px 15px; border-bottom: 0px">
-						<div class="add_frm_one" style="margin: 0;">
-							<div class="add_customer_one"
-								style="font-size: 14px; width: 100%">Total :</div>
-						</div>
+					<div class="col-lg-6"></div>
 
-					</div>
-				</div>
+					<div class="col-lg-3" style="padding-left: 15px;">
+						<div class="add_frm"
+							style="padding: 0px 0px 0px 15px; border-bottom: 0px">
+							<div class="add_frm_one" style="margin: 0;">
+								<div class="add_customer_one"
+									style="font-size: 14px; width: 100%">Offer Discount :</div>
+							</div>
 
-				<div class="col-lg-3" style="padding-left: 15px;">
-					<div class="add_frm" style="padding: 0px; border-bottom: 0px">
-						<div class="add_frm_one" style="margin: 0;">
-							<div class="add_customer_one"
-								style="font-size: 16px; width: 100%; margin-left: 109px;  border-bottom: none;" id="totalOrderAmt"></div>
 						</div>
 					</div>
-				</div>
 
+					<div class="col-lg-3" style="padding-left: 15px;">
+						<div class="add_frm" style="padding: 0px; border-bottom: 0px">
+							<div class="add_frm_one" style="margin: 0;">
+								<div class="add_customer_one"
+									style="font-size: 16px; width: 100%; margin-left: 109px;"
+									id="discAmt"></div>
+							</div>
+						</div>
+					</div>
+
+					<div class="col-lg-6"></div>
+
+					<div class="col-lg-3" style="padding-left: 15px;">
+						<div class="add_frm"
+							style="padding: 0px 0px 0px 15px; border-bottom: 0px">
+							<div class="add_frm_one" style="margin: 0;">
+								<div class="add_customer_one"
+									style="font-size: 14px; width: 100%">Delivery Charges :</div>
+							</div>
+
+						</div>
+					</div>
+
+					<div class="col-lg-3" style="padding-left: 15px;">
+						<div class="add_frm" style="padding: 0px; border-bottom: 0px">
+							<div class="add_frm_one" style="margin: 0;">
+								<div class="add_customer_one"
+									style="font-size: 16px; width: 65%; margin-left: 109px; border-bottom: solid; border-width: thin"
+									id="deliveryCharges"></div>
+							</div>
+						</div>
+					</div>
+
+
+					<div class="col-lg-6"></div>
+
+					<div class="col-lg-3" style="padding-left: 15px;">
+						<div class="add_frm"
+							style="padding: 0px 0px 0px 15px; border-bottom: 0px">
+							<div class="add_frm_one" style="margin: 0;">
+								<div class="add_customer_one"
+									style="font-size: 14px; width: 100%">Total :</div>
+							</div>
+
+						</div>
+					</div>
+
+					<div class="col-lg-3" style="padding-left: 15px;">
+						<div class="add_frm" style="padding: 0px; border-bottom: 0px">
+							<div class="add_frm_one" style="margin: 0;">
+								<div class="add_customer_one"
+									style="font-size: 16px; width: 100%; margin-left: 109px; border-bottom: none;"
+									id="totalOrderAmt"></div>
+							</div>
+						</div>
+					</div>
+
+				</div>
 			</div>
-			</div>
-			
+
 			<!-- <div class="row">
 				<div id="table-scroll" class="table-scroll" style="width: 100%">
 					<div class="table-responsive"
@@ -1235,7 +1298,7 @@
 			</div>
 		</div>
 	</div>
-<script type="text/javascript">
+	<script type="text/javascript">
 $(document).ready(function(){
     $("#submt_btn").click(function(){ 
     	var isError = false;
@@ -1317,7 +1380,7 @@ function valdateDate(fromDate, toDate) {
 											var orderType = null;
 											var trailStatus = null;
 
-											if (data[i].orderStatus == 0) {
+											/* if (data[i].orderStatus == 0) {
 												orderStatus = "Park Order";
 											} else if (data[i].orderStatus == 1) {
 												orderStatus = "Shop Confirmation Pending";
@@ -1335,7 +1398,7 @@ function valdateDate(fromDate, toDate) {
 												orderStatus = "Return Order";
 											} else if (data[i].orderStatus == 8) {
 												orderStatus = "Cancelled Order";
-											}
+											} */
 
 											if (data[i].paymentMethod == 1) {
 												paymentMode = "Cash On Delivery";
@@ -1365,14 +1428,14 @@ function valdateDate(fromDate, toDate) {
 											document.getElementById("custName").innerHTML = data[i].custName;
 											document.getElementById("mobileDiv").innerHTML = data[i].custMobile;
 											document
-													.getElementById("orderStatus").innerHTML = orderStatus;
+													.getElementById("orderStatus").innerHTML = data[i].orderStatus;
 											document
 													.getElementById("pamentStat").innerHTML = pamentStatus;
 											document.getElementById("dateTime").innerHTML = data[i].deliveryDateDisplay
 													+ " "
 													+ data[i].deliveryTimeDisplay;
-											document
-													.getElementById("orderType").innerHTML = orderType;
+											/* document
+													.getElementById("orderType").innerHTML = orderType; */
 											document.getElementById("payMode").innerHTML = paymentMode;
 											document.getElementById("ttlAmt").innerHTML = data[i].totalAmt;
 											
@@ -2148,13 +2211,16 @@ function valdateDate(fromDate, toDate) {
 										document.getElementById("mobileDiv").innerHTML = data[i].custMobile;
 										document
 												.getElementById("orderStatus").innerHTML = orderStatus;
+										
 										document
 												.getElementById("pamentStat").innerHTML = pamentStatus;
 										document.getElementById("dateTime").innerHTML = data[i].deliveryDateDisplay
 												+ " "
 												+ data[i].deliveryTimeDisplay;
+										/* alert(pamentStatus)
 										document
-												.getElementById("orderType").innerHTML = orderType;
+												.getElementById("orderType").innerHTML = orderType; */
+										
 										document.getElementById("payMode").innerHTML = paymentMode;
 										document.getElementById("ttlAmt").innerHTML = data[i].totalAmt;
 										
@@ -2553,7 +2619,7 @@ function valdateDate(fromDate, toDate) {
 
 							});*/
 		} 
-	</script> 
+	</script>
 
 
 	<script type="text/javascript">

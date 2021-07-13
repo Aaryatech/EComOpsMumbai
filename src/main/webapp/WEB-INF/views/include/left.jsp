@@ -866,11 +866,18 @@
 
 									<a
 										href="${pageContext.request.contextPath}/showOrderWiseReportBetDate"><i
-										class="fa fa-files-o icon"></i>Order Wise Report</a> <a
-										href="${pageContext.request.contextPath}/showDateWiseBillReport"><i
-										class="fa fa-files-o icon"></i>Order Date Wise Report</a> <a
-										href="${pageContext.request.contextPath}/monthWiseOrderReport"><i
-										class="fa fa-files-o icon"></i>Month Wise Bill Report</a>
+										class="fa fa-files-o icon"></i>Order Wise Report</a>
+<!-- 										 <a -->
+<%-- 										href="${pageContext.request.contextPath}/showDateWiseBillReport"><i --%>
+<!-- 										class="fa fa-files-o icon"></i>Order Date Wise Report</a> -->
+										 <a
+										href="${pageContext.request.contextPath}/getShopFrReport"><i
+										class="fa fa-files-o icon"></i>Shop Report</a>
+										
+<!-- 										<a -->
+<%-- 										href="${pageContext.request.contextPath}/monthWiseOrderReport"><i --%>
+<!-- 										class="fa fa-files-o icon"></i>Month Wise Bill Report</a> -->
+										
 										<a
 										href="${pageContext.request.contextPath}/showCustWiseReportBetDate"><i
 										class="fa fa-files-o icon"></i>Customer Wise Report

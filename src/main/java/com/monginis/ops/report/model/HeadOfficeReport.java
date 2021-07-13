@@ -13,7 +13,7 @@ public class HeadOfficeReport {
 	private String orderNo;
 	private String companyName;
 	private int paymentMethod;
-	private int orderStatus;
+	private String orderStatus;
 	private String timeSlot;
 	private float qty;
 	private float totalAmt;
@@ -79,14 +79,21 @@ public class HeadOfficeReport {
 	public void setPaymentMethod(int paymentMethod) {
 		this.paymentMethod = paymentMethod;
 	}
-	public int getOrderStatus() {
-		return orderStatus;
-	}
-	public void setOrderStatus(int orderStatus) {
-		this.orderStatus = orderStatus;
-	}
+//	public int getOrderStatus() {
+//		return orderStatus;
+//	}
+//	public void setOrderStatus(int orderStatus) {
+//		this.orderStatus = orderStatus;
+//	}
+	
 	public String getTimeSlot() {
 		return timeSlot;
+	}
+	public String getOrderStatus() {
+		return orderStatus;
+	}
+	public void setOrderStatus(String orderStatus) {
+		this.orderStatus = orderStatus;
 	}
 	public void setTimeSlot(String timeSlot) {
 		this.timeSlot = timeSlot;
@@ -260,5 +267,7 @@ public class HeadOfficeReport {
 				+ ", deliveryCharges=" + deliveryCharges + ", hsnCode=" + hsnCode + ", mrp=" + mrp + ", sgstAmt="
 				+ sgstAmt + ", cgstAmt=" + cgstAmt + ", igstAmt=" + igstAmt + ", grievances=" + grievances + "]";
 	}
+	
+	
 		
 }

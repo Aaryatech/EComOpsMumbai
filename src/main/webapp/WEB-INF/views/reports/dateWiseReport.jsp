@@ -139,8 +139,8 @@ left: 700px;
 											<th style="text-align: center;">No. Of Bills</th>											
 											<th style="text-align: center;">Total Amt</th>											
 											<th style="text-align: center;">COD</th>
-											<th style="text-align: center;">Card</th>
-											<th style="text-align: center;">E-Pay</th>
+<!-- 											<th style="text-align: center;">Card</th> -->
+											<th style="text-align: center;">Online</th>
 											<th style="text-align: center;">Detail</th>
 										</tr>
 									</thead>
@@ -242,11 +242,11 @@ left: 700px;
 															.html(
 																	order.cod));
 													
-													tr
-													.append($(
-															'<td style="text-align: center;"></td>')
-															.html(
-																	order.card));
+// 													tr
+// 													.append($(
+// 															'<td style="text-align: center;"></td>')
+// 															.html(
+// 																	order.card));
 													
 													tr
 													.append($(
