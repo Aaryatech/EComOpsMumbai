@@ -881,7 +881,7 @@ chosen-container {
 				<div class="col-md-12" id="buttonDiv"></div>
 			</div>
 			<br>
-			<div class="row" id="griev_div">
+			<div class="row" id="griev_div" style="display:none">
 				<table id="order_griev_table" class="main-table" style="width:96%; margin:0 auto;">
 					<thead>
 						<tr class="bgpink">
@@ -1201,25 +1201,25 @@ $("#submtbtn")
 										var orderType = null;
 										var trailStatus = null;
 
-										if (data[i].orderStatus == 0) {
-											orderStatus = "Park Order";
-										} else if (data[i].orderStatus == 1) {
-											orderStatus = "Shop Confirmation Pending";
-										} else if (data[i].orderStatus == 2) {
-											orderStatus = "Accept";
-										} else if (data[i].orderStatus == 3) {
-											orderStatus = "Processing";
-										} else if (data[i].orderStatus == 4) {
-											orderStatus = "Delivery Pending";
-										} else if (data[i].orderStatus == 5) {
-											orderStatus = "Delivered";
-										} else if (data[i].orderStatus == 6) {
-											status = "Rejected by Shop";
-										} else if (data[i].orderStatus == 7) {
-											orderStatus = "Return Order";
-										} else if (data[i].orderStatus == 8) {
-											orderStatus = "Cancelled Order";
-										}
+// 										if (data[i].orderStatus == 0) {
+// 											orderStatus = "Park Order";
+// 										} else if (data[i].orderStatus == 1) {
+// 											orderStatus = "Shop Confirmation Pending";
+// 										} else if (data[i].orderStatus == 2) {
+// 											orderStatus = "Accept";
+// 										} else if (data[i].orderStatus == 3) {
+// 											orderStatus = "Processing";
+// 										} else if (data[i].orderStatus == 4) {
+// 											orderStatus = "Delivery Pending";
+// 										} else if (data[i].orderStatus == 5) {
+// 											orderStatus = "Delivered";
+// 										} else if (data[i].orderStatus == 6) {
+// 											status = "Rejected by Shop";
+// 										} else if (data[i].orderStatus == 7) {
+// 											orderStatus = "Return Order";
+// 										} else if (data[i].orderStatus == 8) {
+// 											orderStatus = "Cancelled Order";
+// 										}
 
 										if (data[i].paymentMethod == 1) {
 											paymentMode = "Cash On Delivery";
@@ -1249,7 +1249,7 @@ $("#submtbtn")
 										document.getElementById("custName").innerHTML = data[i].custName;
 										document.getElementById("mobileDiv").innerHTML = data[i].custMobile;
 										document
-												.getElementById("orderStatus").innerHTML = orderStatus;
+												.getElementById("orderStatus").innerHTML = data[i].orderStatus;
 										document
 												.getElementById("pamentStat").innerHTML = pamentStatus;
 										document.getElementById("dateTime").innerHTML = data[i].deliveryDateDisplay
