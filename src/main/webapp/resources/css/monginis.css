@@ -476,7 +476,7 @@ input[type=checkbox]:checked + label:before {
 table.responsive-table {width:100%; border-collapse: collapse; overflow-x: auto; margin: 1.5em 0; background-color: transparent;}
 .responsive-table th{padding: 8px 3px; vertical-align: top; background: #ed3f3c !important; color: #fff !important; font-size: 16px;}
 .responsive-table tr:nth-child(2n+1) {background: #fffed9;}
-.responsive-table td{text-align: right; padding: 10px; font-size: 18px;}
+.responsive-table td{text-align: right; padding: 10px; font-size: 16px;}
 #insertItemButton,#printExBill {margin: 0 0 15px 0; }
 
 .responsive-table-one{width: 100%; overflow-x: scroll; display: inline-block !important;}
@@ -656,7 +656,19 @@ display:block;  height:44px; line-height:44px;}
 .sub_right i{margin:0 3px 0 0; font-size:16px;}
 .sub_right span{position: absolute; border-radius: 50%; width: 20px; background: #F00;
     color: #FFF; right: -6px; top: -5px;}
+    
+    
+  /*responsive trable*/
+.tableFixHead {overflow-y: auto; max-height: 65vh /* 500px */; display: inline-block; width: 100%; border-bottom: 1px solid #ccc;}
+.tableFixHead thead th {position: sticky; top: -1px; z-index: 99;}
+.tableFixHead table {border-collapse: collapse; width: 100%;}
+.tableFixHead table th,.tableFixHead table td {padding: 4px 16px; border: 1px solid #ccc; }
+.tableFixHead table tr:nth-child(even) {background-color: #f9f9f9;}
+.tableFixHead table th, .tableFixHead table td a{color: #333;}
+/* .tableFixHead table tr:hover{background-color: #F00;} */
+.tableFixHead table th {background:#ec268f !important; color:#FFF; font-size: 15px; font-weight: 600;}  
 
+.marg_btm{display: inline-block; width:100%; margin: 0 0 15px 0;}
 
 /*--css-divices--*/
 @media screen and (max-width:1440px){

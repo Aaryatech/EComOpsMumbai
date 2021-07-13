@@ -428,6 +428,10 @@ width:100px
     display: none;
 }
 
+
+
+.marg_bx{padding: 20px 0 0 0; display: inline-block; width: 100%;}
+
 @media screen and (max-width:1305px) {
 .table-wrap {
     width: 100%;
