@@ -8,9 +8,12 @@
 
 <jsp:include page="/WEB-INF/views/include/header.jsp" />
 
+
 <html>
 <head>
 <style>
+.dataTables_empty{display: none;}
+
 table, th, td {
 	border: 1px solid #9da88d;
 }
@@ -52,7 +55,7 @@ chosen-container {
 	});
 </script>
 
-<link rel="stylesheet" type="text/css" href="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/css/jquery.dataTables.css">
+<!-- <link rel="stylesheet" type="text/css" href="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/css/jquery.dataTables.css"> -->
 
 <style type="text/css">
 .dataTables_length,.dataTables_filter{display: none;}
@@ -157,9 +160,9 @@ chosen-container {
 									<div class="col-lg-3 marg_btm">
 										<select class="form-control select-search" data-fouc
 											data-placeholder="Select" name="paymentMethod" id="paymentMethod">
-											<option value="1">Cash</option>
-											<option value="2">Card</option>
-											<option value="3">E-Pay</option>
+											<option value="1">Cash On Delivery</option>
+											<option value="2">Online</option>
+<!-- 											<option value="3">E-Pay</option> -->
 										</select> <span class="validation-invalid-label text-danger"
 											id="error_payment_mode" style="display: none;">This
 											field is required.</span>
@@ -1087,12 +1090,13 @@ $("#submtbtn")
 // 													}
 
 													if (order.paymentMethod == 1) {
-														paymentMode = "Cash";
+														paymentMode = "Cash On Delivery";
 													} else if ((order.paymentMethod == 2)) {
-														paymentMode = "Card";
-													} else {
-														paymentMode = "E-Pay";
-													}
+														paymentMode = "Online";
+													} 
+// 													else {
+// 														paymentMode = "E-Pay";
+// 													}
 													var acStr = '<a href="javascript:void(0)" class="list-icons-item text-primary-600" data-popup="tooltip" title="Order Detail & Grievances" id="btn_griev_'+order.orderId+'" onclick="openOrderGrievPopup('
 														+ order.orderId
 														+ ')"><i class="fa fa-list"></i></a>'
@@ -1124,25 +1128,25 @@ $("#submtbtn")
 													
 													tr
 													.append($(
-																'<td></td>')
+																'<td style="text-align:left;"></td>')
 																.html(
 																		order.catName + "-" +order.subCatName));
 													
 													tr
 													.append($(
-																'<td></td>')
+																'<td style="text-align:left;"></td>')
 																.html(
 																		order.productName));
 													
 													tr
 													.append($(
-																'<td></td>')
+																'<td ></td>')
 																.html(
 																		order.qty));
 													
 													tr
 													.append($(
-																'<td></td>')
+																'<td style="text-align:left;"></td>')
 																.html(
 																		order.custName));
 													
@@ -1154,13 +1158,13 @@ $("#submtbtn")
 											
 													tr
 													.append($(
-																'<td></td>')
+																'<td style="text-align:left;"></td>')
 																.html(
 																		order.orderStatus));
 													
 													tr
 													.append($(
-																'<td></td>')
+																'<td style="text-align:left;"></td>')
 																.html(
 																		paymentMode));
 													
