@@ -67,7 +67,7 @@
 
 	
 
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/newpos/js/jquery-1.10.2.min.js"></script>
 
 <!-- jQuery Popup Overlay -->

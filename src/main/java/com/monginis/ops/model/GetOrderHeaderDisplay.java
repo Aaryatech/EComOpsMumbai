@@ -85,6 +85,15 @@ public class GetOrderHeaderDisplay {
 	List<GetOrderTrailDisplay> orderTrailList;
 	List<Grievances> grievances;
 	
+	//SAC 14-07-2021
+			private int intOrderStatus;
+			public int getIntOrderStatus() {
+				return intOrderStatus;
+			}
+			public void setIntOrderStatus(int intOrderStatus) {
+				this.intOrderStatus = intOrderStatus;
+			}
+	
 	public int getOrderId() {
 		return orderId;
 	}

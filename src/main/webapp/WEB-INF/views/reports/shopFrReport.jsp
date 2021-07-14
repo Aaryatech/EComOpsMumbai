@@ -718,9 +718,9 @@ chosen-container {
 					</div>
 				</div>
 				
-				<div class="col-lg-6"> </div>
+				<!-- <div class="col-lg-6"> </div> -->
 
-				<div class="col-lg-3" style="padding-left: 15px;">
+				<div class="col-lg-3" style="padding-left: 15px;display: none;">
 					<div class="add_frm"
 						style="padding: 0px 0px 0px 15px; border-bottom: 0px">
 						<div class="add_frm_one" style="margin: 0;">
@@ -731,7 +731,7 @@ chosen-container {
 					</div>
 				</div>
 
-				<div class="col-lg-3" style="padding-left: 15px;">
+				<div class="col-lg-3" style="padding-left: 15px;display: none;">
 					<div class="add_frm" style="padding: 0px; border-bottom: 0px">
 						<div class="add_frm_one" style="margin: 0;">
 							<div class="add_customer_one"
@@ -965,7 +965,7 @@ chosen-container {
 		});
 	</script>
 	
-   <script type="text/javascript" charset="utf8" src="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/jquery.dataTables.min.js"></script>	
+   <script type="text/javascript" charset="utf8" src="https://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/jquery.dataTables.min.js"></script>	
 	
 <script type="text/javascript">
 
@@ -994,7 +994,7 @@ $("#submtbtn")
 			
 			
 			$("#submtbtn").attr("disabled", true);							
-			
+			$('#order_table td').remove();
 			var fromDate = $("#fromdatepicker").val();
 			
 			var toDate = $("#todatepicker").val();
@@ -1022,12 +1022,12 @@ $("#submtbtn")
 				}
 				
 			if(flag) {
-				
+				hideBody();
 			$('#loader').show();
 			$('#order_table td').remove();
 			
 			var dataTable = $('#order_table').DataTable();
-// 			dataTable.clear().draw();
+ 			//dataTable.clear().draw();
 
 			$
 					.getJSON(
@@ -1044,7 +1044,7 @@ $("#submtbtn")
 								ajax : 'true'
 							},
 							function(data) {
-								
+								showBody();
 								//	alert(JSON.stringify(data));
 								$("#submtbtn").attr("disabled", false);
 																				
@@ -1204,9 +1204,18 @@ $("#submtbtn")
 		}
 		});
 </script>
+<script>
+  function hideBody(){
+	  document.body.style.opacity="50";
+	  }
+	  function showBody(){
+		  document.body.style.opacity="100";
+		  }
+ </script>
 <script type="text/javascript">
-	function openOrderGrievPopup(orderId){		
+	 function openOrderGrievPopup(orderId){		
 		$('#order_dtl_table td').remove();	
+		hideBody();
 		document.getElementById('btn_griev_'+orderId).style.pointerEvents = 'none';
 		//$("#btn_griev_"+orderId).attr("disabled", true);		
 		
@@ -1231,6 +1240,7 @@ $("#submtbtn")
 							},
 							function(data) {	
 							$("#loader").hide();
+							showBody();
 							document.getElementById('btn_griev_'+orderId).style.pointerEvents = 'auto';
 							
 								$('#billPopup').popup('show');
@@ -1304,7 +1314,7 @@ $("#submtbtn")
 										document.getElementById("ttlAmt").innerHTML = data[i].totalAmt;
 										
 										document
-										.getElementById("taxableAmt").innerHTML = data[i].taxableAmt;
+										.getElementById("taxableAmt").innerHTML = data[i].exFloat1;
 										
 										document.getElementById("taxAmt").innerHTML = data[i].taxAmt;
 										document.getElementById("discAmt").innerHTML = data[i].discAmt;
@@ -1362,9 +1372,9 @@ $("#submtbtn")
 																	'#order_dtl_table tbody')
 																	.append(
 																			tr);
-
+														
 														});
-
+										
 										//***************************************Trail Table*****************************************//
 
 										$('#order_trail_table td').remove();

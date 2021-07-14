@@ -19,7 +19,7 @@
 
 <script>
   function hideBody(){
-	  document.body.style.opacity="0";
+	  document.body.style.opacity="50";
 	  }
 	  function showBody(){
 		  document.body.style.opacity="100";
@@ -1159,8 +1159,8 @@
 					</div>
 
 					<div class="col-lg-6"></div>
-
-					<div class="col-lg-3" style="padding-left: 15px;">
+					
+					<div class="col-lg-3" style="padding-left: 15px; display: none;">
 						<div class="add_frm"
 							style="padding: 0px 0px 0px 15px; border-bottom: 0px">
 							<div class="add_frm_one" style="margin: 0;">
@@ -1171,7 +1171,7 @@
 						</div>
 					</div>
 
-					<div class="col-lg-3" style="padding-left: 15px;">
+					<div class="col-lg-3" style="padding-left: 15px; display: none;">
 						<div class="add_frm" style="padding: 0px; border-bottom: 0px">
 							<div class="add_frm_one" style="margin: 0;">
 								<div class="add_customer_one"
@@ -1180,8 +1180,7 @@
 							</div>
 						</div>
 					</div>
-
-					<div class="col-lg-6"></div>
+					<!-- <div class="col-lg-6"></div> -->
 
 					<div class="col-lg-3" style="padding-left: 15px;">
 						<div class="add_frm"
@@ -1313,7 +1312,7 @@
 				style="margin-left: 15px; margin-right: 15px; background: #fff; display: none;"
 				id="enterRemarkDiv">
 
-				<div class="col-lg-3" style="padding-left: 15px;">
+				<div class="col-lg-2" style="padding-left: 0px;">
 					<div class="add_frm" style="padding: 0px; border-bottom: 0px">
 						<div class="add_frm_one" style="margin: 0;">
 							<div class="add_customer_one"
@@ -1325,9 +1324,9 @@
 					</div>
 				</div>
 
-				<div class="col-lg-9">
+				<div class="col-lg-10">
 					<div class="add_frm"
-						style="padding: 0px 0px 0px 15px; border-bottom: 0px">
+						style="padding: 0px 0px 0px 0px; border-bottom: 0px">
 						<div class="add_frm_one" style="margin: 0">
 							<input type="text" list="templates" id="enterRemark"
 								name="enterRemark" class="form-control chosen"
@@ -1532,7 +1531,7 @@ function valdateDate(fromDate, toDate) {
 											
 											
 											document
-											.getElementById("taxableAmt").innerHTML = data[i].taxableAmt;
+											.getElementById("taxableAmt").innerHTML = data[i].exFloat1;
 											
 											document.getElementById("taxAmt").innerHTML = data[i].taxAmt;
 											document.getElementById("discAmt").innerHTML = data[i].discAmt;
@@ -1722,7 +1721,7 @@ function valdateDate(fromDate, toDate) {
 												+ "')> PRINT BILL &nbsp;<i class='fa fa-print ' aria-hidden='true' style='font-size: 18px;' ></i></button>&nbsp;&nbsp;";
 
 													
-													if (data[i].orderStatus == 1) {														
+													if (data[i].intOrderStatus == 1) {														
 														document.getElementById("buttonDiv").innerHTML = acceptBtn
 																+ ""
 																+ acceptAndProcessBtn
@@ -1735,7 +1734,7 @@ function valdateDate(fromDate, toDate) {
 
 													//	getRemarkList(6);
 
-													} else if (data[i].orderStatus == 2) {
+													} else if (data[i].intOrderStatus == 2) {
 			
 														document.getElementById("buttonDiv").innerHTML = processBtn
 																+ "" + processBtnWithPrint + "" + rejectBtn;
@@ -1746,14 +1745,14 @@ function valdateDate(fromDate, toDate) {
 
 													//	getRemarkList(6);
 
-													} else if (data[i].orderStatus == 3) {
+													} else if (data[i].intOrderStatus == 3) {
 
 														document.getElementById("deliveryDiv").style.display = "block";
 
 														document.getElementById("buttonDiv").innerHTML = billBtn
 																+ "" + billBtnWithPrint;
 
-													} else if (data[i].orderStatus == 4) {														
+													} else if (data[i].intOrderStatus == 4) {														
 
 														document.getElementById("buttonDiv").innerHTML = printGenBill+ "" +deliveredBtn
 																+ "" + returnBtn;
@@ -1765,19 +1764,19 @@ function valdateDate(fromDate, toDate) {
 
 													//	getRemarkList(7);
 
-													} else if (data[i].orderStatus == 5) {
+													} else if (data[i].intOrderStatus == 5) {
 														
 														document.getElementById("buttonDiv").innerHTML = "";
 
-													} else if (table[i].orderStatus == 6) {
+													} else if (table[i].intOrderStatus == 6) {
 
 														document.getElementById("buttonDiv").innerHTML = "";
 
-													} else if (data[i].orderStatus == 7) {
+													} else if (data[i].intOrderStatus == 7) {
 														
 														document.getElementById("buttonDiv").innerHTML = "";
 
-													} else if (data[i].orderStatus == 8) {
+													} else if (data[i].intOrderStatus == 8) {
 
 														document.getElementById("buttonDiv").innerHTML = "";
 
@@ -2336,7 +2335,7 @@ function valdateDate(fromDate, toDate) {
 										document.getElementById("paid_Amt").innerHTML = data[i].exFloat4;
 										
 										document
-										.getElementById("taxableAmt").innerHTML = data[i].taxableAmt;
+										.getElementById("taxableAmt").innerHTML = data[i].exFloat1;
 										
 										document.getElementById("taxAmt").innerHTML = data[i].taxAmt;
 										document.getElementById("discAmt").innerHTML = data[i].discAmt;

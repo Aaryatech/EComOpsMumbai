@@ -485,7 +485,7 @@ table, th, td {
 				
 				<div class="col-lg-6"> </div>
 
-				<div class="col-lg-3" style="padding-left: 15px;">
+				<div class="col-lg-3" style="padding-left: 15px; display: none;">
 					<div class="add_frm"
 						style="padding: 0px 0px 0px 15px; border-bottom: 0px">
 						<div class="add_frm_one" style="margin: 0;">
@@ -496,7 +496,7 @@ table, th, td {
 					</div>
 				</div>
 
-				<div class="col-lg-3" style="padding-left: 15px;">
+				<div class="col-lg-3" style="padding-left: 15px; display: none;" >
 					<div class="add_frm" style="padding: 0px; border-bottom: 0px">
 						<div class="add_frm_one" style="margin: 0;">
 							<div class="add_customer_one"
@@ -505,7 +505,7 @@ table, th, td {
 					</div>
 				</div>
 				
-				<div class="col-lg-6"> </div>
+				<!-- <div class="col-lg-6"> </div> -->
 
 				<div class="col-lg-3" style="padding-left: 15px;">
 					<div class="add_frm"
@@ -780,7 +780,7 @@ table, th, td {
 										//document.getElementById("ttlAmt").innerHTML = data[i].totalAmt;
 										
 										document
-										.getElementById("taxableAmt").innerHTML = data[i].taxableAmt;
+										.getElementById("taxableAmt").innerHTML = data[i].exFloat1;
 										
 										document.getElementById("taxAmt").innerHTML = data[i].taxAmt;
 										document.getElementById("discAmt").innerHTML = data[i].discAmt;
@@ -1556,8 +1556,9 @@ table, th, td {
 											document.getElementById("payMode").value = paymentMode;
 											document.getElementById("ttlAmt").value = data[i].totalAmt;
 
-											document
-													.getElementById("taxableAmt").value = data[i].taxableAmt;
+											//document.getElementById("taxableAmt").value = data[i].taxableAmt;
+											document.getElementById("taxableAmt").value = data[i].exFloat1;
+
 											document.getElementById("taxAmt").value = data[i].igstAmt;
 											document.getElementById("discAmt").value = data[i].discAmt;
 											document
