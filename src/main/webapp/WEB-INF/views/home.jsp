@@ -27,6 +27,9 @@
  </script>
  
 </head>
+
+
+
 <%-- 
 <c:url var="getItemSellBill" value="/getItemSellBill" />
 <c:url var="getDatewiseSellList" value="/getDatewiseSellList" />
@@ -57,7 +60,7 @@
 				<!--page title-start-->
 				<div class="page_head">
 
-					<div class="page_title">Dashboard</div>
+					<div class="page_title" style="padding:10px 0 0 20px;">Dashboard</div>
 
 					<%-- <h3>${type}</h3> --%>
 
@@ -392,8 +395,33 @@
 
 
 						<h3 class="bx_title">Orders By Status</h3>
+						
+						<div class="tableFixHead">
+							<table id="order_table">
 
-						<div class="scrollbars" id="scrollbarsmodaldiv"
+								<thead>
+									<tr>
+										<th style="text-align: center;">Sr No</th>
+										<th style="text-align: center;">Order No.</th>
+										<th style="text-align: center;">Delivery Date</th>
+										<th style="text-align: center;">Customer</th>
+										<th style="text-align: center;">Time Slot</th>
+										<th style="text-align: center;">Order Status</th>
+										<th style="text-align: center;">Payment Mode</th>
+										<th style="text-align: center;">Total</th>
+										<th style="text-align: center;">Action</th>
+									</tr>
+								</thead>
+								<tbody>
+
+								</tbody>
+							</table>
+							
+						</div>
+						
+						
+
+						<!-- <div class="scrollbars" id="scrollbarsmodaldiv"
 							style="height: auto;">
 							<table id="order_table">
 
@@ -420,7 +448,7 @@
 
 								</tbody>
 							</table>
-						</div>
+						</div> -->
 
 					</div>
 				</div>
@@ -1057,27 +1085,40 @@
 
 			<br>
 
-			<div class="row">
-				<div id="table-scroll" class="table-scroll" style="width: 100%">
-					<div class="table-responsive"
-						style="max-height: none; min-height: none;">
-						<table id="order_dtl_table" class="main-table">
+			<div><!--  class="row" -->
+			
+			<div class="tableFixHead">
+				<table id="order_dtl_table" class="main-table" style="border: 1px solid #9da88d;">
 							<thead>
 								<tr class="bgpink">
-									<th class="col-md-1"
-										style="text-align: center; padding: 0 !important; font-size: 14px;">SR</th>
-									<th class="col-md-2"
-										style="text-align: center; padding: 0 !important; font-size: 14px;">Items
-										Name</th>
-									<th class="col-md-1"
-										style="text-align: center; padding: 0 !important; font-size: 14px;">Product
-										Image</th>
-									<th class="col-sm-1"
-										style="text-align: center; padding: 0 !important; font-size: 14px;">Rate</th>
-									<th class="col-md-1"
-										style="text-align: center; padding: 0 !important; font-size: 14px;">Quantity</th>
-									<th class="col-md-1"
-										style="text-align: center; padding: 0 !important; font-size: 14px;">Total</th>
+									<th style="text-align: center; padding: 0 !important; font-size: 14px;">SR</th>
+									<th style="text-align: center; padding: 0 !important; font-size: 14px;">Items Name</th>
+									<th style="text-align: center; padding: 0 !important; font-size: 14px;">Product Image</th>
+									<th style="text-align: center; padding: 0 !important; font-size: 14px;">Rate</th>
+									<th style="text-align: center; padding: 0 !important; font-size: 14px;">Quantity</th>
+									<th style="text-align: center; padding: 0 !important; font-size: 14px;">Total</th>
+
+								</tr>
+							</thead>
+							<tbody>
+
+							</tbody>
+						</table>
+			</div>
+			
+			
+				<!-- <div id="table-scroll" class="table-scroll" style="width: 100%">
+					<div class="table-responsive"
+						style="max-height: none; min-height: none;">
+						<table id="order_dtl_table" class="main-table" style="border: 1px solid #9da88d;">
+							<thead>
+								<tr class="bgpink">
+									<th style="text-align: center; padding: 0 !important; font-size: 14px;">SR</th>
+									<th style="text-align: center; padding: 0 !important; font-size: 14px;">Items Name</th>
+									<th style="text-align: center; padding: 0 !important; font-size: 14px;">Product Image</th>
+									<th style="text-align: center; padding: 0 !important; font-size: 14px;">Rate</th>
+									<th style="text-align: center; padding: 0 !important; font-size: 14px;">Quantity</th>
+									<th style="text-align: center; padding: 0 !important; font-size: 14px;">Total</th>
 
 								</tr>
 							</thead>
@@ -1086,7 +1127,7 @@
 							</tbody>
 						</table>
 					</div>
-				</div>
+				</div> -->
 			</div>
 
 			<div class="col-lg-12">
@@ -1300,28 +1341,20 @@
 				</div>
 			</div>
 			<br>
-			<div class="row"
-				style="margin-left: 15px; margin-right: 15px; display: flex; text-align: center;">
+			<div class="row" style="margin-left: 15px; margin-right: 15px; display: flex; text-align: center;">
 				<div class="col-md-12" id="buttonDiv"></div>
 			</div>
 			<br>
-			<div class="row" style="display: none;" id="griev_div">
+			
+			<div class="tableFixHead" style="display: none;" id="griev_div">
 				<table id="order_griev_table" class="main-table">
 					<thead>
 						<tr class="bgpink">
-							<th class="col-md-1"
-								style="text-align: center; padding: 0 !important; font-size: 14px;">SR</th>
-							<th class="col-md-2"
-								style="text-align: center; padding: 0 !important; font-size: 14px;">Grievances</th>
-							<th class="col-md-1"
-								style="text-align: center; padding: 0 !important; font-size: 14px;">Product
-								Image1</th>
-							<th class="col-sm-1"
-								style="text-align: center; padding: 0 !important; font-size: 14px;">Product
-								Image2</th>
-							<th class="col-md-1"
-								style="text-align: center; padding: 0 !important; font-size: 14px;">Product
-								Image3</th>
+							<th style="text-align: center; padding: 0 !important; font-size: 14px;">SR</th>
+							<th style="text-align: center; padding: 0 !important; font-size: 14px;">Grievances</th>
+							<th style="text-align: center; padding: 0 !important; font-size: 14px;">Product Image1</th>
+							<th style="text-align: center; padding: 0 !important; font-size: 14px;">Product Image2</th>
+							<th style="text-align: center; padding: 0 !important; font-size: 14px;">Product Image3</th>
 
 						</tr>
 					</thead>
@@ -1330,6 +1363,25 @@
 					</tbody>
 				</table>
 			</div>
+			
+			
+			<!-- <div class="row" style="display: none;" id="griev_div">
+				<table id="order_griev_table" class="main-table">
+					<thead>
+						<tr class="bgpink">
+							<th style="text-align: center; padding: 0 !important; font-size: 14px;">SR</th>
+							<th style="text-align: center; padding: 0 !important; font-size: 14px;">Grievances</th>
+							<th style="text-align: center; padding: 0 !important; font-size: 14px;">Product Image1</th>
+							<th style="text-align: center; padding: 0 !important; font-size: 14px;">Product Image2</th>
+							<th style="text-align: center; padding: 0 !important; font-size: 14px;">Product Image3</th>
+
+						</tr>
+					</thead>
+					<tbody>
+
+					</tbody>
+				</table>
+			</div> -->
 		</div>
 	</div>
 	<script type="text/javascript">
@@ -1501,35 +1553,35 @@ function valdateDate(fromDate, toDate) {
 																var tr = $('<tr style="background:##03a9f4;"></tr>');
 																tr
 																.append($(
-																		'<td style="padding: 2 !important; font-size: 14px;"></td>')
+																		'<td style="text-align:center; padding: 2 !important; font-size: 14px;"></td>')
 																		.html(key + 1));
 
 
 																tr
 																		.append($(
-																				'<td  style="padding: 12px; line-height:0; border-top: 1px solid #ddd;"></td>')
+																				'<td  style="text-align:left; padding: 12px; line-height:0;"></td>')
 																				.html(
 																						itm.itemName));
 																tr
 																		.append($(
-																				'<td style="padding: 12px; line-height:0; border-top: 1px solid #ddd;""></td>')
+																				'<td style="text-align:center; padding: 12px; line-height:0; "></td>')
 																				.html(itemPic));
 
 																tr
 																		.append($(
-																				'<td style="padding: 12px; line-height:0; border-top: 1px solid #ddd;""></td>')
+																				'<td style="text-align:center; padding: 12px; line-height:0;"></td>')
 																				.html(
 																						itm.mrp));
 
 																tr
 																		.append($(
-																				'<td style="padding: 12px; line-height:0; border-top: 1px solid #ddd;""></td>')
+																				'<td style="text-align:center; padding: 12px; line-height:0;"></td>')
 																				.html(
 																						itm.exFloat3));
 
 																tr
 																		.append($(
-																				'<td style="padding: 12px; line-height:0; border-top: 1px solid #ddd;""></td>')
+																				'<td style="text-align:center; padding: 12px; line-height:0; "></td>')
 																				.html(
 																						itm.mrp
 																								* itm.exFloat3));
@@ -2175,7 +2227,7 @@ function valdateDate(fromDate, toDate) {
 								
 								var tr = "<tr>";
                                 var td1 = "<td colspan='7'>&nbsp;&nbsp;&nbsp;<b> Total</b></td>";
-                                var td2 = "<td><b><b>"
+                                var td2 = "<td style='text-align:right;'><b><b>"
                                         + orderTtlAmt.toFixed(2);
                                 +"</b></td>";   
                                 var trclosed = "</tr>";
@@ -2305,35 +2357,35 @@ function valdateDate(fromDate, toDate) {
 															var tr = $('<tr style="background:##03a9f4;"></tr>');
 															tr
 															.append($(
-																	'<td style="padding: 2 !important; font-size: 14px;"></td>')
+																	'<td style="text-align:center; padding: 2 !important; font-size: 14px;"></td>')
 																	.html(key + 1));
 
 
 															tr
 																	.append($(
-																			'<td  style="padding: 12px; line-height:0; border-top: 1px solid #ddd;"></td>')
+																			'<td  style="text-align:left; padding: 12px; line-height:0; border-top: 1px solid #ddd;"></td>')
 																			.html(
 																					itm.itemName));
 															tr
 																	.append($(
-																			'<td style="padding: 12px; line-height:0; border-top: 1px solid #ddd;""></td>')
+																			'<td style="text-align:center; padding: 12px; line-height:0; border-top: 1px solid #ddd;""></td>')
 																			.html(itemPic));
 
 															tr
 																	.append($(
-																			'<td style="padding: 12px; line-height:0; border-top: 1px solid #ddd;""></td>')
+																			'<td style="text-align:center; padding: 12px; line-height:0; border-top: 1px solid #ddd;""></td>')
 																			.html(
 																					itm.mrp));
 
 															tr
 																	.append($(
-																			'<td style="padding: 12px; line-height:0; border-top: 1px solid #ddd;""></td>')
+																			'<td style="text-align:center; padding: 12px; line-height:0; border-top: 1px solid #ddd;""></td>')
 																			.html(
 																					itm.exFloat3));
 
 															tr
 																	.append($(
-																			'<td style="padding: 12px; line-height:0; border-top: 1px solid #ddd;""></td>')
+																			'<td style="text-align:center; padding: 12px; line-height:0; border-top: 1px solid #ddd;""></td>')
 																			.html(
 																					itm.mrp
 																							* itm.exFloat3));
@@ -2551,29 +2603,29 @@ function valdateDate(fromDate, toDate) {
 																	var tr = $('<tr style="background:##03a9f4;"></tr>');
 																	tr
 																	.append($(
-																			'<td style="padding: 2 !important; font-size: 14px;"></td>')
+																			'<td style="text-align:center; padding: 2 !important; font-size: 14px;"></td>')
 																			.html(key + 1));
 
 
 																	tr
 																			.append($(
-																					'<td  style="padding: 12px; line-height:0; border-top: 1px solid #ddd;"></td>')
+																					'<td  style="text-align:left; padding: 12px; line-height:0; border-top: 1px solid #ddd;"></td>')
 																					.html(
 																							griev.deliveryReason));
 																	tr
 																			.append($(
-																					'<td style="padding: 12px; line-height:0; border-top: 1px solid #ddd;""></td>')
+																					'<td style="text-align:center; padding: 12px; line-height:0; border-top: 1px solid #ddd;""></td>')
 																					.html(
 																							'<img src="'+grivImgPath+griev.proImg1+'"  width="50" height="50" alt="Product Image">'));
 
 																	tr
 																			.append($(
-																					'<td style="padding: 12px; line-height:0; border-top: 1px solid #ddd;""></td>')
+																					'<td style="text-align:center; padding: 12px; line-height:0; border-top: 1px solid #ddd;""></td>')
 																					.html(
 																							'<img src="'+grivImgPath+griev.proImg2+'"  width="50" height="50" alt="Product Image">'));
 																	tr
 																	.append($(
-																			'<td style="padding: 12px; line-height:0; border-top: 1px solid #ddd;""></td>')
+																			'<td style="text-align:center; padding: 12px; line-height:0; border-top: 1px solid #ddd;""></td>')
 																			.html(
 																					'<img src="'+grivImgPath+griev.proImg3+'"  width="50" height="50" alt="Product Image">'));
 

@@ -436,7 +436,7 @@ table, th, td {
 				<div id="table-scroll" class="table-scroll" style="width: 100%">
 					<div class="table-responsive"
 						style="max-height: none; min-height: none;">
-						<table id="order_dtl_table" class="main-table" style="width:96%; margin:0 auto;">
+						<table id="order_dtl_table" class="main-table" ><!-- style="width:96%; margin:0 auto;" -->
 							<thead>
 								<tr class="bgpink">
 									<th style="text-align: center; padding: 0 !important; font-size: 14px;">SR</th>

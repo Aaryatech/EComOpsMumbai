@@ -640,7 +640,25 @@ chosen-container {
 			</div>
 			<br>
 
-			<div class="row">
+			<div class="tableFixHead">
+				<table id="order_dtl_table" class="main-table" style="width:96%;"> 
+							<thead>
+								<tr class="bgpink">
+									<th style="text-align: center; padding: 0 !important; font-size: 14px;">SR</th>
+									<th style="text-align: center; padding: 0 !important; font-size: 14px;">Items Name</th>
+									<th style="text-align: center; padding: 0 !important; font-size: 14px;">Product Image</th>
+									<th style="text-align: center; padding: 0 !important; font-size: 14px;">Rate</th>
+									<th style="text-align: center; padding: 0 !important; font-size: 14px;">Quantity</th>
+									<th style="text-align: center; padding: 0 !important; font-size: 14px;">Total</th>
+								</tr>
+							</thead>
+							<tbody>
+
+							</tbody>
+						</table>
+			</div>
+
+			<!-- <div class="row">
 				<div id="table-scroll" class="table-scroll" style="width: 100%">
 					<div class="table-responsive"
 						style="max-height: none; min-height: none;">
@@ -668,7 +686,7 @@ chosen-container {
 						</table>						
 					</div>
 				</div>
-			</div>
+			</div> -->
 			
 			<div class="col-lg-12">
 
@@ -882,7 +900,26 @@ chosen-container {
 				<div class="col-md-12" id="buttonDiv"></div>
 			</div>
 			<br>
-			<div class="row" id="griev_div" >
+			
+			<div class="tableFixHead" id="griev_div">
+				<table id="order_griev_table" class="main-table" style="width:96%; margin:0 auto;">
+					<thead>
+						<tr class="bgpink">
+							<th style="text-align: center; padding: 0 !important; font-size: 14px;">SR</th>
+							<th style="text-align: center; padding: 0 !important; font-size: 14px;">Grievances</th>
+							<th style="text-align: center; padding: 0 !important; font-size: 14px;">Product Image1</th>
+							<th style="text-align: center; padding: 0 !important; font-size: 14px;">Product Image2</th>
+							<th style="text-align: center; padding: 0 !important; font-size: 14px;">Product Image3</th>
+						</tr>
+					</thead>
+					<tbody>
+
+					</tbody>
+				</table>
+			</div>
+			
+			
+			<!-- <div class="row" id="griev_div" >
 				<table id="order_griev_table" class="main-table" style="width:96%; margin:0 auto;">
 					<thead>
 						<tr class="bgpink">
@@ -906,7 +943,7 @@ chosen-container {
 
 					</tbody>
 				</table>
-			</div>
+			</div> -->
 		</div>
 	</div>
 <script type="text/javascript">
@@ -1284,35 +1321,35 @@ $("#submtbtn")
 															var tr = $('<tr style="background:##03a9f4;"></tr>');
 															tr
 															.append($(
-																	'<td style="padding: 2 !important; font-size: 14px;"></td>')
+																	'<td style="text-align:center; padding: 2 !important; font-size: 14px;"></td>')
 																	.html(key + 1));
 
 
 															tr
 																	.append($(
-																			'<td  style="padding: 12px; line-height:0; border-top: 1px solid #ddd;"></td>')
+																			'<td  style="text-align:left; padding: 12px; line-height:0; border-top: 1px solid #ddd;"></td>')
 																			.html(
 																					itm.itemName));
 															tr
 																	.append($(
-																			'<td style="padding: 12px; line-height:0; border-top: 1px solid #ddd;""></td>')
+																			'<td style="text-align:center; padding: 12px; line-height:0; border-top: 1px solid #ddd;""></td>')
 																			.html(itemPic));
 
 															tr
 																	.append($(
-																			'<td style="padding: 12px; line-height:0; border-top: 1px solid #ddd;""></td>')
+																			'<td style="text-align:center; padding: 12px; line-height:0; border-top: 1px solid #ddd;""></td>')
 																			.html(
 																					itm.mrp));
 
 															tr
 																	.append($(
-																			'<td style="padding: 12px; line-height:0; border-top: 1px solid #ddd;""></td>')
+																			'<td style="text-align:center; padding: 12px; line-height:0; border-top: 1px solid #ddd;""></td>')
 																			.html(
 																					itm.exFloat3));
 
 															tr
 																	.append($(
-																			'<td style="padding: 12px; line-height:0; border-top: 1px solid #ddd;""></td>')
+																			'<td style="text-align:center; padding: 12px; line-height:0; border-top: 1px solid #ddd;""></td>')
 																			.html(
 																					itm.mrp
 																							* itm.exFloat3));
@@ -1529,29 +1566,29 @@ $("#submtbtn")
 																	var tr = $('<tr style="background:##03a9f4;"></tr>');
 																	tr
 																	.append($(
-																			'<td style="padding: 2 !important; font-size: 14px;"></td>')
+																			'<td style="text-align:center; padding: 2 !important; font-size: 14px;"></td>')
 																			.html(key + 1));
 
 
 																	tr
 																			.append($(
-																					'<td  style="padding: 12px; line-height:0; border-top: 1px solid #ddd;"></td>')
+																					'<td  style="text-align:left; padding: 12px; line-height:0; border-top: 1px solid #ddd;"></td>')
 																					.html(
 																							griev.deliveryReason));
 																	tr
 																			.append($(
-																					'<td style="padding: 12px; line-height:0; border-top: 1px solid #ddd;""></td>')
+																					'<td style="text-align:center; padding: 12px; line-height:0; border-top: 1px solid #ddd;""></td>')
 																					.html(
 																							'<img src="'+grivImgPath+griev.proImg1+'"  width="50" height="50" alt="Product Image">'));
 
 																	tr
 																			.append($(
-																					'<td style="padding: 12px; line-height:0; border-top: 1px solid #ddd;""></td>')
+																					'<td style="text-align:center; padding: 12px; line-height:0; border-top: 1px solid #ddd;""></td>')
 																					.html(
 																							'<img src="'+grivImgPath+griev.proImg2+'"  width="50" height="50" alt="Product Image">'));
 																	tr
 																	.append($(
-																			'<td style="padding: 12px; line-height:0; border-top: 1px solid #ddd;""></td>')
+																			'<td style="text-align:center; padding: 12px; line-height:0; border-top: 1px solid #ddd;""></td>')
 																			.html(
 																					'<img src="'+grivImgPath+griev.proImg3+'"  width="50" height="50" alt="Product Image">'));
 
