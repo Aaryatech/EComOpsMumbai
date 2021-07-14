@@ -16,6 +16,16 @@
 <meta name="author" content="Monginis">
 <jsp:include page="/WEB-INF/views/include/header.jsp"></jsp:include>
 <!--Here Previous Block of Code, Commented at End -->
+
+<script>
+  function hideBody(){
+	  document.body.style.opacity="0";
+	  }
+	  function showBody(){
+		  document.body.style.opacity="100";
+		  }
+ </script>
+ 
 </head>
 <%-- 
 <c:url var="getItemSellBill" value="/getItemSellBill" />
@@ -337,6 +347,8 @@
 
 						<input type="hidden" value="${custmDates}" id="custmDates">
 						<input type="hidden" value="${imagePath}" id="imgPath">
+												<input type="hidden" value="${GrivImagePath}" id="grivImgPath">
+						
 						<div class="clr"></div>
 
 						<ul id="status_cnt">
@@ -1019,6 +1031,28 @@
 					</div>
 				</div>
 			</div>
+			
+			<div class="row">
+				<div class="col-lg-2">
+					<div class="add_frm" style="padding: 0px; border-bottom: 0px">
+						<div class="add_frm_one" style="margin: 0;">
+							<div class="add_customer_one"
+								style="font-size: 14px; width: 100%">Paid Amount :</div>
+						</div>
+
+					</div>
+				</div>
+				
+				<div class="col-lg-4">
+					<div class="add_frm" style="padding: 0px; border-bottom: 0px">
+						<div class="add_frm_one" style="margin: 0;">
+							<div class="add_customer_one"
+								style="font-size: 14px; width: 100%;" id="paid_Amt"></div>
+						</div>
+
+					</div>
+				</div>
+				</div>
 
 
 			<br>
@@ -1354,9 +1388,12 @@ function valdateDate(fromDate, toDate) {
 	<script type="text/javascript">
 		function openBillPopup(orderId) {
 			//alert(orderId)
+			hideBody();
 			document.getElementById("griev_div").style.display = "none";
 			$('#order_dtl_table td').remove();	
 			var imgPath = $("#imgPath").val();
+			var grivImgPath = $("#grivImgPath").val();
+			
 			if (orderId > 0) {
 
 				$
@@ -1370,6 +1407,7 @@ function valdateDate(fromDate, toDate) {
 								function(data) {
 								//	alert("Hi----------"+JSON.stringify(data[0].deliveryDateDisplay))
 									$('#billPopup').popup('show');
+									showBody();
 									for (var i = 0; i < data.length; i++) {
 
 										if (data[i].orderId == orderId) {
@@ -1438,6 +1476,8 @@ function valdateDate(fromDate, toDate) {
 													.getElementById("orderType").innerHTML = orderType; */
 											document.getElementById("payMode").innerHTML = paymentMode;
 											document.getElementById("ttlAmt").innerHTML = data[i].totalAmt;
+											document.getElementById("paid_Amt").innerHTML = data[i].exFloat4;
+											
 											
 											document
 											.getElementById("taxableAmt").innerHTML = data[i].taxableAmt;
@@ -1699,6 +1739,7 @@ function valdateDate(fromDate, toDate) {
 
 								});
 			}
+			//showBody();
 		}
 
 		function closeBillPopup() {
@@ -2007,7 +2048,8 @@ function valdateDate(fromDate, toDate) {
 									alert("No Data Found!");									
 								}
 								
-								
+							
+								console.log("data",JSON.stringify(data));
 								var orderTtlAmt = 0;
 								$
 										.each(
@@ -2017,17 +2059,32 @@ function valdateDate(fromDate, toDate) {
 													var orderStatus = null;
 													var paymentMode = null;
 
+													
+													var isGrivPresent=0;
+													 if(order.grievances.length>0){
+														 isGrivPresent=1;
+												} 
+													//alert(isGrivPresent)
+													
 													var acStr = '<a href="javascript:void(0)" class="list-icons-item text-primary-600" data-popup="tooltip" title="" data-original-title="Order Detail" onclick="openBillPopup('
 														+ order.orderId
 														+ ')"><i class="fa fa-list"></i></a> &nbsp;&nbsp;'+
 														'<a href="javascript:void(0)" class="list-icons-item text-primary-600" data-popup="tooltip" title="Order Detail & Grievances" onclick="openOrderGrievPopup('
 														+ order.orderId
 														+ ')"><i class="fa fa-list"></i></a>'
+														
+														 if(isGrivPresent==0){
+															acStr = '<a href="javascript:void(0)" class="list-icons-item text-primary-600" data-popup="tooltip" title="" data-original-title="Order Detail" onclick="openBillPopup('
+																+ order.orderId
+																+ ')"><i class="fa fa-list"></i></a>'
+														} 
 
 													if (order.paymentMethod == 1) {
-														paymentMode = "Cash";
+														//paymentMode = "Cash";
+														paymentMode = "Cash On Delivery";
 													} else if (order.paymentMethod == 2) {
-														paymentMode = "Card";
+														//paymentMode = "Card";
+														paymentMode = "Online";
 													} else {
 														paymentMode = "E-Pay";
 													}
@@ -2107,7 +2164,7 @@ function valdateDate(fromDate, toDate) {
 													
 													tr
 													.append($(
-															'<td style="text-align: center;"></td>')
+															'<td style="text-align: left; padding-left:10px;"></td>')
 															.html(acStr));
 													
 
@@ -2139,6 +2196,7 @@ function valdateDate(fromDate, toDate) {
 
 		$('#order_dtl_table td').remove();	
 		var imgPath = $("#imgPath").val();
+		var grivImgPath = $("#grivImgPath").val();
 		if (orderId > 0) {
 
 			$
@@ -2223,6 +2281,7 @@ function valdateDate(fromDate, toDate) {
 										
 										document.getElementById("payMode").innerHTML = paymentMode;
 										document.getElementById("ttlAmt").innerHTML = data[i].totalAmt;
+										document.getElementById("paid_Amt").innerHTML = data[i].exFloat4;
 										
 										document
 										.getElementById("taxableAmt").innerHTML = data[i].taxableAmt;
@@ -2505,18 +2564,18 @@ function valdateDate(fromDate, toDate) {
 																			.append($(
 																					'<td style="padding: 12px; line-height:0; border-top: 1px solid #ddd;""></td>')
 																					.html(
-																							'<img src="'+imgPath+griev.proImg1+'"  width="50" height="50" alt="Product Image">'));
+																							'<img src="'+grivImgPath+griev.proImg1+'"  width="50" height="50" alt="Product Image">'));
 
 																	tr
 																			.append($(
 																					'<td style="padding: 12px; line-height:0; border-top: 1px solid #ddd;""></td>')
 																					.html(
-																							'<img src="'+imgPath+griev.proImg2+'"  width="50" height="50" alt="Product Image">'));
+																							'<img src="'+grivImgPath+griev.proImg2+'"  width="50" height="50" alt="Product Image">'));
 																	tr
 																	.append($(
 																			'<td style="padding: 12px; line-height:0; border-top: 1px solid #ddd;""></td>')
 																			.html(
-																					'<img src="'+imgPath+griev.proImg3+'"  width="50" height="50" alt="Product Image">'));
+																					'<img src="'+grivImgPath+griev.proImg3+'"  width="50" height="50" alt="Product Image">'));
 
 																	$(
 																			'#order_griev_table tbody')
@@ -2720,7 +2779,15 @@ function valdateDate(fromDate, toDate) {
 
 		}
 	</script>
-
+<script>
+  function hideBody(){
+	  document.body.style.opacity="0";
+	  }
+	  function showBody(){
+		  document.body.style.opacity="100";
+		  }
+ </script>
+ 
 	<!-- **************************************************************** -->
 </body>
 </html>

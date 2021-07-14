@@ -282,6 +282,7 @@ public class HomeController {
 			
 			model.addObject("divType", type);
 			model.addObject("imagePath", Constant.PROD_IMG_VIEW_URL);
+			model.addObject("GrivImagePath", Constant.GRIV_IMG_VIEW_URL);
 		
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -398,6 +398,7 @@ chosen-container {
 				</div>
 				
 				<input type="hidden" value="${imagePath}" id="imgPath">
+				<input type="hidden" value="${GrieImagePath}" id="grivImgPath">
 				<input type="hidden" name="catId" id="catId" value="0">
 				<input type="hidden" name="subCatId" id="subCatId" value="0">
 				<input type="hidden" name="catId_sub" id="catId_sub" value="0">
@@ -1169,7 +1170,8 @@ $("#submtbtn")
 		//$("#btn_griev_"+orderId).attr("disabled", true);		
 		
 		var imgPath = $("#imgPath").val();
-		
+		var grivImgPath = $("#grivImgPath").val();
+
 		var fromDate = $("#fromdatepicker").val();		
 		var toDate = $("#todatepicker").val();
 		var status = $("#statusId").val();	
@@ -1540,18 +1542,18 @@ $("#submtbtn")
 																			.append($(
 																					'<td style="padding: 12px; line-height:0; border-top: 1px solid #ddd;""></td>')
 																					.html(
-																							'<img src="'+imgPath+griev.proImg1+'"  width="50" height="50" alt="Product Image">'));
+																							'<img src="'+grivImgPath+griev.proImg1+'"  width="50" height="50" alt="Product Image">'));
 
 																	tr
 																			.append($(
 																					'<td style="padding: 12px; line-height:0; border-top: 1px solid #ddd;""></td>')
 																					.html(
-																							'<img src="'+imgPath+griev.proImg2+'"  width="50" height="50" alt="Product Image">'));
+																							'<img src="'+grivImgPath+griev.proImg2+'"  width="50" height="50" alt="Product Image">'));
 																	tr
 																	.append($(
 																			'<td style="padding: 12px; line-height:0; border-top: 1px solid #ddd;""></td>')
 																			.html(
-																					'<img src="'+imgPath+griev.proImg3+'"  width="50" height="50" alt="Product Image">'));
+																					'<img src="'+grivImgPath+griev.proImg3+'"  width="50" height="50" alt="Product Image">'));
 
 																	$(
 																			'#order_griev_table tbody')

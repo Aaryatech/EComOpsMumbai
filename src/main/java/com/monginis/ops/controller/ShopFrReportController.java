@@ -242,6 +242,8 @@ public class ShopFrReportController {
 			mav.addObject("statusList", statusList);
 			
 			mav.addObject("imagePath", Constant.PROD_IMG_VIEW_URL);
+			mav.addObject("GrieImagePath", Constant.GRIV_IMG_VIEW_URL);
+			
 
 			System.out.println("comp id"+compId);
 			System.out.println("fr id"+frId);
