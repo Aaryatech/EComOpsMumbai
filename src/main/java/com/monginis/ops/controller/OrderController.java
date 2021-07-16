@@ -101,19 +101,21 @@ public class OrderController {
 			
 			String statusId = request.getParameter("statusId");	
 			System.out.println("ID ------"+statusId);
-			String statusStr = "";
+			String statusStr = ""+statusId;
 
 			
-			if (statusId != null) {
-				try {
-				statusStr = statusId.toString().substring(1, statusId.toString().length() - 1);
-				statusStr = statusStr.replaceAll("\"", "");
-				statusStr = statusStr.replaceAll(" ", "");
-				}catch (Exception e) {
-					statusStr = statusId;
-				}
-			}
-			
+			/*
+			 * if (statusId != null) { try { statusStr = statusId.toString().substring(1,
+			 * statusId.toString().length() - 1);
+			 * 
+			 * statusStr = statusStr.replaceAll("\"", "");
+			 * 
+			 * statusStr = statusStr.replaceAll(" ", "");
+			 * System.out.println("status List3--->"+statusStr); }catch (Exception e) {
+			 * statusStr = statusId; } }
+			 */
+			System.out.println("status List--->"+statusStr);
+
 			HttpSession session = request.getSession();
 			Franchisee frDetails = (Franchisee) session.getAttribute("frDetails");
 			int frId = frDetails.getFrId();
